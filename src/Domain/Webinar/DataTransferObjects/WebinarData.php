@@ -26,10 +26,10 @@ class WebinarData
 
     public  string $status;
 
-    public function __construct(array $args)
-    {
-        parent::__construct($args);
-    }
+//    public function __construct(array $args)
+//    {
+//        parent::__construct($args);
+//    }
 
     public function getStoreRequest(StoreWebinarRequest $request)
     {

@@ -1,10 +1,11 @@
 <?php
 
-namespace Application\Auth;
+namespace Application\Auth\Controllers;
 
+use Application\Auth\Requests\LoginRequest;
 use Core\Http\Controllers\Controller;
 use Core\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -18,8 +19,6 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
-    use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
@@ -36,5 +35,23 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function showLoginForm()
+    {
+        return view('auth.login');
+    }
+
+    public function login(LoginRequest $request)
+    {
+        $request->validated();
+
+        if (Auth::attempt([$request->input('email'), $request->input('password')])) {
+
+            $request->session()->regenerate();
+            return redirect()->route('home');
+        }
+
+        return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
     }
 }

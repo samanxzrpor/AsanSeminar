@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Auth;
+namespace Application\Auth\Controllers;
 
 use Core\Http\Controllers\Controller;
 use Core\Providers\RouteServiceProvider;

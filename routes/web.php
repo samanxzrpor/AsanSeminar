@@ -14,8 +14,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Auth::routes();
-
 Route::get('/', [\Application\Admin\Webinars\Controllers\WebinarController::class  , 'index']);
-Route::get('/login', [\Application\Auth\LoginController::class , 'showLoginForm'])->name('showLoginForm');
-Route::get('/login', [\Application\Auth\LoginController::class , 'showLoginForm'])->name('login');
+
+
+include __DIR__ . '/web_routes/auth_routes.php';
