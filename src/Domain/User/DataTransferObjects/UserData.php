@@ -5,7 +5,7 @@ namespace Domain\User\DataTransferObjects;
 use Application\Auth\Requests\RegisterRequest;
 use Illuminate\Support\Facades\Hash;
 
-class UserData
+class UserData extends \DataTransferObject
 {
     public string $name;
 
@@ -18,7 +18,7 @@ class UserData
     public int $wallet_amount;
 
 
-    public function getStoreUser(RegisterRequest $request)
+    public static function CreateFromRequest(RegisterRequest $request)
     {
         return new self([
             'name' => $request->get('name'),

@@ -2,21 +2,23 @@
 
 namespace Domain\User\Actions;
 
+use Domain\User\DataTransferObjects\UserData;
 use Domain\User\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-class UserStoreNew
+class UserStoreAction
 {
 
     public function __invoke(UserData $data)
     {
-        // TODO: Implement __invoke() method.
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => $data['password'],
             'phone' => $data['phone'],
             'wallet_amount' => $data['wallet_amount']
         ]);
+
+        return $user;
     }
 }

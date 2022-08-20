@@ -1,22 +1,13 @@
 <?php
 
+
 abstract class DataTransferObject
 {
 
-    public function __construct(...$args)
+    public static function fromRequest($request)
     {
-        foreach ($args as $key => $value) {
-            $this->setValue($key, $value);
-        }
-    }
+        $properties = new ReflectionClass(self::class);
 
-    public function setValue($key , $value): void
-    {
-        $this->$key = $value;
-    }
-
-    public function getProperties()
-    {
-
+        dd($properties);
     }
 }
