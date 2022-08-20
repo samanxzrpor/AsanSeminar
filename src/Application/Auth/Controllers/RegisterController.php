@@ -4,12 +4,8 @@ namespace Application\Auth\Controllers;
 
 use Application\Auth\Requests\RegisterRequest;
 use Core\Http\Controllers\Controller;
-use Core\Providers\RouteServiceProvider;
 use Domain\User\Actions\UserStoreAction;
 use Domain\User\DataTransferObjects\UserData;
-use Domain\User\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 
 class RegisterController extends Controller
 {
@@ -25,6 +21,12 @@ class RegisterController extends Controller
     }
 
 
+    public function showRegisterForm()
+    {
+        $user_data = UserData::fromRequest(request());
+        dd($user_data);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -33,8 +35,9 @@ class RegisterController extends Controller
      */
     protected function create(RegisterRequest $request)
     {
-        $user_data = UserData::CreateFromRequest($request);
+        $user_data = UserData::fromRequest($request);
 
         (new UserStoreAction)($user_data);
     }
+
 }

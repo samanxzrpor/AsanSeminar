@@ -18,7 +18,7 @@ Route::prefix('login')->group(function (){
 
 Route::prefix('register')->group(function (){
 
-    Route::get('/', [RegisterController::class , 'showLoginForm'])
+    Route::get('/', [RegisterController::class , 'showRegisterForm'])
         ->name('showLoginForm');
 
     Route::post('/', [RegisterController::class , 'login'])
