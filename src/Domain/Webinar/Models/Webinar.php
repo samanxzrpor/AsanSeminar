@@ -3,6 +3,7 @@
 namespace Domain\Webinar\Models;
 
 use Domain\DiscountCode\Models\DiscountCode;
+use Domain\Meeting\Models\Meeting;
 use Domain\Orders\Models\Order;
 use Domain\User\Models\User;
 use Illuminate\Database\Eloquent\Model;

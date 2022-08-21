@@ -13,6 +13,6 @@ abstract class DataTransferObject
         foreach ($properties as $key => $value) {
             $returendData[$value->name] = $request->$key;
         }
-        return $returendData;
+        return new static($returendData);
     }
 }

@@ -11,6 +11,7 @@ class UserStoreAction
 
     public function __invoke(UserData $data)
     {
+        dd($data);
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -22,6 +23,6 @@ class UserStoreAction
             ? $user->assignRole('Admin')
             : $user->assignRole('User');
 
-        return $this;
+        return $user;
     }
 }
