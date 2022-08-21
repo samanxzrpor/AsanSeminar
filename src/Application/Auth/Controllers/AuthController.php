@@ -71,7 +71,7 @@ class AuthController extends Controller
             (new UserStoreAction)($user_data);
         } catch (\Exception $e) {
             Log::alert('register-exception' .':'. $e->getMessage());
-            return back()->with('failed' , 'ثیت نام شما با مشکل مواحه شد . لطفا دوباره نلاش کنید');
+            return back()->with('failed' , 'ثیت نام شما با مشکل مواجه شد . لطفا دوباره نلاش کنید');
         }
     }
 }

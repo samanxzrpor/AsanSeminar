@@ -41,7 +41,7 @@ class RoleAndPermissionSeeder extends Seeder
 
         if ($dbPermissions->count() < 1) {
             foreach ($this->systemPermissions as $permission) {
-                Role::create([
+                Permission::create([
                     'name' => $permission
                 ]);
             }
@@ -72,7 +72,7 @@ class RoleAndPermissionSeeder extends Seeder
     {
         $adminRole = Role::where('name' , 'Admin')->first();
         foreach ($this->systemPermissions as $permission) {
-            $adminRole->givePermission($permission);
+            $adminRole->givePermissionTo($permission);
         }
     }
 
@@ -81,7 +81,7 @@ class RoleAndPermissionSeeder extends Seeder
         $accountantRole = Role::where('name' , 'Accountant')->first();
         foreach ($this->systemPermissions as $permission) {
             if ($permission == 'Accountant')
-                $accountantRole->addPermission($permission);
+                $accountantRole->addPermissionTo($permission);
         }
     }
 }

@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('email')->unique();
             $table->string('phone')->unique();
-            $table->unsignedInteger('wallet_amount');
-            $table->timestamp('email_verified_at')->nullable();
+            $table->unsignedInteger('wallet_amount')
+                ->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();

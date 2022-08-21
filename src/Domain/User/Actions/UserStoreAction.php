@@ -14,9 +14,9 @@ class UserStoreAction
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'password' => $data['password'],
+            'password' => Hash::make($data['password']),
             'phone' => $data['phone'],
-            'wallet_amount' => $data['wallet_amount']
+            'wallet_amount' => 0
         ]);
 
         $user->setAdmin();
