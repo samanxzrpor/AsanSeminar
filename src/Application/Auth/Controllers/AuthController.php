@@ -6,6 +6,7 @@ use Application\Auth\Requests\LoginRequest;
 use Application\Auth\Requests\RegisterRequest;
 use Core\Http\Controllers\Controller;
 use Core\Providers\RouteServiceProvider;
+use Domain\Authentication\Actions\LoginUserAction;
 use Domain\User\Actions\UserStoreAction;
 use Domain\User\DataTransferObjects\UserData;
 use Illuminate\Support\Facades\Auth;
@@ -13,29 +14,7 @@ use Illuminate\Support\Facades\Log;
 
 class AuthController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controllers
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
 
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = RouteServiceProvider::HOME;
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -49,14 +28,12 @@ class AuthController extends Controller
     public function login(LoginRequest $request)
     {
         $request->validated();
-
-        if (Auth::attempt([$request->input('email'), $request->input('password')])) {
-
-            $request->session()->regenerate();
-            return redirect()->route('home');
+        try {
+            (new LoginUserAction())($request);
+        }catch (\Exception $e) {
+            Log::alert('login-exception' .':'. $e->getMessage());
+            return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
         }
-
-        return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
     }
 
     public function showRegisterForm()
