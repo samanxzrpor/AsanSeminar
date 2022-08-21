@@ -60,4 +60,11 @@ class User extends Model
     {
         return $this->hasMany(Order::class);
     }
+
+    public function setAdmin()
+    {
+        $this->email == config('permission.admin_email')
+            ? $this->assignRole('Admin')
+            : $this->assignRole('User');
+    }
 }

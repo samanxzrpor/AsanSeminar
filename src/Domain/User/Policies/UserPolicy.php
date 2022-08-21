@@ -24,4 +24,5 @@ class UserPolicy
     {
         return $user->isAdmin();
     }
+    
 }

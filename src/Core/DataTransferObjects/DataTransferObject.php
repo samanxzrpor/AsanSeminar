@@ -12,9 +12,8 @@ abstract class DataTransferObject
         $properties = $reflection->getProperties();
 
         foreach ($properties as $key => $value) {
-            $returendData[$value->name] = $request->$value->name;
+            $returendData[$value->name] = $request->{$value->name};
         }
-        dd($returendData);
 
         return $returendData;
     }

@@ -3,6 +3,7 @@
 @section('auth-content')
     <div class="auth-content">
         <h1>Login</h1>
+        @include('errors.error')
         <form class="auth" action="{{route('login')}}" method="post">
             @csrf
             <div class="mb-3">

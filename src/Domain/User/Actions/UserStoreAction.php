@@ -11,8 +11,6 @@ class UserStoreAction
 
     public function __invoke(array $data)
     {
-        dd($data);
-
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -20,9 +18,8 @@ class UserStoreAction
             'phone' => $data['phone'],
             'wallet_amount' => $data['wallet_amount']
         ]);
-        $user->email == config('permission.admin_email')
-            ? $user->assignRole('Admin')
-            : $user->assignRole('User');
+
+        $user->setAdmin();
 
         return $user;
     }
