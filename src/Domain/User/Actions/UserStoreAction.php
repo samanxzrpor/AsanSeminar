@@ -9,9 +9,10 @@ use Illuminate\Support\Facades\Hash;
 class UserStoreAction
 {
 
-    public function __invoke(UserData $data)
+    public function __invoke(array $data)
     {
         dd($data);
+
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],

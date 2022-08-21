@@ -10,7 +10,6 @@ use Domain\User\DataTransferObjects\UserData;
 class RegisterController extends Controller
 {
 
-
     public function __construct()
     {
         $this->middleware('guest');
@@ -23,9 +22,13 @@ class RegisterController extends Controller
 
     protected function create(RegisterRequest $request)
     {
-        $user_data = UserData::fromRequest($request);
+        try {
+            $user_data = UserData::fromRequest($request);
+            (new UserStoreAction)($user_data);
+        } catch (\Exception $e) {
+            return back()->with('failed' , '');
+        }
 
-        (new UserStoreAction)($user_data);
     }
 
 }

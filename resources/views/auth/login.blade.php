@@ -13,7 +13,7 @@
                 <label for="exampleFormControlTextarea1" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" name="password" placeholder="Enter your Password" required>
             </div>
-            <button type="submit" class="btn btn-success">Success</button>
+            <button type="submit" class="btn btn-success">Login</button>
         </form>
         <p class="change-auth-link">if You have not account ago <a href="{{route('showRegisterForm')}}">Create Account</a></p>
     </div>

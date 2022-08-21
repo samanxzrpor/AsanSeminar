@@ -10,9 +10,12 @@ abstract class DataTransferObject
         $returendData = [];
         $reflection= new ReflectionClass(static::class);
         $properties = $reflection->getProperties();
+
         foreach ($properties as $key => $value) {
-            $returendData[$value->name] = $request->$key;
+            $returendData[$value->name] = $request->$value->name;
         }
-        return new static($returendData);
+        dd($returendData);
+
+        return $returendData;
     }
 }

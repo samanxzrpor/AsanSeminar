@@ -21,7 +21,7 @@ Route::prefix('register')->group(function (){
     Route::get('/', [RegisterController::class , 'showRegisterForm'])
         ->name('showRegisterForm');
 
-    Route::post('/', [RegisterController::class , 'login'])
+    Route::post('/', [RegisterController::class , 'create'])
         ->middleware('throttle:authentication')
         ->name('register');
 });

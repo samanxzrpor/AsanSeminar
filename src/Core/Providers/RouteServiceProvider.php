@@ -53,7 +53,9 @@ class RouteServiceProvider extends ServiceProvider
             return Limit::perMinute(3 )
                 ->by($request->user()?->id ?: $request->ip())
                 ->response(function(Request $request, array $headers){
-                    return response('شما بیش از حد مجاز تلاش کردید لطفا پس از یک دقیقه دوباره نلاش کنید')->withHeaders($headers);
+                    return back()
+                        ->with('failed' , 'شما بیش از حد مجاز تلاش کردید لطفا پس از یک دقیقه دوباره تلاش کنید')
+                        ->withHeaders($headers);
                 });
         });
     }
