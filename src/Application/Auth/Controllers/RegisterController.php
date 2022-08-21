@@ -6,6 +6,7 @@ use Application\Auth\Requests\RegisterRequest;
 use Core\Http\Controllers\Controller;
 use Domain\User\Actions\UserStoreAction;
 use Domain\User\DataTransferObjects\UserData;
+use Illuminate\Support\Facades\Log;
 
 class RegisterController extends Controller
 {
@@ -26,9 +27,9 @@ class RegisterController extends Controller
             $user_data = UserData::fromRequest($request);
             (new UserStoreAction)($user_data);
         } catch (\Exception $e) {
-            return back()->with('failed' , '');
+            Log::alert('register-exception' .':'. $e->getMessage());
+            return back()->with('failed' , 'ثیت نام شما با مشکل مواحه شد . لطفا دوباره نلاش کنید');
         }
-
     }
 
 }
