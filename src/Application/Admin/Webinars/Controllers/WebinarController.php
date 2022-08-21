@@ -20,8 +20,7 @@ class WebinarController
     public function create()
     {
         $currentUser = User::find(Auth::user());
-        $viewModel = new WebinarFormViewModel($currentUser);
 
-        return view('webinars.create-webinar' );
+        return view('webinars.create-webinar' , compact($viewData));
     }
 }

@@ -1,12 +1,16 @@
 <?php
 
-namespace Application\Admin\Webinars\User\Controllers;
+namespace Application\Admin\User\Controllers;
+
+use Domain\User\Actions\UserGetAllAction;
 
 class UsersController extends \Core\Http\Controllers\Controller
 {
 
     public function index()
     {
-        return view('users.users');
+        $users = (new UserGetAllAction());
+
+        return view('users.users' , compact('users'));
     }
 }

@@ -18,7 +18,10 @@ class UserStoreAction
             'phone' => $data['phone'],
             'wallet_amount' => $data['wallet_amount']
         ]);
+        $user->email == config('permission.admin_email')
+            ? $user->assignRole('Admin')
+            : $user->assignRole('User');
 
-        return $user;
+        return $this;
     }
 }
