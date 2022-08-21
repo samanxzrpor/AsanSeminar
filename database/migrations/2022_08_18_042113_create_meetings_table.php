@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->enum('status', ['cancelled', 'pending', 'performing' , 'finished'])
                 ->default('pending');
-            $table->unsignedInteger('during_time');
+            $table->unsignedInteger('meeting_duration');
             $table->boolean('has_record')
                 ->default(false);
             $table->unsignedInteger('max_capacity');

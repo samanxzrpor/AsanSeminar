@@ -13,4 +13,5 @@ class UsersController extends \Core\Http\Controllers\Controller
 
         return view('users.users' , compact('users'));
     }
+
 }

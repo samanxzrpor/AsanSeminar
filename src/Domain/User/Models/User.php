@@ -2,6 +2,8 @@
 
 namespace Domain\User\Models;
 
+use Domain\Orders\Models\Order;
+use Domain\Webinar\Models\Webinar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
@@ -46,8 +48,16 @@ class User extends Model
 
     public function isAdmin(): bool
     {
-        return false;
-//        return $this->hasRole('admin') ? true : false;
+        return $this->hasRole('Admin');
     }
 
+    public function webinars()
+    {
+      return $this->hasMany(Webinar::class);
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class);
+    }
 }

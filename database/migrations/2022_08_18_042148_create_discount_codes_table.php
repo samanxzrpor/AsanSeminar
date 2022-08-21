@@ -21,7 +21,7 @@ return new class extends Migration
                 ->default(false);
             $table->dateTime('start_date');
             $table->dateTime('expires_date');
-            $table->unsignedInteger('descount_code_count');
+            $table->unsignedInteger('discount_code_count');
             $table->enum('discount_type' , ['amount', 'percentage'])
                 ->default('percentage');
             $table->foreignId('webinar_id')
