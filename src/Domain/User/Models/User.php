@@ -2,6 +2,7 @@
 
 namespace Domain\User\Models;
 
+use Domain\DiscountCode\Models\DiscountCode;
 use Domain\Orders\Models\Order;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -61,18 +62,16 @@ class User extends Model
         return $this->hasMany(Order::class);
     }
 
+    public function discountCodes()
+    {
+        return $this->hasMany(DiscountCode::class);
+    }
+
     public function setAdmin()
     {
         $this->email == config('permission.admin_email')
             ? $this->assignRole('Admin')
             : $this->assignRole('User');
-    }
-
-    public function redirectRoles(User $user)
-    {
-        return $user->hasRole('Admin')
-            ? redirect()->route('admin.dashboard')
-            : redirect()->route('user.dashboard');
     }
 
 }

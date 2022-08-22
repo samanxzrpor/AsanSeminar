@@ -30,12 +30,14 @@ class AuthController extends Controller
     {
         $request->validated();
         try {
-            (new LoginUserAction())($request);
+            $user = (new LoginUserAction())($request);
         }catch (\Exception $e) {
             Log::alert('login-exception' .':'. $e->getMessage());
             return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
         }
-        return redirect()->route('admin.dashboard');
+        return $user->hasRole('Admin')
+            ? redirect()->route('admin.dashboard')
+            : redirect()->route('user.dashboard');
     }
 
     public function showRegisterForm()
@@ -52,6 +54,6 @@ class AuthController extends Controller
             Log::alert('register-exception' .':'. $e->getMessage());
             return back()->with('failed' , 'ثیت نام شما با مشکل مواجه شد . لطفا دوباره نلاش کنید');
         }
-        return (new User())->redirectRoles($user);
+        return redirect()->route('showLoginForm');
     }
 }

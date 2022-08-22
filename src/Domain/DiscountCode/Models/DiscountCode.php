@@ -2,13 +2,28 @@
 
 namespace Domain\DiscountCode\Models;
 
-class DiscountCode
+use Domain\User\Models\User;
+use Illuminate\Database\Eloquent\Model;
+
+class DiscountCode extends Model
 {
+    public $table = 'discount_code';
 
-    public string $table = 'discount_code';
 
-    public function activeDiscountCode()
+    public function users()
     {
-        
+        return $this->belongsToMany(User::class);
+    }
+
+    public function orders()
+    {
+        return $this->belongsToMany(Order::class);
+    }
+
+    public function disableDiscountCode()
+    {
+        $this->update([
+            'is_active' => false,
+        ]);
     }
 }

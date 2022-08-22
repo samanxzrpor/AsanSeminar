@@ -2,6 +2,7 @@
 
 namespace Domain\Authentication\Actions;
 
+use Domain\User\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class LoginUserAction
@@ -15,7 +16,7 @@ class LoginUserAction
         ])) {
 
             $request->session()->regenerate();
-            return redirect()->route('home');
+            return User::find(Auth::id());
         }
     }
 }

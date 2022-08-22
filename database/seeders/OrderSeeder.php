@@ -24,7 +24,9 @@ class OrderSeeder extends Seeder
             'code' => Str::random(8),
             'start_date' => now()->addDays(2),
             'expire_date' => now()->addDays(12),
-            ''
+            'use_count' => 100,
+            'type' => 'percentage',
+            'discount_amount' => 40
         ]);
         $user = User::create([
             'name' => 'User n-' . $random = random_bytes(4),
@@ -32,6 +34,7 @@ class OrderSeeder extends Seeder
             'phone' => '++98' . random_bytes(12),
             'password' => Hash::make('pass123456789'),
         ]);
+
 
         Order::create([
 
