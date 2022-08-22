@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [\Application\Admin\Webinars\Controllers\WebinarController::class  , 'index']);
-
-
 include __DIR__ . '/web_routes/auth_routes.php';
+
+Route::middleware('auth')->group(function () {
+
+    include __DIR__ . '/web_routes/admin_route.php';
+
+});
