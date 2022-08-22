@@ -67,4 +67,12 @@ class User extends Model
             ? $this->assignRole('Admin')
             : $this->assignRole('User');
     }
+
+    public function redirectRoles(User $user)
+    {
+        return $user->hasRole('Admin')
+            ? redirect()->route('admin.dashboard')
+            : redirect()->route('user.dashboard');
+    }
+
 }

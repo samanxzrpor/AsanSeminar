@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('discount_code');
             $table->boolean('is_active')
-                ->default(false);
+                ->default(true);
             $table->dateTime('start_date');
             $table->dateTime('expires_date');
             $table->unsignedInteger('discount_code_count');

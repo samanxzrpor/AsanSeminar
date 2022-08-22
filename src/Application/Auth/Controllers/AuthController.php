@@ -9,6 +9,7 @@ use Core\Providers\RouteServiceProvider;
 use Domain\Authentication\Actions\LoginUserAction;
 use Domain\User\Actions\UserStoreAction;
 use Domain\User\DataTransferObjects\UserData;
+use Domain\User\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -34,6 +35,7 @@ class AuthController extends Controller
             Log::alert('login-exception' .':'. $e->getMessage());
             return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
         }
+        return redirect()->route('admin.dashboard');
     }
 
     public function showRegisterForm()
@@ -45,10 +47,11 @@ class AuthController extends Controller
     {
         try {
             $user_data = UserData::fromRequest($request);
-            (new UserStoreAction)($user_data);
+            $user = (new UserStoreAction)($user_data);
         } catch (\Exception $e) {
             Log::alert('register-exception' .':'. $e->getMessage());
             return back()->with('failed' , 'ثیت نام شما با مشکل مواجه شد . لطفا دوباره نلاش کنید');
         }
+        return (new User())->redirectRoles($user);
     }
 }
