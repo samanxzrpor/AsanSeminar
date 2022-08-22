@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\User\DiscountCodes\Controllers;
+namespace Application\Admin\DiscountCodes\Controllers;
 
 class DiscountCodesController extends \Core\Http\Controllers\Controller
 {

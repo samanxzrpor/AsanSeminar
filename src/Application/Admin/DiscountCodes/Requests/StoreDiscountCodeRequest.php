@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\User\DiscountCodes\Requests;
+namespace Application\Admin\DiscountCodes\Requests;
 
 use Domain\DiscountCode\Rules\SetLimitOfAmountByTypeRule;
 use Illuminate\Foundation\Http\FormRequest;
