@@ -1,4 +1,4 @@
-@extends('layouts.auth.main')
+@extends('layouts.main')
 @section('webinars-content')
 
     <div class="webinars">

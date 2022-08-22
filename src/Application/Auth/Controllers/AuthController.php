@@ -30,14 +30,20 @@ class AuthController extends Controller
     {
         $request->validated();
         try {
-            $user = (new LoginUserAction())($request);
+            if (Auth::attempt([
+                'email' =>$request->input('email'),
+                'password' => $request->input('password')
+            ])) {
+
+                $request->session()->regenerate();
+                return redirect()->intended('/');
+
+            }
         }catch (\Exception $e) {
-            Log::alert('login-exception' .':'. $e->getMessage());
+            Log::error('login-exception' .':'. $e->getMessage());
             return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
         }
-        return $user->hasRole('Admin')
-            ? redirect()->route('admin.dashboard')
-            : redirect()->route('user.dashboard');
+
     }
 
     public function showRegisterForm()
@@ -51,7 +57,7 @@ class AuthController extends Controller
             $user_data = UserData::fromRequest($request);
             $user = (new UserStoreAction)($user_data);
         } catch (\Exception $e) {
-            Log::alert('register-exception' .':'. $e->getMessage());
+            Log::error('register-exception' .':'. $e->getMessage());
             return back()->with('failed' , 'ثیت نام شما با مشکل مواجه شد . لطفا دوباره نلاش کنید');
         }
         return redirect()->route('showLoginForm');

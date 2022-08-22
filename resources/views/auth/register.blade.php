@@ -1,6 +1,6 @@
-@extends('layouts.auth.main')
+@extends('layouts.main')
 
-@section('auth-content')
+@section('content')
     <div class="auth-content">
         @include('errors.error')
         <h1>Create New Account</h1>
@@ -24,7 +24,8 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Confirm Password</label>
-                <input type="password" class="form-control" name="password_confirmation" placeholder="Enter your Confirm Password" required>
+                <input type="password" class="form-control" name="password_confirmation"
+                       placeholder="Enter your Confirm Password" required>
             </div>
             <button type="submit" class="btn btn-success">Register</button>
         </form>

@@ -1,5 +1,6 @@
 <?php
 
+use Application\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 
 include __DIR__ . '/web_routes/auth_routes.php';
 
+
 Route::middleware('auth')->group(function () {
+
+    Route::get('/', [HomeController::class , 'index'])->name('home');
 
     include __DIR__ . '/web_routes/admin_route.php';
 

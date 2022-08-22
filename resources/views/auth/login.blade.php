@@ -1,6 +1,6 @@
-@extends('layouts.auth.main')
+@extends('layouts.main')
 
-@section('auth-content')
+@section('content')
     <div class="auth-content">
         <h1>Login</h1>
         @include('errors.error')
@@ -12,10 +12,12 @@
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Password</label>
-                <input type="password" class="form-control" id="password" name="password" placeholder="Enter your Password" required>
+                <input type="password" class="form-control" id="password" name="password"
+                       placeholder="Enter your Password" required>
             </div>
             <button type="submit" class="btn btn-success">Login</button>
         </form>
-        <p class="change-auth-link">if You have not account ago <a href="{{route('showRegisterForm')}}">Create Account</a></p>
+        <p class="change-auth-link">if You have not account ago <a href="{{route('showRegisterForm')}}">Create
+                Account</a></p>
     </div>
 @endsection
