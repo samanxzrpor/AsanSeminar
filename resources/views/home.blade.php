@@ -5,7 +5,7 @@
             <div class="header">
                 <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
                 @hasrole('Admin')
-                   <a> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
+                   <a href="{{ route('admin.webinars')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
                 @else
                     <a> <button type="button" class="btn btn-primary">پنل کاربری</button></a>
                 @endhasrole

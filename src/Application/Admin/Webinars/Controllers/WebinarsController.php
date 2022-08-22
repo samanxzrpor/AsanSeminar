@@ -7,14 +7,14 @@ use Domain\User\Models\User;
 use Domain\Webinar\Actions\WebinarGetAllAction;
 use Illuminate\Support\Facades\Auth;
 
-class WebinarController
+class WebinarsController
 {
 
     public function index()
     {
         $webinars = (new WebinarGetAllAction())();
 
-        return  view('webinars.webinars');
+        return  view('admin.webinars.webinars' , ['webinars' => $webinars]);
     }
 
     public function create()

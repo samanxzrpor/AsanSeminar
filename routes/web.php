@@ -24,7 +24,9 @@ Route::middleware('auth')
 
     require __DIR__ . '/web_routes/webinar_routes.php';
 
-    Route::middleware('role: Admin')
+    Route::prefix('admin')
+        ->middleware('role:Admin')
+        ->name('admin.')
         ->group(function () {
 
         require __DIR__ . '/web_routes/admin/webinar_routes.php';

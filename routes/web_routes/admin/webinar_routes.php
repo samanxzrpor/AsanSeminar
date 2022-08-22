@@ -1,15 +1,11 @@
 <?php
 
 
+use Application\Admin\Webinars\Controllers\WebinarsController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')
-    ->name('admin.')
-    ->middleware('role: Admin')
-    ->group(function (){
+Route::prefix('webinars')->group(function (){
 
-    Route::get('/' , function (Request $request) {
-        return view('admin.dashboard');
-    });
+    Route::get('/' , [WebinarsController::class , 'index'])->name('webinars');
 });
