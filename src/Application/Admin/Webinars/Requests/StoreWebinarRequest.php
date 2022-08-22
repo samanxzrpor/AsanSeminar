@@ -28,7 +28,7 @@ class StoreWebinarRequest extends FormRequest
             'description' => ['required' , 'string'] ,
             'price' => ['required' , 'int'],
             'event_date' => ['required' , 'date'],
-            'percentage' => ['nullable' ,'int' , 'max:100'],
+            'percentage' => ['nullable' ,'int' ,'min:0' , 'max:100'],
             'can_use_discount' => ['nullable' ,'bool'],
             'show_all' => ['nullable' , 'bool'],
             'max_capacity' => ['required' , 'int'],

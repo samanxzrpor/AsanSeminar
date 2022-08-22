@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="auth-content">
+    <div class="form-content">
         @include('errors.error')
         <h1>Create New Account</h1>
         <form class="auth" action="{{route('register')}}" method="post">

@@ -35,16 +35,13 @@ class AuthController extends Controller
                 'email' =>$request->input('email'),
                 'password' => $request->input('password')
             ])) {
-
                 $request->session()->regenerate();
-                return redirect()->intended('/');
-
             }
         }catch (\Exception $e) {
             Log::error('login-exception' .':'. $e->getMessage());
             return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
         }
-
+        return redirect()->route('webinars.list');
     }
 
     public function showRegisterForm()

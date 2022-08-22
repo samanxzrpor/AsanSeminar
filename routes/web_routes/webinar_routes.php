@@ -8,7 +8,7 @@ Route::prefix('webinars')
     ->controller(\Application\WebinarsController::class )
     ->group(function (){
 
-    Route::get('/', 'index')->name('home');
+    Route::get('/', 'index')->name('list');
 
     Route::get('{webinar:title}');
 

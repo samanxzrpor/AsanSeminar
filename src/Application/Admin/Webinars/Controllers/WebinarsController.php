@@ -2,6 +2,7 @@
 
 namespace Application\Admin\Webinars\Controllers;
 
+use Application\Admin\Webinars\Requests\StoreWebinarRequest;
 use Application\Admin\Webinars\ViewModels\WebinarFormViewModel;
 use Domain\User\Models\User;
 use Domain\Webinar\Actions\WebinarGetAllAction;
@@ -19,8 +20,11 @@ class WebinarsController
 
     public function create()
     {
-        $currentUser = User::find(Auth::user());
+        return view('admin.webinars.create-webinar');
+    }
 
-        return view('webinars.create-webinar' , compact($viewData));
+    public function store(StoreWebinarRequest $request)
+    {
+
     }
 }

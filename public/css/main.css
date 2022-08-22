@@ -12,14 +12,16 @@ body {
     margin-top: 3em;
 }
 
-.auth-content{
+.form-content{
+    display: flex;
+    align-content: center;
+    justify-content: center;
     background-color: #f9f9f9;
-    margin: 5em auto;
+    margin: 2em auto;
     border-radius: 15px;
     padding: 2em 0;
-    width: 65%;
-    box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
-    inset 8px 8px 16px rgba(0, 0, 0, 0.1);
+    width: 85%;
+    box-shadow: inset -4px -4px 8px rgb(255 255 255 / 50%), inset 8px 8px 16px rgb(0 0 0 / 10%);
 }
 h1 {
     text-align: center;
@@ -34,6 +36,11 @@ form.auth {
 .change-auth-link {
     text-align: center;
     margin-top: 2em;
+}
+
+.alert {
+    width: 80%;
+    margin: 1em auto;
 }
 
 .header {
@@ -52,4 +59,8 @@ a {
 
 .nav {
     margin: 3em 0;
+}
+
+.webinar-form {
+
 }
