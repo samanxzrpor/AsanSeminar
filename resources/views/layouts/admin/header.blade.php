@@ -12,11 +12,10 @@
 </head>
 <body>
     <div class="container">
-
         <nav class="nav nav-pills flex-column flex-sm-row">
-            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() == route('admin.webinars')) active @endif" href="{{route('admin.webinars')}}">Webinars</a>
-            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() == route('admin.users')) active @endif" href="{{route('admin.users')}}" href="#">Users</a>
-            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() == route('admin.discount_code')) active @endif" href="{{route('admin.discount-codes')}}" href="#">Discount Code</a>
-            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() == route('admin.orders')) active @endif" href="{{route('admin.orders')}}" href="#">Orders</a>
-            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() == route('admin.payments')) active @endif" href="{{route('admin.payments')}}" href="#">Payments</a>
+            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'admin.webinars') active @endif" href="{{route('admin.webinars')}}">Webinars</a>
+            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'admin.users') active @endif" href="{{route('admin.users')}}" href="#">Users</a>
+            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'admin.discount-codes') active @endif" href="{{route('admin.discount-codes')}}" href="#">Discount Code</a>
+            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'admin.orders') active @endif" href="{{route('admin.orders')}}" href="#">Orders</a>
+            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'admin.payments') active @endif" href="{{route('admin.payments')}}" href="#">Payments</a>
         </nav>

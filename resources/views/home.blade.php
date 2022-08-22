@@ -37,34 +37,6 @@
                                 <td>250</td>
                             </tr>
                         @endforeach
-
-                            <tr class="table-success">
-                            <td>1</td>
-                                <td>asan semianr</td>
-                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</td>
-                                <td>5000</td>
-                                <td>1401.02.25</td>
-                                <td>در حال اجرا</td>
-                                <td>250</
-                            </tr>
-                            <tr class="table-danger">
-                            <td>1</td>
-                                <td>asan semianr</td>
-                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</td>
-                                <td>5000</td>
-                                <td>1401.02.25</td>
-                                <td>در حال اجرا</td>
-                                <td>250</
-                            </tr>
-                            <tr class="table-warning">
-                            <td>1</td>
-                                <td>asan semianr</td>
-                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</td>
-                                <td>5000</td>
-                                <td>1401.02.25</td>
-                                <td>در حال اجرا</td>
-                                <td>250</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

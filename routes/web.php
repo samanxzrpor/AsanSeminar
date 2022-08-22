@@ -30,6 +30,10 @@ Route::middleware('auth')
         ->group(function () {
 
         require __DIR__ . '/web_routes/admin/webinar_routes.php';
+        require __DIR__ . '/web_routes/admin/user_routes.php';
+        require __DIR__ . '/web_routes/admin/order_routes.php';
+        require __DIR__ . '/web_routes/admin/payment_routes.php';
+        require __DIR__ . '/web_routes/admin/discount_code_routes.php';
 
     });
 });
