@@ -11,7 +11,7 @@
                 @endhasrole
             </div>
             <div class="webinar-content">
-                <h1 class="header">{{ __('Webinars') }}</h1>
+                <h1 class="header">{{ __('وبینار') }}</h1>
                 <div class="webinars">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
@@ -26,15 +26,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                        @foreach($webinars as $webinar)
                             <tr class="table-primary">
-                                <td>1</td>
-                                <td>asan semianr</td>
-                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</td>
+                                <td>{{$webinar->id}}</td>
+                                <td><a href="">{{$webinar->title}}</a></td>
+                                <td><a href="">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</a></td>
                                 <td>5000</td>
                                 <td>1401.02.25</td>
                                 <td>در حال اجرا</td>
                                 <td>250</td>
                             </tr>
+                        @endforeach
+
                             <tr class="table-success">
                             <td>1</td>
                                 <td>asan semianr</td>

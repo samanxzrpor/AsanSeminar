@@ -17,11 +17,17 @@ use Illuminate\Support\Facades\Route;
 
 include __DIR__ . '/web_routes/auth_routes.php';
 
+Route::redirect('/' , 'webinars');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')
+    ->group(function () {
 
-    Route::get('/', [HomeController::class , 'index'])->name('home');
+    require __DIR__ . '/web_routes/webinar_routes.php';
 
-    include __DIR__ . '/web_routes/admin_route.php';
+    Route::middleware('role: Admin')
+        ->group(function () {
 
+        require __DIR__ . '/web_routes/admin/webinar_routes.php';
+
+    });
 });

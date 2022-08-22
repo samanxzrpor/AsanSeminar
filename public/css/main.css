@@ -15,10 +15,11 @@ body {
 .auth-content{
     background-color: #f9f9f9;
     margin: 5em auto;
-    border: 1px solid #666666;
-    border-radius: 6px;
+    border-radius: 15px;
     padding: 2em 0;
     width: 65%;
+    box-shadow: inset -4px -4px 8px rgba(255, 255, 255, 0.5),
+    inset 8px 8px 16px rgba(0, 0, 0, 0.1);
 }
 h1 {
     text-align: center;
@@ -42,4 +43,9 @@ form.auth {
 .webinars {
     direction: rtl;
     margin-top: 1em;
+}
+
+a {
+    text-decoration: none;
+    color: #000000;
 }
