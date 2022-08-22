@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\DiscountCode\Roles;
+namespace Domain\DiscountCode\Rules;
 
 use Illuminate\Validation\Rule;
 
