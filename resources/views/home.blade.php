@@ -1,23 +1,70 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        {{ __('You are logged in!') }}
-                    </div>
+            <div class="header">
+                <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
+                @hasrole('Admin')
+                   <a> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
+                @else
+                    <a> <button type="button" class="btn btn-primary">پنل کاربری</button></a>
+                @endhasrole
+            </div>
+            <div class="webinar-content">
+                <h1 class="header">{{ __('Webinars') }}</h1>
+                <div class="webinars">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <td>شناسه</td>
+                                <td>عنوان</td>
+                                <td>توضیخات</td>
+                                <td>قیمت</td>
+                                <td>تاریخ اجرا</td>
+                                <td>وضعیت</td>
+                                <td>ظرفیت</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-primary">
+                                <td>1</td>
+                                <td>asan semianr</td>
+                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</td>
+                                <td>5000</td>
+                                <td>1401.02.25</td>
+                                <td>در حال اجرا</td>
+                                <td>250</td>
+                            </tr>
+                            <tr class="table-success">
+                            <td>1</td>
+                                <td>asan semianr</td>
+                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</td>
+                                <td>5000</td>
+                                <td>1401.02.25</td>
+                                <td>در حال اجرا</td>
+                                <td>250</
+                            </tr>
+                            <tr class="table-danger">
+                            <td>1</td>
+                                <td>asan semianr</td>
+                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</td>
+                                <td>5000</td>
+                                <td>1401.02.25</td>
+                                <td>در حال اجرا</td>
+                                <td>250</
+                            </tr>
+                            <tr class="table-warning">
+                            <td>1</td>
+                                <td>asan semianr</td>
+                                <td>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</td>
+                                <td>5000</td>
+                                <td>1401.02.25</td>
+                                <td>در حال اجرا</td>
+                                <td>250</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div>
 @endsection

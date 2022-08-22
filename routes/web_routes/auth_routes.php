@@ -5,22 +5,21 @@ use Application\Auth\Controllers\AuthController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('login')->group(function (){
+Route::controller(AuthController::class)->group(function (){
 
-    Route::get('/', [AuthController::class , 'showLoginForm'])
+    Route::get('login',  'showLoginForm')
         ->name('showLoginForm');
 
-    Route::post('/', [AuthController::class , 'login'])
+    Route::post('login', [AuthController::class , 'login'])
         ->middleware('throttle:authentication')
         ->name('login');
-});
 
-Route::prefix('register')->group(function (){
-
-    Route::get('/', [AuthController::class , 'showRegisterForm'])
+    Route::get('register','showRegisterForm')
         ->name('showRegisterForm');
 
-    Route::post('/', [AuthController::class , 'create'])
+    Route::post('register',  'create')
         ->middleware('throttle:authentication')
         ->name('register');
+
+    Route::get('logout' , 'logout')->name('logout');
 });

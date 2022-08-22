@@ -10,6 +10,7 @@ use Domain\Authentication\Actions\LoginUserAction;
 use Domain\User\Actions\UserStoreAction;
 use Domain\User\DataTransferObjects\UserData;
 use Domain\User\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
@@ -60,6 +61,15 @@ class AuthController extends Controller
             Log::error('register-exception' .':'. $e->getMessage());
             return back()->with('failed' , 'ثیت نام شما با مشکل مواجه شد . لطفا دوباره نلاش کنید');
         }
+        return redirect()->route('showLoginForm');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
         return redirect()->route('showLoginForm');
     }
 }
