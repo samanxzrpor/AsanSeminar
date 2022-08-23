@@ -2,17 +2,27 @@
 
 namespace Domain\Webinar\Models;
 
+use Database\Factories\WebinarFactory;
 use Domain\DiscountCode\Models\DiscountCode;
 use Domain\Meeting\Models\Meeting;
 use Domain\Orders\Models\Order;
 use Domain\User\Models\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Webinar extends Model
 {
+    use hasFactory;
+
+
     public $guarded = [
         'id'
     ];
+
+
+    protected static function newFactory(){
+        return WebinarFactory::new();
+    }
 
     public function user()
     {

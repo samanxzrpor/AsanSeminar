@@ -14,6 +14,6 @@ class WebinarSeeder extends Seeder
      */
     public function run()
     {
-        //
+
     }
 }
