@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('discount_code');
+            $table->unsignedInteger('amount');
             $table->boolean('is_active')
                 ->default(true);
             $table->dateTime('start_date');

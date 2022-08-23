@@ -1,13 +1,13 @@
 <?php
 
-namespace Application\User\Webinars\Controllers;
+namespace Application\User\Payments\Controllers;
 
 use Domain\User\Models\User;
 use Domain\Webinar\Actions\WebinarGetCurrentUserAction;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Support\Facades\Auth;
 
-class WebinarController extends \Core\Http\Controllers\Controller
+class PaymentsController extends \Core\Http\Controllers\Controller
 {
 
     public function index()

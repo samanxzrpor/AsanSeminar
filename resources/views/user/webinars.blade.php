@@ -1,23 +1,22 @@
-@extends('layouts.main')
+@extends('layouts.user.main')
 
-@section('content')
+@section('user-content')
         <div class="row justify-content-center">
             <div class="header">
                 <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
             </div>
             <div class="webinar-content">
-                <h1 class="header">{{ __('وبینار های من') }}</h1>
+                <h1 class="header">{{ __('وبینار های خریداری شده') }}</h1>
                 <div class="webinars">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
                                 <td>شناسه</td>
                                 <td>عنوان</td>
-                                <td>توضیخات</td>
+                                <td>توضیحات</td>
                                 <td>قیمت</td>
                                 <td>تاریخ اجرا</td>
                                 <td>وضعیت</td>
-                                <td>ظرفیت</td>
                                 <td></td>
                             </tr>
                         </thead>

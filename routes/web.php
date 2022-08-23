@@ -25,26 +25,6 @@ Route::middleware('auth')->group(function () {
 
     require __DIR__ . '/web_routes/admin_routes.php';
 
-    require __DIR__ . '/web_routes/users_routes.php';
+    require __DIR__ . '/web_routes/user_routes.php';
 
-    Route::prefix('admin')
-        ->middleware('role:Admin')
-        ->name('admin.')
-        ->group(function () {
-
-        require __DIR__ . '/web_routes/admin/webinar_routes.php';
-        require __DIR__ . '/web_routes/admin/user_routes.php';
-        require __DIR__ . '/web_routes/admin/order_routes.php';
-        require __DIR__ . '/web_routes/admin/payment_routes.php';
-        require __DIR__ . '/web_routes/admin/discount_code_routes.php';
-
-    });
-    Route::prefix('users')
-        ->middleware('role:User')
-        ->name('user.')
-        ->group(function () {
-
-            require __DIR__ . '/web_routes/admin/webinar_routes.php';
-
-        });
 });

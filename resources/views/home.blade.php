@@ -7,7 +7,7 @@
                 @hasrole('Admin')
                    <a href="{{ route('admin.webinars.index')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
                 @else
-                    <a href="{{ route('user.webinars.index')}}" > <button type="button" class="btn btn-primary">پنل کاربری</button></a>
+                    <a href="{{ route('user.webinars.index' , auth()->user())}}" > <button type="button" class="btn btn-primary">پنل کاربری</button></a>
                 @endhasrole
             </div>
             <div class="webinar-content">
