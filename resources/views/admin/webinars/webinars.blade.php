@@ -15,6 +15,7 @@
                         <td>عنوان</td>
                         <td>توضیخات</td>
                         <td>قیمت</td>
+                        <td>درصد تخفیف</td>
                         <td>تاریخ اجرا</td>
                         <td>وضعیت</td>
                         <td>ظرفیت</td>
@@ -31,6 +32,7 @@
                             <td><a href="">{{$webinar->title}}</a></td>
                             <td><a href="">{{$webinar->description}}</a></td>
                             <td>{{$webinar->price}}</td>
+                            <td>{{$webinar->percentage_discount}}</td>
                             <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                             <td>{{$webinar->status}}</td>
                             <td>{{$webinar->max_capacity}}</td>
@@ -51,6 +53,7 @@
                                 <td><a href="">{{$webinar->title}}</a></td>
                                 <td><a href="">{{$webinar->description}}</a></td>
                                 <td>{{$webinar->price}}</td>
+                                <td>{{$webinar->percentage_discount}}</td>
                                 <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                 <td>{{$webinar->status}}</td>
                                 <td>{{$webinar->max_capacity}}</td>
@@ -71,6 +74,7 @@
                                 <td><a href="">{{$webinar->title}}</a></td>
                                 <td><a href="">{{$webinar->description}}</a></td>
                                 <td>{{$webinar->price}}</td>
+                                <td>{{$webinar->percentage_discount}}</td>
                                 <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                 <td>{{$webinar->status}}</td>
                                 <td>{{$webinar->max_capacity}}</td>
@@ -91,6 +95,7 @@
                                 <td><a href="">{{$webinar->title}}</a></td>
                                 <td><a href="">{{$webinar->description}}</a></td>
                                 <td>{{$webinar->price}}</td>
+                                <td>{{$webinar->percentage_discount}}</td>
                                 <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                 <td>{{$webinar->status}}</td>
                                 <td>{{$webinar->max_capacity}}</td>

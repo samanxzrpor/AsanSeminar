@@ -4,14 +4,9 @@
         <div class="row justify-content-center">
             <div class="header">
                 <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
-                @hasrole('Admin')
-                   <a href="{{ route('admin.webinars.index')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
-                @else
-                    <a href="{{ route('user.webinars.index')}}" > <button type="button" class="btn btn-primary">پنل کاربری</button></a>
-                @endhasrole
             </div>
             <div class="webinar-content">
-                <h1 class="header">{{ __('وبینار') }}</h1>
+                <h1 class="header">{{ __('وبینار های من') }}</h1>
                 <div class="webinars">
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
@@ -44,11 +39,6 @@
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                     <td>{{'در انتظار'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
-                                    <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->user_id)
-                                            <a><button class="btn btn-warning">خرید</button></a>
-                                        @endif
-                                    </td>
                                 </tr>
                             @elseif($webinar->status == 'performing')
                                 <tr class="table-warning">
@@ -66,12 +56,6 @@
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                     <td>{{'در حال اجرا'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
-                                    <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->user_id)
-                                            <a><button class="btn btn-warning">خرید</button></a>
-                                        @endif
-
-                                    </td>
                                 </tr>
                             @elseif($webinar->status == 'cancelled')
                                 <tr class="table-danger">
@@ -89,11 +73,6 @@
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                     <td>{{'کنسل شده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
-                                    <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->user_id)
-                                            <a><button class="btn btn-warning">خرید</button></a>
-                                        @endif
-                                    </td>
                                 </tr>
                             @elseif($webinar->status == 'finished')
                                 <tr class="table-light">
@@ -111,11 +90,6 @@
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                     <td>{{'به اتمام رسیده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
-                                    <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->user_id)
-                                        <a><button class="btn btn-warning">خرید</button></a>
-                                        @endif
-                                    </td>
                                 </tr>
                             @endif
                         @endforeach

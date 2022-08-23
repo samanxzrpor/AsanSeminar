@@ -15,14 +15,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-include __DIR__ . '/web_routes/auth_routes.php';
+require __DIR__ . '/web_routes/auth_routes.php';
 
 Route::redirect('/' , 'webinars');
 
-Route::middleware('auth')
-    ->group(function () {
+Route::middleware('auth')->group(function () {
 
     require __DIR__ . '/web_routes/webinar_routes.php';
+
+    require __DIR__ . '/web_routes/admin_routes.php';
+
+    require __DIR__ . '/web_routes/users_routes.php';
 
     Route::prefix('admin')
         ->middleware('role:Admin')
@@ -36,4 +39,12 @@ Route::middleware('auth')
         require __DIR__ . '/web_routes/admin/discount_code_routes.php';
 
     });
+    Route::prefix('users')
+        ->middleware('role:User')
+        ->name('user.')
+        ->group(function () {
+
+            require __DIR__ . '/web_routes/admin/webinar_routes.php';
+
+        });
 });

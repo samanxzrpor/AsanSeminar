@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Domain\DiscountCode\Models\DiscountCode;
 use Domain\Orders\Models\Order;
 use Domain\User\Models\User;
+use Domain\Webinar\Models\Webinar;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -19,21 +20,10 @@ class OrderSeeder extends Seeder
      */
     public function run()
     {
-        $discount_code = DiscountCode::create([
-            'title' => 'Discount Code' ,
-            'code' => Str::random(8),
-            'start_date' => now()->addDays(2),
-            'expire_date' => now()->addDays(12),
-            'use_count' => 100,
-            'type' => 'percentage',
-            'discount_amount' => 40
-        ]);
-        $user = User::create([
-            'name' => 'User n-' . $random = random_bytes(4),
-            'email' => 'user-n'.$random.'@example.com' ,
-            'phone' => '++98' . random_bytes(12),
-            'password' => Hash::make('pass123456789'),
-        ]);
+        $discount_code = DiscountCode::factory()->create();
+        $webinar = Webinar::factory()->create();
+        $user = User::factory()->create();
+
 
 
         Order::create([
