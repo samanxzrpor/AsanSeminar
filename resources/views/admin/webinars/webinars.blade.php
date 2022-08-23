@@ -6,7 +6,7 @@
             <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
             <a href="{{ route('admin.webinars.create')}}"><button type="button" class="btn btn-success">وبینار جدید</button></a>
         <div class="webinar-content">
-            <h1 class="header">{{ __('وبینار') }}</h1>
+            <h1 class="header">{{ __('وبینار ها') }}</h1>
             <div class="webinars">
                 <table class="table table-striped table-bordered table-hover">
                     <thead>
@@ -20,21 +20,92 @@
                         <td>ظرفیت</td>
                         <td>امکان استفاده از کد تخفیف</td>
                         <td>نمایش به همه</td>
+                        <td></td>
                     </tr>
                     </thead>
                     <tbody>
                     @foreach($webinars as $webinar)
+                        @if($webinar->status == 'pending')
                         <tr class="table-primary">
                             <td>{{$webinar->id}}</td>
                             <td><a href="">{{$webinar->title}}</a></td>
                             <td><a href="">{{$webinar->description}}</a></td>
                             <td>{{$webinar->price}}</td>
                             <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
-                            <td>{{$webinar->staus}}</td>
+                            <td>{{$webinar->status}}</td>
                             <td>{{$webinar->max_capacity}}</td>
                             <td>{{$webinar->can_use_discount}}</td>
                             <td>{{$webinar->show_all}}</td>
+                            <td>
+                                <a  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                <form action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="button" class="btn btn-danger">حذف</button>
+                                </form>
+                            </td>
                         </tr>
+                        @elseif($webinar->status == 'performing')
+                            <tr class="table-warning">
+                                <td>{{$webinar->id}}</td>
+                                <td><a href="">{{$webinar->title}}</a></td>
+                                <td><a href="">{{$webinar->description}}</a></td>
+                                <td>{{$webinar->price}}</td>
+                                <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
+                                <td>{{$webinar->status}}</td>
+                                <td>{{$webinar->max_capacity}}</td>
+                                <td>{{$webinar->can_use_discount}}</td>
+                                <td>{{$webinar->show_all}}</td>
+                                <td>
+                                    <a  style="display:inline"  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                    <form style="display:inline"  action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="button" class="btn btn-danger">حذف</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @elseif($webinar->status == 'cancelled')
+                            <tr class="table-danger">
+                                <td>{{$webinar->id}}</td>
+                                <td><a href="">{{$webinar->title}}</a></td>
+                                <td><a href="">{{$webinar->description}}</a></td>
+                                <td>{{$webinar->price}}</td>
+                                <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
+                                <td>{{$webinar->status}}</td>
+                                <td>{{$webinar->max_capacity}}</td>
+                                <td>{{$webinar->can_use_discount}}</td>
+                                <td>{{$webinar->show_all}}</td>
+                                <td>
+                                    <a  style="display:inline"  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                    <form style="display:inline"  action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="button" class="btn btn-danger">حذف</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @elseif($webinar->status == 'finished')
+                            <tr class="table-light">
+                                <td>{{$webinar->id}}</td>
+                                <td><a href="">{{$webinar->title}}</a></td>
+                                <td><a href="">{{$webinar->description}}</a></td>
+                                <td>{{$webinar->price}}</td>
+                                <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
+                                <td>{{$webinar->status}}</td>
+                                <td>{{$webinar->max_capacity}}</td>
+                                <td>{{$webinar->can_use_discount}}</td>
+                                <td>{{$webinar->show_all}}</td>
+                                <td>
+                                    <a  style="display:inline"  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                    <form style="display:inline"  action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="button" class="btn btn-danger">حذف</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @endif
                     @endforeach
                     </tbody>
                 </table>

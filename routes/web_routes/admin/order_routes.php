@@ -1,7 +1,6 @@
 <?php
+
+use Application\Admin\Orders\Controllers\OrdersController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('orders')->group(function (){
-
-    Route::get('/' , [OrdersController::class , 'index'])->name('orders');
-});
+Route::resource('orders' , OrdersController::class);

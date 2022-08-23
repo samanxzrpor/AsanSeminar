@@ -20,7 +20,7 @@ class WebinarStoreAction
             'show_all' => $data['show_all'] ?? false,
             'max_capacity' => $data['max_capacity'],
             'event_date' => $data['event_date'],
-            'user_id' => Auth::id(),
+            'user_id' => $data['master_id'],
         ]);
         return $newWebinar;
     }

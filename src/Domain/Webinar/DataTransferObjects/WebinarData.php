@@ -29,6 +29,8 @@ class WebinarData extends DataTransferObject
 
     public string $status;
 
+    public int $master_id;
+
 
 
     public static function fromRequest($request)
