@@ -5,7 +5,7 @@
             <div class="header">
                 <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
                 @hasrole('Admin')
-                   <a href="{{ route('admin.webinars')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
+                   <a href="{{ route('admin.webinars.index')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
                 @else
                     <a> <button type="button" class="btn btn-primary">پنل کاربری</button></a>
                 @endhasrole
@@ -23,19 +23,90 @@
                                 <td>تاریخ اجرا</td>
                                 <td>وضعیت</td>
                                 <td>ظرفیت</td>
+                                <td></td>
                             </tr>
                         </thead>
                         <tbody>
                         @foreach($webinars as $webinar)
-                            <tr class="table-primary">
-                                <td>{{$webinar->id}}</td>
-                                <td><a href="">{{$webinar->title}}</a></td>
-                                <td><a href="">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Possimus facere quaerat quam doloribus maxime quo ipsa, quisquam amet rem, placeat quos totam delectus distinctio, animi asperiores sunt. Quas, consequuntur iure.</a></td>
-                                <td>5000</td>
-                                <td>1401.02.25</td>
-                                <td>در حال اجرا</td>
-                                <td>250</td>
-                            </tr>
+                            @if($webinar->status == 'pending')
+                                <tr class="table-primary">
+                                    <td>{{$webinar->id}}</td>
+                                    <td><a href="">{{$webinar->title}}</a></td>
+                                    <td><a href="">{{$webinar->description}}</a></td>
+                                    <td>
+                                        @if ($webinar->percentage_discount)
+                                            <span class="price">{{$webinar->price}}</span>
+                                            <span class="discount-price">{{(new \Domain\Webinar\Actions\WebinarCalculateDiscountPrice())($webinar->price , $webinar->percentage_discount)}}</span>
+                                        @else
+                                            <span>{{$webinar->price}}</span>
+                                        @endif
+                                    </td>
+                                    <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
+                                    <td>{{$webinar->status}}</td>
+                                    <td>{{$webinar->max_capacity}}</td>
+                                    <td>
+                                        <a><button class="btn btn-warning">خرید</button></a>
+                                    </td>
+                                </tr>
+                            @elseif($webinar->status == 'performing')
+                                <tr class="table-warning">
+                                    <td>{{$webinar->id}}</td>
+                                    <td><a href="">{{$webinar->title}}</a></td>
+                                    <td><a href="">{{$webinar->description}}</a></td>
+                                    <td>
+                                        @if ($webinar->percentage_discount)
+                                            <span class="price">{{$webinar->price}}</span>
+                                            <span class="discount-price">{{(new \Domain\Webinar\Actions\WebinarCalculateDiscountPrice())($webinar->price , $webinar->percentage_discount)}}</span>
+                                        @else
+                                            <span>{{$webinar->price}}</span>
+                                        @endif
+                                    </td>                                    <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
+                                    <td>{{$webinar->status}}</td>
+                                    <td>{{$webinar->max_capacity}}</td>
+                                    <td>
+                                        <a><button class="btn btn-warning">خرید</button></a>
+                                    </td>
+                                </tr>
+                            @elseif($webinar->status == 'cancelled')
+                                <tr class="table-danger">
+                                    <td>{{$webinar->id}}</td>
+                                    <td><a href="">{{$webinar->title}}</a></td>
+                                    <td><a href="">{{$webinar->description}}</a></td>
+                                    <td>
+                                        @if ($webinar->percentage_discount)
+                                            <span class="price">{{$webinar->price}}</span>
+                                            <span class="discount-price">{{(new \Domain\Webinar\Actions\WebinarCalculateDiscountPrice())($webinar->price , $webinar->percentage_discount)}}</span>
+                                        @else
+                                            <span>{{$webinar->price}}</span>
+                                        @endif
+                                    </td>
+                                    <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
+                                    <td>{{$webinar->status}}</td>
+                                    <td>{{$webinar->max_capacity}}</td>
+                                    <td>
+                                        <a><button class="btn btn-warning">خرید</button></a>
+                                    </td>
+                                </tr>
+                            @elseif($webinar->status == 'finished')
+                                <tr class="table-light">
+                                    <td>{{$webinar->id}}</td>
+                                    <td><a href="">{{$webinar->title}}</a></td>
+                                    <td><a href="">{{$webinar->description}}</a></td>
+                                    <td>
+                                        @if ($webinar->percentage_discount)
+                                            <span class="price">{{$webinar->price}}</span>
+                                            <span class="discount-price">{{(new \Domain\Webinar\Actions\WebinarCalculateDiscountPrice())($webinar->price , $webinar->percentage_discount)}}</span>
+                                        @else
+                                            <span>{{$webinar->price}}</span>
+                                        @endif
+                                    </td>                                    <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
+                                    <td>{{$webinar->status}}</td>
+                                    <td>{{$webinar->max_capacity}}</td> <td>
+                                        <a><button class="btn btn-warning">خرید</button></a>
+                                    </td>
+
+                                </tr>
+                            @endif
                         @endforeach
                         </tbody>
                     </table>

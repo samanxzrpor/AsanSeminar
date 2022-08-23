@@ -2,6 +2,7 @@
 
 namespace Domain\User\Models;
 
+use Database\Factories\UserFactory;
 use Domain\DiscountCode\Models\DiscountCode;
 use Domain\Orders\Models\Order;
 use Domain\Webinar\Models\Webinar;
@@ -46,6 +47,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function newFactory()
+    {
+        return UserFactory::new();
+    }
+
 
     public function isAdmin(): bool
     {

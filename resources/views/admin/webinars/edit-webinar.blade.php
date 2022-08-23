@@ -26,7 +26,14 @@
                             <label for="" class="form-label">توضیحات وبینار</label>
                             <textarea class="form-control" id=""  name="description" rows="3">{{$webinar->description}}</textarea>
                         </div>
-                        <div class="row g-2">
+                        <div class="row g-3">
+                            <div class="col-sm">
+                                <select class="form-control" name="user_id">
+                                    @foreach($masters as $masterId => $masterName)
+                                        <option value="{{ $masterId}}">{{$masterName}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                             <div class="col-sm">
                                 <input type="number" class="form-control" value="{{$webinar->percentage_discount}}" name="percentage_discount" placeholder="درصد تخفیف وبینار" aria-label="title">
                             </div>

@@ -31,7 +31,11 @@ class WebinarsController
 
     public function edit(Webinar $webinar)
     {
-        return view('admin.webinars.edit-webinar' , ['webinar' => $webinar]);
+        $mastersData  = (new UserGetAllMasters())();
+        return view('admin.webinars.edit-webinar' , [
+            'webinar' => $webinar ,
+            'masters' => $mastersData
+        ]);
     }
 
 
@@ -50,6 +54,6 @@ class WebinarsController
 
     public function destroy(Webinar $webinar)
     {
-
+        
     }
 }

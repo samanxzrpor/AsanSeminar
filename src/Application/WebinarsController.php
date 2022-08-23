@@ -10,7 +10,7 @@ class WebinarsController extends \Core\Http\Controllers\Controller
 
     public function index()
     {
-        $webinars = (new WebinarGetAllAction());
+        $webinars = (new WebinarGetAllAction())();
 
         return view('home' , ['webinars' => $webinars]);
     }

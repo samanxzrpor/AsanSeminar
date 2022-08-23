@@ -70,3 +70,10 @@ a {
 
 }
 
+.price {
+    color: red;
+}
+
+.discount-price {
+    color: limegreen;
+}
