@@ -10,5 +10,5 @@ Route::prefix('webinars')
 
     Route::get('/' , 'index')->name('webinars');
     Route::get('/create' ,  'create')->name('webinars.create');
-    Route::get('/store' ,  'store')->name('webinars.store');
+    Route::post('/store' ,  'store')->name('webinars.store');
 });

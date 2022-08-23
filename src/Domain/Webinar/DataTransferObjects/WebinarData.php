@@ -2,9 +2,12 @@
 
 namespace Domain\Webinar\DataTransferObjects;
 
+use Core\DataTransferObjects\DataTransferObject;
 use Core\Traits\JalaliDate;
+use Illuminate\Support\Arr;
+use Illuminate\Support\Str;
 
-class WebinarData
+class WebinarData extends DataTransferObject
 {
     use JalaliDate;
 
@@ -14,7 +17,7 @@ class WebinarData
 
     public int $price;
 
-    public int $discount;
+    public int $percentage_discount;
 
     public bool $can_use_discount;
 
@@ -24,24 +27,17 @@ class WebinarData
 
     public string $event_date;
 
-    public  string $status;
+    public string $status;
 
-//    public function __construct(array $args)
-//    {
-//        parent::__construct($args);
-//    }
 
-    public function getStoreRequest(StoreWebinarRequest $request)
+
+    public static function fromRequest($request)
     {
-        return new self([
-            'title' => $request->get('title'),
-            'description' => $request->get('description'),
-            'price' => $request->get('price'),
-            'discount' => $request->get('discount'),
-            'can_use_discount' => $request->get('can_use_discount'),
-            'show_all' => $request->get('show_all'),
-            'max_capacity' => $request->get('max_capacity'),
-            'event_date' => $this->changeToCarbon($request->get('event_date'))
-        ]);
+        $parent = Parent::fromRequest($request);
+
+        $changedData = Arr::set($parent , 'event_date', JalaliDate::changeToCarbon(
+            Str::replace('/' , '-' , $request->get('event_date')) . ' 00:00:00'));
+
+        return $changedData;
     }
 }

@@ -3,10 +3,11 @@
 namespace Application\Admin\Webinars\Controllers;
 
 use Application\Admin\Webinars\Requests\StoreWebinarRequest;
-use Application\Admin\Webinars\ViewModels\WebinarFormViewModel;
 use Domain\User\Models\User;
 use Domain\Webinar\Actions\WebinarGetAllAction;
-use Illuminate\Support\Facades\Auth;
+use Domain\Webinar\Actions\WebinarStoreAction;
+use Domain\Webinar\DataTransferObjects\WebinarData;
+use Illuminate\Support\Facades\Log;
 
 class WebinarsController
 {
@@ -18,13 +19,23 @@ class WebinarsController
         return  view('admin.webinars.webinars' , ['webinars' => $webinars]);
     }
 
+
     public function create()
     {
         return view('admin.webinars.create-webinar');
     }
 
+
     public function store(StoreWebinarRequest $request)
     {
-
+        $request->validated();
+        try {
+            $data = WebinarData::fromRequest($request);
+            $newWebinar = (new WebinarStoreAction())($data);
+        } catch (\Exception $e) {
+            Log::error('Webinar Store Error: ' . $e->getMessage());
+            return back()->with('failed' , 'ساخت وبینار جدید با مشکل مواجه شد دوباره تلاش کنید');
+        }
+        return redirect()->route('admin.webinars.create');
     }
 }

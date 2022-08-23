@@ -13,9 +13,6 @@ body {
 }
 
 .form-content{
-    display: flex;
-    align-content: center;
-    justify-content: center;
     background-color: #f9f9f9;
     margin: 2em auto;
     border-radius: 15px;
@@ -23,6 +20,13 @@ body {
     width: 85%;
     box-shadow: inset -4px -4px 8px rgb(255 255 255 / 50%), inset 8px 8px 16px rgb(0 0 0 / 10%);
 }
+
+webinar-form {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
 h1 {
     text-align: center;
     font-size: large;
@@ -62,5 +66,6 @@ a {
 }
 
 .webinar-form {
+    padding: 5px 35px;
 
 }

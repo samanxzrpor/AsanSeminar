@@ -5,6 +5,8 @@ use ReflectionClass;
 
 abstract class DataTransferObject
 {
+
+
     public static function fromRequest($request)
     {
         $returendData = [];
