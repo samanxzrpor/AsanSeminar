@@ -9,12 +9,12 @@ trait JalaliDate
 
     public static function changeToJalali(string $timestamp)
     {
-        return  Jalalian::fromFormat('Y-m-d H:i:s', $timestamp);
+        return  Jalalian::forge($timestamp)->format(' %d %B %Y');
     }
 
     public static function changeToCarbon(string $dateTime)
     {
-        return  Jalalian::fromFormat('Y-m-d H:i:s', $dateTime)
+        return Jalalian::fromDateTime($dateTime / 1000)
             ->toCarbon()
             ->toDateTimeString();
     }

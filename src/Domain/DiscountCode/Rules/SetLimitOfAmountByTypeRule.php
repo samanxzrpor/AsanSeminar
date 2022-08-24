@@ -2,9 +2,9 @@
 
 namespace Domain\DiscountCode\Rules;
 
-use Illuminate\Validation\Rule;
+use Illuminate\Contracts\Validation\Rule;
 
-class SetLimitOfAmountByTypeRule extends Rule
+class SetLimitOfAmountByTypeRule implements Rule
 {
     public string $type ;
 

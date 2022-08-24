@@ -18,7 +18,8 @@
                                 <input type="number" class="form-control" name="price" placeholder="قیمت وبینار" aria-label="Number">
                             </div>
                             <div class="col-sm">
-                                <input type="text" class="form-control" name="event_date" placeholder="1400-03-20" aria-label="Event Date">
+                                <input type="text" class="form-control event-date"  placeholder="1400-03-20" aria-label="Event Date">
+                                <input class="alt-field-event"  name="event_date"  type="hidden">
                             </div>
                         </div>
                         <br>

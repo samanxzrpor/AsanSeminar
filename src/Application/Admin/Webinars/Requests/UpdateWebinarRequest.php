@@ -32,6 +32,7 @@ class UpdateWebinarRequest extends FormRequest
             'can_use_discount' => ['nullable' ,'in:on,off'],
             'show_all' => ['nullable' , 'in:on,off'],
             'max_capacity' => ['nullable' , 'int'],
+            'user_id' => ['required' , 'exists:users,id']
         ];
     }
 }

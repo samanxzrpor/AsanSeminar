@@ -4,6 +4,7 @@
         <div class="row justify-content-center">
             <div class="header">
                 <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
+                <a href="{{ route('admin.discount_codes.create')}}"><button type="button" class="btn btn-success">ایجاد</button></a>
             </div>
             <div class="webinar-content">
                 <h1 class="header">{{ __('کد های تخفیف') }}</h1>

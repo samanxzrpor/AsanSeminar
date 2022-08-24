@@ -18,12 +18,13 @@ class StoreDiscountCodeRequest extends FormRequest
         return [
             'title' => ['required' , 'string'],
             'discount_code' => ['required'],
-            'start_date' => ['required' , 'date'],
-            'expire_date' => ['required' , 'date'],
+            'start_date' => ['required' , 'string'],
+            'expire_date' => ['required' , 'string'],
             'is_active' => ['nullable' , 'boolean'],
-            'use_count' => ['required', 'int'],
-            'type' => ['required', 'in:percentage,amount'],
-            'discount_amount' => ['required' , 'int' , 'min:0' , new SetLimitOfAmountByTypeRule($this->type)],
+            'discount_code_count' => ['required', 'int'],
+            'discount_type' => ['required', 'in:percentage,amount'],
+            'amount' => ['required' , 'int' , 'min:0' , new SetLimitOfAmountByTypeRule($this->discount_type)],
+            'webinar_id' => ['required' , 'exists:webinars,id']
         ];
     }
 }

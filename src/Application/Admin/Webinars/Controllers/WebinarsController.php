@@ -60,7 +60,7 @@ class WebinarsController
             $newWebinar = (new WebinarStoreAction())($data);
         } catch (\Exception $e) {
             Log::error('Webinar Store Error: ' . $e->getMessage());
-            return back()->with('failed' , 'ساخت وبینار جدید با مشکل مواجه شد دوباره تلاش کنید');
+            return back()->with('failed' , 'ساخت وبینار جدید با مشکل مواجه شد دوباره تلاش کنید' . $e->getMessage());
         }
         return redirect()->route('admin.webinars.create')->with('success', 'وبینار جدید ایجاد شد');
     }
