@@ -21,7 +21,7 @@ return new class extends Migration
             $table->boolean('is_active')
                 ->default(true);
             $table->dateTime('start_date');
-            $table->dateTime('expires_date');
+            $table->dateTime('expire_date');
             $table->unsignedInteger('discount_code_count');
             $table->enum('discount_type' , ['amount', 'percentage'])
                 ->default('percentage');

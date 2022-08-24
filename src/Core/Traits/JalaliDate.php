@@ -7,9 +7,9 @@ use Morilog\Jalali\Jalalian;
 trait JalaliDate
 {
 
-    public static function changeToJalali(string $timestamp)
+    public static function changeToJalali(mixed $timestamp)
     {
-        return  Jalalian::forge($timestamp)->format(' %d %B %Y');
+        return  Jalalian::forge($timestamp)->format('%d %B %Y');
     }
 
     public static function changeToCarbon(string $dateTime)

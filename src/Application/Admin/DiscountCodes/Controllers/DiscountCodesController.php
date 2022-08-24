@@ -31,11 +31,11 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
         $request->validated();
         try {
             $discountData = DiscountCodeData::fromRequest($request);
-            dd($discountData);
             $newDiscount = (new DiscountCodeStoreAction())($discountData);
         } catch (\Exception $e) {
             Log::error('DiscountCode Exception: '.$e->getMessage());
-            return back()->with('failed' , ' ساخت کد تخفیف با مشکل مواجه شد.');
+            return back()->with('failed' , ' ساخت کد تخفیف با مشکل مواجه شد.' . $e->getMessage());
         }
+        return back()->with('success' , 'کد تخفیف با موفقیت ایحاد شد');
     }
 }

@@ -39,13 +39,16 @@
                         </div>
                         <br>
                         <div class="row mb-3">
-                            <div class="col-sm">
-                                <input type="text" class="form-control" name="start_date" placeholder="تاریخ شروع 1400-01-01" aria-label="title">
+                            <div class="col-sm">شروع :
+                                <input type="text" class="form-control event-date"  placeholder="1400-03-20" aria-label="Event Date">
+                                <input class="alt-field-event"  name="start_date"  type="hidden">
+                            </div>
+                            <div class="col-sm">اتمام :
+                                <input type="text" class="form-control event-date"  placeholder="1400-03-20" aria-label="Event Date">
+                                <input class="alt-field-event"  name="expire_date"  type="hidden">
                             </div>
                             <div class="col-sm">
-                                <input type="text" class="form-control" name="expire_date" placeholder="تاریخ اتمام 1400-01-01" aria-label="title">
-                            </div>
-                            <div class="col-sm">
+                                <br>
                                 <input type="number" class="form-control" name="discount_code_count" placeholder="تعداد کد " aria-label="title">
                             </div>
                         </div>

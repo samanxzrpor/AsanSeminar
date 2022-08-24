@@ -11,10 +11,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class DiscountCode extends Model
 {
-
     use hasFactory;
 
     public $table = 'discount_codes';
+
+    public $guarded = ['id'];
 
 
     public static function newFactory()
