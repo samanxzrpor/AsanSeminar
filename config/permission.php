@@ -164,13 +164,13 @@ return [
     'roles' => [
         'Admin' ,
         'Master' ,
-        'User' ,
+        'Users' ,
         'Accountant'
     ],
 
     'permissions' => [
         'Webinar Management' ,
         'Transactions Management' ,
-        'User Management',
+        'Users Management',
     ]
 ];

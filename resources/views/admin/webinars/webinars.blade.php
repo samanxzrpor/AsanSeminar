@@ -6,6 +6,7 @@
             <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
             <a href="{{ route('admin.webinars.create')}}"><button type="button" class="btn btn-success">وبینار جدید</button></a>
         <div class="webinar-content">
+            @include('errors.error')
             <h1 class="header">{{ __('وبینار ها') }}</h1>
             <div class="webinars">
                 <table class="table table-striped table-bordered table-hover">
@@ -43,7 +44,7 @@
                                 <form action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
                                     @csrf
                                     @method('delete')
-                                    <button type="button" class="btn btn-danger">حذف</button>
+                                    <button type="submit" class="btn btn-danger">حذف</button>
                                 </form>
                             </td>
                         </tr>
@@ -64,7 +65,7 @@
                                     <form style="display:inline"  action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button type="button" class="btn btn-danger">حذف</button>
+                                        <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
                             </tr>
@@ -85,7 +86,7 @@
                                     <form style="display:inline"  action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button type="button" class="btn btn-danger">حذف</button>
+                                        <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
                             </tr>
@@ -106,7 +107,7 @@
                                     <form style="display:inline"  action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
                                         @csrf
                                         @method('delete')
-                                        <button type="button" class="btn btn-danger">حذف</button>
+                                        <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
                             </tr>

@@ -10,6 +10,7 @@
                     @include('errors.error')
                     <form class="webinar-form" action="{{route('admin.webinars.update' , $webinar)}}" method="post">
                         @csrf
+                        @method('put')
                         <div class="row g-3">
                             <div class="col-sm-5">
                                 <input type="text" class="form-control" value="{{$webinar->title}}" name="title" placeholder="عنوان وبینار" aria-label="title">
@@ -29,9 +30,7 @@
                         <div class="row g-3">
                             <div class="col-sm">
                                 <select class="form-control" name="user_id">
-                                    @foreach($masters as $masterId => $masterName)
-                                        <option value="{{ $masterId}}">{{$masterName}}</option>
-                                    @endforeach
+                                        <option value="{{$webinar->user->id}}">{{$webinar->user->name}}</option>
                                 </select>
                             </div>
                             <div class="col-sm">
@@ -45,13 +44,13 @@
                         <div class="row mb-3">
                             <div class="col-sm-10 offset-sm-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" name="can_use_discount" {{$webinar->can_use_discount ? 'checked' : ''}} type="checkbox" id="gridCheck1">
+                                    <input class="form-check-input" name="can_use_discount" {{$webinar->can_use_discount == 'on' ? 'checked' : ''}} type="checkbox" id="gridCheck1">
                                     <label class="form-check-label" for="gridCheck1">
                                         امکان استفاده از کد تخفیف
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" {{$webinar->show_all ? 'checked' : ''}}  name="show_all" type="checkbox" id="gridCheck1">
+                                    <input class="form-check-input" {{$webinar->show_all == 'on' ? 'checked' : ''}}  name="show_all" type="checkbox" id="gridCheck1">
                                     <label class="form-check-label" for="gridCheck1">
                                         نمایش به عموم
                                     </label>

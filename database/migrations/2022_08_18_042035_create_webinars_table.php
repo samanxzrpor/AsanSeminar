@@ -23,10 +23,10 @@ return new class extends Migration
                 ->default(0);
             $table->enum('status' , ['cancelled', 'pending' , 'performing' , 'finished'])
                 ->default('pending');
-            $table->boolean('can_use_discount')
-                ->default(false);
-            $table->boolean('show_all')
-                ->default(false);
+            $table->enum('can_use_discount' , ['off', 'on'])
+                ->default('off');
+            $table->enum('show_all' , ['off', 'on'])
+                ->default('off');
             $table->unsignedInteger('max_capacity');
             $table->foreignId('user_id')
                 ->constrained()

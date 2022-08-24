@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\Admin\User\Controllers;
+namespace Application\Admin\Users\Controllers;
 
 use Domain\User\Actions\UserGetAllAction;
 

@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('users/{user}')->middleware('role:User')->name('user.')->group(function () {
+Route::prefix('users/{user}')->middleware('role:Users')->name('user.')->group(function () {
 
         Route::prefix('webinars')->controller(\Application\User\Webinars\Controllers\WebinarController::class)
             ->group(function (){
@@ -19,7 +19,7 @@ Route::prefix('users/{user}')->middleware('role:User')->name('user.')->group(fun
 
         });
 
-        Route::prefix('payments')->controller(\Application\User\Paymnents\Controllers\PaymentsController::class)
+        Route::prefix('payments')->controller(\Application\User\Payments\Controllers\PaymentsController::class)
             ->group(function (){
 
                 Route::get('/' , 'index')->name('payments.index');

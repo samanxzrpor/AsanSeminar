@@ -6,12 +6,12 @@ use Domain\Webinar\DataTransferObjects\WebinarData;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Support\Facades\Auth;
 
-class WebinarStoreAction
+class WebinarUpdateAction
 {
 
-    public function __invoke(array $data)
+    public function __invoke(array $data , Webinar $webinar)
     {
-        $newWebinar = Webinar::create([
+        $updatedWebinar =$webinar->update([
             'title' => $data['title'],
             'description' => $data['description'],
             'price' => $data['price'],
@@ -22,6 +22,6 @@ class WebinarStoreAction
             'event_date' => $data['event_date'],
             'user_id' => $data['user_id'],
         ]);
-        return $newWebinar;
+        return $updatedWebinar;
     }
 }

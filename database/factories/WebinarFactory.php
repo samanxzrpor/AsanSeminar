@@ -2,9 +2,11 @@
 
 namespace Database\Factories;
 
+use Core\Traits\JalaliDate;
 use Domain\User\Models\User;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Arr;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Webinar>
@@ -37,10 +39,10 @@ class WebinarFactory extends Factory
             },
             'price' => fake()->randomNumber(),
             'percentage_discount' => random_int(0 , 100),
-            'can_use_discount' => random_int(0 , 1),
-            'show_all' => random_int(0 , 1),
+            'can_use_discount' => Arr::random(['on' , 'off']),
+            'show_all' => Arr::random(['on' , 'off']),
             'max_capacity' => random_int(1 , 300),
-            'event_date' => fake()->date(),
+            'event_date' => JalaliDate::changeToJalali(fake()->date()),
             'user_id' => function (){
                 return User::factory();
             }

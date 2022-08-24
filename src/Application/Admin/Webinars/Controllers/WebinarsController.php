@@ -3,10 +3,11 @@
 namespace Application\Admin\Webinars\Controllers;
 
 use Application\Admin\Webinars\Requests\StoreWebinarRequest;
+use Application\Admin\Webinars\Requests\UpdateWebinarRequest;
 use Domain\User\Actions\UserGetAllMasters;
-use Domain\User\Models\User;
 use Domain\Webinar\Actions\WebinarGetAllAction;
 use Domain\Webinar\Actions\WebinarStoreAction;
+use Domain\Webinar\Actions\WebinarUpdateAction;
 use Domain\Webinar\DataTransferObjects\WebinarData;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Support\Facades\Log;
@@ -38,6 +39,18 @@ class WebinarsController
         ]);
     }
 
+    public function update(UpdateWebinarRequest $request , Webinar $webinar)
+    {
+        $request->validated();
+        try {
+            $requestData = WebinarData::fromRequest($request);
+            $updatedWebinar = (new WebinarUpdateAction())($requestData , $webinar);
+        } catch (\Exception $e) {
+            Log::error('Webinar Update : '.$e->getMessage());
+            return back()->with('failed', 'بروزرسانی وبینار با مشکل مواجه شد.');
+        }
+        return redirect()->route('admin.webinars.edit' , $updatedWebinar)->with('success', ' وبینار بروزرسانی شد');
+    }
 
     public function store(StoreWebinarRequest $request)
     {
@@ -54,6 +67,7 @@ class WebinarsController
 
     public function destroy(Webinar $webinar)
     {
-        
+        $webinar->delete();
+        return back()->with('success', 'وبینار '. $webinar->title .'حذف شد.');
     }
 }

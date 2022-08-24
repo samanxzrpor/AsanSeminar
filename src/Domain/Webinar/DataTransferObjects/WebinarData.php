@@ -29,16 +29,18 @@ class WebinarData extends DataTransferObject
 
     public string $status;
 
-    public int $master_id;
-
+    public int $user_id;
 
 
     public static function fromRequest($request)
     {
         $parent = Parent::fromRequest($request);
+        if ($request->method() == 'PUT')
+            return $parent;
 
         $changedData = Arr::set($parent , 'event_date', JalaliDate::changeToCarbon(
-            Str::replace('/' , '-' , $request->get('event_date')) . ' 00:00:00'));
+            $request->get('event_date') . ' 00:00:00'
+        ));
 
         return $changedData;
     }

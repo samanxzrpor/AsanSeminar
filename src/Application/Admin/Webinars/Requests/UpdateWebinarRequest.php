@@ -4,7 +4,7 @@ namespace Application\Admin\Webinars\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreWebinarRequest extends FormRequest
+class UpdateWebinarRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,14 @@ class StoreWebinarRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required' , 'string' , 'max:255'],
-            'description' => ['required' , 'string'] ,
-            'price' => ['required' , 'int'],
-            'event_date' => ['required' , 'string'],
+            'title' => ['nullable' , 'string' , 'max:255'],
+            'description' => ['nullable' , 'string'] ,
+            'price' => ['nullable' , 'int'],
+            'event_date' => ['nullable' , 'string'],
             'percentage_discount' => ['nullable' ,'int' ,'min:0' , 'max:100'],
             'can_use_discount' => ['nullable' ,'in:on,off'],
             'show_all' => ['nullable' , 'in:on,off'],
-            'max_capacity' => ['required' , 'int'],
+            'max_capacity' => ['nullable' , 'int'],
         ];
     }
 }

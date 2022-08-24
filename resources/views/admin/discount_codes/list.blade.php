@@ -1,6 +1,6 @@
-@extends('layouts.user.main')
+@extends('layouts.admin.main')
 
-@section('user-content')
+@section('admin-content')
         <div class="row justify-content-center">
             <div class="header">
                 <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
