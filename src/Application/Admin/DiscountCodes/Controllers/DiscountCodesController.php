@@ -3,10 +3,12 @@
 namespace Application\Admin\DiscountCodes\Controllers;
 
 use Application\Admin\DiscountCodes\Requests\StoreDiscountCodeRequest;
+use Core\Exceptions\DiscountCode\InvalidDiscountCodeException;
 use Domain\DiscountCode\Actions\DiscountCodeGetAll;
 use Domain\DiscountCode\Actions\DiscountCodeStoreAction;
 use Domain\DiscountCode\DataTransferObjects\DiscountCodeData;
 use Domain\Webinar\Actions\WebinarGetByStatusAction;
+use Domain\Webinar\Models\Webinar;
 use Illuminate\Support\Facades\Log;
 
 class DiscountCodesController extends \Core\Http\Controllers\Controller
@@ -31,8 +33,12 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
         $request->validated();
         try {
             $discountData = DiscountCodeData::fromRequest($request);
+            if (!Webinar::find($discountData['webinar_id'])->canUseDiscount())
+                throw new InvalidDiscountCodeException();
             $newDiscount = (new DiscountCodeStoreAction())($discountData);
-        } catch (\Exception $e) {
+        } catch (InvalidDiscountCodeException $e) {
+            return back()->with('failed' , 'وبینار مورد نظر امکان استفاده از کد تخفیف را ندارد.');
+        }catch (\Exception $e) {
             Log::error('DiscountCode Exception: '.$e->getMessage());
             return back()->with('failed' , ' ساخت کد تخفیف با مشکل مواجه شد.' . $e->getMessage());
         }

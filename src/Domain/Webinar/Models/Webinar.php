@@ -43,4 +43,9 @@ class Webinar extends Model
     {
         return $this->hasMany(Meeting::class);
     }
+
+    public function canUseDiscount()
+    {
+        return $this->can_use_discount == 'on' ? true : false;
+    }
 }
