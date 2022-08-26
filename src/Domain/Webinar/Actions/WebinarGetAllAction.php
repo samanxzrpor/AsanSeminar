@@ -9,8 +9,8 @@ use Illuminate\Support\Collection;
 class WebinarGetAllAction
 {
 
-    public function __invoke() : Collection
+    public function __invoke()
     {
-        return Webinar::all();
+        return Webinar::orderBy('created_at', 'desc')->paginate(20);
     }
 }

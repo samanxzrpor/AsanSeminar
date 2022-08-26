@@ -20,8 +20,9 @@ return new class extends Migration
             $table->unsignedInteger('amount');
             $table->boolean('is_active')
                 ->default(true);
-            $table->dateTime('start_date');
-            $table->dateTime('expire_date');
+            $table->timestamp('start_date');
+            $table->timestamp('expire_date')
+                ->nullable();
             $table->unsignedInteger('discount_code_count');
             $table->enum('discount_type' , ['amount', 'percentage'])
                 ->default('percentage');

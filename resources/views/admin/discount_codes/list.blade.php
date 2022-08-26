@@ -38,7 +38,14 @@
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($code->expires_date)}}</td>
                                     <td>{{$code->discount_code_count}}</td>
                                     <td>{{$code->webinar->title}}</td>
-                                    <td></td>
+                                    <td>
+                                        <a  style="display:inline"  href="{{ route('admin.discount_codes.edit' , $code)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                        <form style="display:inline"  action="{{ route('admin.discount_codes.destroy' , $code) }}" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-danger">حذف</button>
+                                        </form>
+                                    </td>
                                 </tr>
                         @endforeach
                         </tbody>

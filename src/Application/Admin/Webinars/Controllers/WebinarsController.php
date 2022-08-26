@@ -26,14 +26,14 @@ class WebinarsController
     public function create()
     {
         $mastersData  = (new UserGetAllMasters())();
-        return view('admin.webinars.create-webinar' , ['masters' => $mastersData]);
+        return view('admin.webinars.create' , ['masters' => $mastersData]);
     }
 
 
     public function edit(Webinar $webinar)
     {
         $mastersData  = (new UserGetAllMasters())();
-        return view('admin.webinars.edit-webinar' , [
+        return view('admin.webinars.edit' , [
             'webinar' => $webinar ,
             'masters' => $mastersData
         ]);
