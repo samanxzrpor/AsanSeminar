@@ -15,6 +15,10 @@
         <nav class="nav nav-pills flex-column flex-sm-row">
             <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'user.webinars.index') active @endif"
                href="{{route('user.webinars.index' , auth()->user())}}">وبینار های خریداری شده</a>
+            @hasrole('Master')
+            <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'master.webinars.index') active @endif"
+               href="{{route('master.webinars.index' , auth()->user())}}">وبینار های من</a>
+            @endhasrole
             <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'user.orders.index') active @endif"
                href="{{route('user.orders.index' ,auth()->user())}}" >سفاراشات</a>
             <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'user.payments.index') active @endif"

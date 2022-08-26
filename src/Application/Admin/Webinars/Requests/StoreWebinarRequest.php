@@ -32,7 +32,7 @@ class StoreWebinarRequest extends FormRequest
             'can_use_discount' => ['nullable' ,'in:on,off'],
             'show_all' => ['nullable' , 'in:on,off'],
             'max_capacity' => ['required' , 'int'],
-            'user_id' => ['required' , 'exists:users,id']
+            'master_id' => ['required' , 'exists:users,id']
 
         ];
     }

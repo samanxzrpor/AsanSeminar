@@ -24,10 +24,11 @@ class Webinar extends Model
         return WebinarFactory::new();
     }
 
-    public function user()
+    public function master()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class , 'master_id');
     }
+
 
     public function discountCodes()
     {

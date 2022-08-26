@@ -28,8 +28,8 @@ return new class extends Migration
             $table->enum('show_all' , ['off', 'on'])
                 ->default('off');
             $table->unsignedInteger('max_capacity');
-            $table->foreignId('user_id')
-                ->constrained()
+            $table->foreignId('master_id')
+                ->constrained('users')
                 ->cascadeOnUpdate();
             $table->timestamps();
         });

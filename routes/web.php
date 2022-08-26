@@ -27,4 +27,6 @@ Route::middleware('auth')->group(function () {
 
     require __DIR__ . '/web_routes/user_routes.php';
 
+    require __DIR__ . '/web_routes/master_routes.php';
+
 });

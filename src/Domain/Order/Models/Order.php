@@ -1,6 +1,6 @@
 <?php
 
-namespace Domain\Orders\Models;
+namespace Domain\Order\Models;
 
 use Database\Factories\OrderFactory;
 use Domain\User\Models\User;

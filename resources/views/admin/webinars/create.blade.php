@@ -29,7 +29,7 @@
                         </div>
                         <div class="row g-3">
                             <div class="col-sm">
-                                <select class="form-control" name="user_id">
+                                <select class="form-control" name="master_id">
                                     @foreach($masters as $id => $name)
                                     <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach

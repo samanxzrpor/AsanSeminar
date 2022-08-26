@@ -4,7 +4,7 @@ namespace Domain\User\Models;
 
 use Database\Factories\UserFactory;
 use Domain\DiscountCode\Models\DiscountCode;
-use Domain\Orders\Models\Order;
+use Domain\Order\Models\Order;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -61,7 +61,7 @@ class User extends Authenticatable
 
     public function webinars()
     {
-      return $this->hasMany(Webinar::class);
+      return $this->hasManyThrough(Webinar::class , Order::class);
     }
 
     public function orders()

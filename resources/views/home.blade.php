@@ -45,7 +45,7 @@
                                     <td>{{'در انتظار'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->user_id)
+                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->master_id)
                                             <a><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
@@ -67,10 +67,9 @@
                                     <td>{{'در حال اجرا'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->user_id)
+                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->master_id)
                                             <a><button class="btn btn-warning">خرید</button></a>
                                         @endif
-
                                     </td>
                                 </tr>
                             @elseif($webinar->status == 'cancelled')
@@ -90,7 +89,7 @@
                                     <td>{{'کنسل شده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->user_id)
+                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->master_id)
                                             <a><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
@@ -112,7 +111,7 @@
                                     <td>{{'به اتمام رسیده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->user_id)
+                                        @if(!$user->hasRole('Admin') || $user->id != $webinar->master_id)
                                         <a><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
