@@ -29,4 +29,9 @@ Route::middleware('auth')->group(function () {
 
     require __DIR__ . '/web_routes/master_routes.php';
 
+    require __DIR__ . '/web_routes/checkout_routes.php';
+
+    require __DIR__ . '/web_routes/wallet_routes.php';
+
+    require __DIR__ . '/web_routes/transaction_routes.php';
 });

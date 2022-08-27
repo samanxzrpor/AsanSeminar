@@ -46,7 +46,7 @@
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
                                         @if(!$user->hasRole('Admin') && $user->id != $webinar->master_id)
-                                            <a><button class="btn btn-warning">خرید</button></a>
+                                            <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -68,7 +68,7 @@
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
                                         @if(!$user->hasRole('Admin') && $user->id != $webinar->master_id)
-                                            <a><button class="btn btn-warning">خرید</button></a>
+                                            <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -90,7 +90,7 @@
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
                                         @if(!$user->hasRole('Admin') && $user->id != $webinar->master_id)
-                                            <a><button class="btn btn-warning">خرید</button></a>
+                                            <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
                                 </tr>
@@ -112,7 +112,7 @@
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
                                         @if(!$user->hasRole('Admin') || $user->id != $webinar->master_id)
-                                        <a><button class="btn btn-warning">خرید</button></a>
+                                        <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
                                 </tr>

@@ -1,9 +1,9 @@
 <?php
 
-namespace Core\Exceptions\DiscountCode;
+namespace Application\Admin\DiscountCodes\Exceptions;
 
+use Core\Exceptions\DiscountCode\Throwable;
 use Exception;
-use JetBrains\PhpStorm\Internal\LanguageLevelTypeAware;
 
 class InvalidDiscountCodeException extends Exception
 {

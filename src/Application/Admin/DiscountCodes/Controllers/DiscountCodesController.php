@@ -4,14 +4,12 @@ namespace Application\Admin\DiscountCodes\Controllers;
 
 use Application\Admin\DiscountCodes\Requests\StoreDiscountCodeRequest;
 use Application\Admin\DiscountCodes\Requests\UpdateDiscountCodeRequest;
-use Core\Exceptions\DiscountCode\InvalidDiscountCodeException;
 use Domain\DiscountCode\Actions\DiscountCodeGetAll;
 use Domain\DiscountCode\Actions\DiscountCodeStoreAction;
 use Domain\DiscountCode\Actions\DiscountCodeUpdateAction;
 use Domain\DiscountCode\DataTransferObjects\DiscountCodeData;
 use Domain\DiscountCode\Models\DiscountCode;
 use Domain\Webinar\Actions\WebinarGetByStatusAction;
-use Domain\Webinar\Models\Webinar;
 use Illuminate\Support\Facades\Log;
 
 class DiscountCodesController extends \Core\Http\Controllers\Controller
@@ -36,17 +34,18 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
         $request->validated();
         try {
             $discountData = DiscountCodeData::fromRequest($request);
-            if (!Webinar::find($discountData['webinar_id'])->canUseDiscount())
-                throw new InvalidDiscountCodeException();
+//            if (!Webinar::find($discountData['webinar_id'])->canUseDiscount())
+//                throw new InvalidDiscountCodeException();
             $newDiscount = (new DiscountCodeStoreAction())($discountData);
-        } catch (InvalidDiscountCodeException $e) {
-            return back()->with('failed' , 'وبینار مورد نظر امکان استفاده از کد تخفیف را ندارد.');
+//        } catch (InvalidDiscountCodeException $e) {
+//            return back()->with('failed' , 'وبینار مورد نظر امکان استفاده از کد تخفیف را ندارد.');
         }catch (\Exception $e) {
             Log::error('DiscountCode Exception: '.$e->getMessage());
             return back()->with('failed' , ' ساخت کد تخفیف با مشکل مواجه شد.' . $e->getMessage());
         }
         return back()->with('success' , 'کد تخفیف با موفقیت ایحاد شد');
     }
+
 
     public function edit(DiscountCode $discountCode)
     {
