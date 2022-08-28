@@ -26,12 +26,12 @@ class StoreWebinarRequest extends FormRequest
         return [
             'title' => ['required' , 'string' , 'max:255'],
             'description' => ['required' , 'string'] ,
-            'price' => ['required' , 'int'],
+            'price' => ['required' , 'int' , 'min:0'],
             'event_date' => ['required' , 'string'],
             'percentage_discount' => ['nullable' ,'int' ,'min:0' , 'max:100'],
             'can_use_discount' => ['nullable' ,'in:on,off'],
             'show_all' => ['nullable' , 'in:on,off'],
-            'max_capacity' => ['required' , 'int'],
+            'max_capacity' => ['required' , 'int' , 'min:1'],
             'master_id' => ['required' , 'exists:users,id']
 
         ];

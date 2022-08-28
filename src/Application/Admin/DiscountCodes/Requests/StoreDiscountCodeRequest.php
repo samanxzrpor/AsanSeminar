@@ -20,7 +20,7 @@ class StoreDiscountCodeRequest extends FormRequest
             'discount_code' => ['required'],
             'start_date' => ['required' , 'string'],
             'expire_date' => ['required' , 'string'],
-            'discount_code_count' => ['required', 'int'],
+            'discount_code_count' => ['required', 'int' , 'min:1'],
             'discount_type' => ['required', 'in:percentage,amount'],
             'amount' => ['required' , 'int' , 'min:0' , new SetLimitOfAmountByTypeRule($this->discount_type)],
             'webinar_id' => ['required' , 'exists:webinars,id']
