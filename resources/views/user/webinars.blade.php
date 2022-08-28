@@ -2,6 +2,7 @@
 
 @section('user-content')
         <div class="row justify-content-center">
+            @include('errors.error')
             <div class="header">
                 <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
             </div>

@@ -29,19 +29,12 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-        $request->validated();
-        try {
-            if (Auth::attempt([
-                'email' =>$request->input('email'),
-                'password' => $request->input('password')
-            ])) {
-                $request->session()->regenerate();
-            }
-        }catch (\Exception $e) {
-            Log::error('login-exception' .':'. $e->getMessage());
-            return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
+        $conditional =$request->validated();
+        if (Auth::attempt($conditional)) {
+            $request->session()->regenerate();
+            return redirect()->intended('webinars');
         }
-        return redirect()->route('webinars.list');
+        return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
     }
 
     public function showRegisterForm()
@@ -52,11 +45,12 @@ class AuthController extends Controller
     protected function create(RegisterRequest $request)
     {
         try {
+            $request->validated();
             $user_data = UserData::fromRequest($request);
             $user = (new UserStoreAction)($user_data);
         } catch (\Exception $e) {
             Log::error('register-exception' .':'. $e->getMessage());
-            return back()->with('failed' , 'ثیت نام شما با مشکل مواجه شد . لطفا دوباره نلاش کنید');
+            return back()->with('failed' , 'ثبت نام شما با مشکل مواجه شد . لطفا دوباره تلاش کنید');
         }
         return redirect()->route('showLoginForm');
     }

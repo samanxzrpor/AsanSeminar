@@ -15,23 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-require __DIR__ . '/web_routes/auth_routes.php';
+require __DIR__ . '/web_routes/auth.php';
 
 Route::redirect('/' , 'webinars');
 
+require __DIR__ . '/web_routes/webinar.php';
+
 Route::middleware('auth')->group(function () {
 
-    require __DIR__ . '/web_routes/webinar_routes.php';
+    require __DIR__ . '/web_routes/admin.php';
 
-    require __DIR__ . '/web_routes/admin_routes.php';
+    require __DIR__ . '/web_routes/user.php';
 
-    require __DIR__ . '/web_routes/user_routes.php';
+    require __DIR__ . '/web_routes/master.php';
 
-    require __DIR__ . '/web_routes/master_routes.php';
+    require __DIR__ . '/web_routes/checkout.php';
 
-    require __DIR__ . '/web_routes/checkout_routes.php';
+    require __DIR__ . '/web_routes/wallet.php';
 
-    require __DIR__ . '/web_routes/wallet_routes.php';
-
-    require __DIR__ . '/web_routes/transaction_routes.php';
+    require __DIR__ . '/web_routes/transaction.php';
 });

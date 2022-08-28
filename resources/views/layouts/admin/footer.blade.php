@@ -7,6 +7,13 @@
 <script src="https://unpkg.com/persian-datepicker@1.2.0/dist/js/persian-datepicker.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
+        $("#roles").change(function(){
+            let selectedCountry = $(this).children("option:selected").val();
+            console.log(selectedCountry);
+        });
+    });
+
+    $(document).ready(function() {
         $(".event-date").persianDatepicker({
             altField: '.alt-field-event'
         });

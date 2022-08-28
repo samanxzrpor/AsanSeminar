@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name' , 54);
             $table->string('email')->unique();
-            $table->string('phone')->unique();
+            $table->string('phone' , 14)->unique();
             $table->unsignedInteger('wallet_amount')
                 ->nullable();
             $table->string('password');

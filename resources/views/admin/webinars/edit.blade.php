@@ -31,7 +31,7 @@
                         <div class="row g-3">
                             <div class="col-sm">
                                 <select class="form-control" name="master_id">
-                                        <option value="{{$webinar->user->id}}">{{$webinar->user->name}}</option>
+                                        <option value="{{$webinar->master->id}}">{{$webinar->master->name}}</option>
                                 </select>
                             </div>
                             <div class="col-sm">

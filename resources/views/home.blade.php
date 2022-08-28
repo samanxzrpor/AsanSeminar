@@ -3,12 +3,14 @@
 @section('content')
         <div class="row justify-content-center">
             <div class="header">
-                <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
-                @hasrole('Admin')
-                   <a href="{{ route('admin.webinars.index')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
-                @else
+                @if(auth()->check())
+                    <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
+                    @hasrole('Admin')
+                    <a href="{{ route('admin.webinars.index')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
+                    @else
                     <a href="{{ route('user.webinars.index' , auth()->user())}}" > <button type="button" class="btn btn-primary">پنل کاربری</button></a>
-                @endhasrole
+                    @endhasrole
+                @endif
             </div>
             <div class="webinar-content">
                 <h1 class="header">{{ __('وبینار') }}</h1>
@@ -45,7 +47,7 @@
                                     <td>{{'در انتظار'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->master_id)
+                                        @if(!auth()->check() || !$user->hasRole('Admin') || $user->id != $webinar->master_id)
                                             <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
@@ -67,7 +69,7 @@
                                     <td>{{'در حال اجرا'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->master_id)
+                                        @if(!auth()->check() || !$user->hasRole('Admin') || $user->id != $webinar->master_id)
                                             <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
@@ -89,7 +91,7 @@
                                     <td>{{'کنسل شده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!$user->hasRole('Admin') && $user->id != $webinar->master_id)
+                                        @if(!auth()->check() || !$user->hasRole('Admin') || $user->id != $webinar->master_id)
                                             <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
@@ -111,7 +113,7 @@
                                     <td>{{'به اتمام رسیده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!$user->hasRole('Admin') || $user->id != $webinar->master_id)
+                                        @if(!auth()->check() || !$user->hasRole('Admin') || $user->id != $webinar->master_id)
                                         <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>

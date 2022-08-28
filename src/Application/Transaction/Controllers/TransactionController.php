@@ -30,12 +30,12 @@ class TransactionController extends Controller
         catch (InvalidTransactionException $e) {
             DB::rollBack();
             Log::error('Tranaction Exception: ' . $e->getMessage());
-            return back()->with('failed' , 'پرداخت با مشکل مواجه شد دوباره تلاش کنید.');
+            return redirect()->route('user.webinars.index',Auth::user())->with('failed' , 'پرداخت با مشکل مواجه شد دوباره تلاش کنید.');
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Tranaction Exception: ' . $e->getMessage());
-            return back()->with('failed' , 'پرداخت با مشکل مواجه شد دوباره تلاش کنید.');
+            return redirect()->route('user.webinars.index',Auth::user())->with('failed' , 'پرداخت با مشکل مواجه شد دوباره تلاش کنید.');
         }
-        return back()->with('success' , 'پزداخت با موفقیت انجام شد.');
+        return redirect()->route('user.webinars.index',Auth::user())->with('success' , 'پزداخت با موفقیت انجام شد.');
     }
 }

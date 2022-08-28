@@ -11,7 +11,7 @@ class UserGetAllAction
     {
         $users = User::with(['roles' => fn($query) =>
             $query->select('name')
-        ]);
+        ])->get();
 
         return $users;
     }

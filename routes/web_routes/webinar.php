@@ -10,6 +10,4 @@ Route::prefix('webinars')
 
     Route::get('/', 'index')->name('list');
 
-//    Route::get('{webinar:title}');
-
 });

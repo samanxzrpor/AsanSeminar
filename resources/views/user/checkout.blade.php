@@ -1,7 +1,7 @@
 @extends('layouts.user.main')
 
 @section('user-content')
-
+    @include('errors.error')
     <div class="row">
         <div class="col-md-4 order-md-2 mb-4">
             <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -16,15 +16,16 @@
                     <span class="text-muted">{{$webinar->price - ($webinar->price * ($webinar->percentage_discount/100))}}</span>
                 </li>
             </ul>
-            <div class="total-amount">
+            <div id="total-amount">
 
             </div>
             @if($webinar->can_use_discount == 'on')
-                <form class="card p-2">
+                <form class="card p-2"  id="discount-form" >
+                    @csrf
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Discount code">
+                        <input type="text" class="form-control" name="code" placeholder="Discount code">
                         <div class="input-group-append">
-                            <button type="submit" class="btn btn-secondary">اعمال کد تخفیف</button>
+                            <button type="button" onclick="applyDiscount()" class="btn btn-secondary">اعمال کد تخفیف</button>
                         </div>
                     </div>
                 </form>
@@ -33,7 +34,7 @@
 
         <div class="col-md-8 order-md-1">
             <h4 class="mb-3">Billing address</h4>
-            <form class="needs-validation" novalidate>
+            <form class="needs-validation" >
                 <div class="mb-3">
                     <label for="username">Username</label>
                     <div class="input-group">
