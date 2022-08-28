@@ -7,7 +7,11 @@
                     <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
                     @hasrole('Admin')
                     <a href="{{ route('admin.webinars.index')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
-                    @else
+                    @endhasrole
+                    @hasrole('Accountant')
+                    <a href="{{ route('accountant.webinars.index' ,auth()->user())}}"> <button type="button" class="btn btn-primary">پنل حسابدار</button></a>
+                    @endhasrole
+                    @hasanyrole('User|Master')
                     <a href="{{ route('user.webinars.index' , auth()->user())}}" > <button type="button" class="btn btn-primary">پنل کاربری</button></a>
                     @endhasrole
                 @endif

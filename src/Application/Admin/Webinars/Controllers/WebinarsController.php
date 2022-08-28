@@ -19,7 +19,7 @@ class WebinarsController
     {
         $webinars = (new WebinarGetAllAction())();
 
-        return  view('admin.webinars.webinars' , ['webinars' => $webinars]);
+        return  view('admin.webinars.list' , ['webinars' => $webinars]);
     }
 
 

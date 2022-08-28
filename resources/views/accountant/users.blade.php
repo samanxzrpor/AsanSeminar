@@ -1,6 +1,6 @@
-@extends('layouts.admin.main')
+@extends('layouts.accountant.main')
 
-@section('admin-content')
+@section('accountant-content')
     <div class="row justify-content-center">
         <div class="header">
             <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
@@ -30,16 +30,6 @@
                             <td>{{$user->phone}}</td>
                             <td>{{$user->roles[0]->name}}</td>
                             <td>{{$user->wallet_amount}}</td>
-                            @hasrole('Admin')
-                            <td>
-                                <a  href="{{ route('admin.users.edit' , $user)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
-                                <form action="{{ route('admin.users.destroy' , $user) }}" method="POST">
-                                    @csrf
-                                    @method('delete')
-                                    <button type="submit" class="btn btn-danger">حذف</button>
-                                </form>
-                            </td>
-                            @endhasrole
                         </tr>
                     @endforeach
                     </tbody>

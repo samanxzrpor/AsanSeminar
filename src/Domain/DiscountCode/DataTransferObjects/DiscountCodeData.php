@@ -5,27 +5,41 @@ namespace Domain\DiscountCode\DataTransferObjects;
 use Core\Traits\JalaliDate;
 use Illuminate\Support\Arr;
 
-class DiscountCodeData extends \Core\DataTransferObjects\DataTransferObject
+class DiscountCodeData
 {
 
-    public string $title;
+//    public string $title;
+//
+//    public string $discount_code;
 
-    public string $discount_code;
+//    public string $amount;
+//
+//    public string $discount_code_count;
+//
+//    public string $discount_type;
+//
+//    public string $start_date;
+//
+//    public string $expire_date;
+//
+//    public string $webinar_id;
+//
+//    public string $is_active;
+//
 
-    public string $amount;
-
-    public string $discount_code_count;
-
-    public string $discount_type;
-
-    public string $start_date;
-
-    public string $expire_date;
-
-    public string $webinar_id;
-
-    public string $is_active;
-
+    public function __construct(
+        public string $title,
+        public string $discount_code,
+        public string $amount,
+        public string $discount_code_count,
+        public string $discount_type,
+        public string $start_date,
+        public string $expire_date,
+        public string $webinar_id,
+        public string $is_active,
+    )
+    {
+    }
 
     public static function fromRequest($request)
     {

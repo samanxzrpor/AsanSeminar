@@ -4,7 +4,9 @@
     <div class="row justify-content-center">
         <div class="header">
             <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
+            @hasrole('Admin')
             <a href="{{ route('admin.webinars.create')}}"><button type="button" class="btn btn-success">وبینار جدید</button></a>
+            @endhasrole
         </div>
             <div class="webinar-content">
             @include('errors.error')
@@ -40,6 +42,7 @@
                             <td>{{$webinar->max_capacity}}</td>
                             <td>{{$webinar->can_use_discount}}</td>
                             <td>{{$webinar->show_all}}</td>
+                            @hasrole('Admin')
                             <td>
                                 <a  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
                                 <form action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
@@ -48,6 +51,7 @@
                                     <button type="submit" class="btn btn-danger">حذف</button>
                                 </form>
                             </td>
+                            @endhasrole
                         </tr>
                         @elseif($webinar->status == 'performing')
                             <tr class="table-warning">
@@ -61,14 +65,16 @@
                                 <td>{{$webinar->max_capacity}}</td>
                                 <td>{{$webinar->can_use_discount}}</td>
                                 <td>{{$webinar->show_all}}</td>
+                                @hasrole('Admin')
                                 <td>
-                                    <a  style="display:inline"  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
-                                    <form style="display:inline"  action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                    <a  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                    <form action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
+                                @endhasrole
                             </tr>
                         @elseif($webinar->status == 'cancelled')
                             <tr class="table-danger">
@@ -82,14 +88,16 @@
                                 <td>{{$webinar->max_capacity}}</td>
                                 <td>{{$webinar->can_use_discount}}</td>
                                 <td>{{$webinar->show_all}}</td>
+                                @hasrole('Admin')
                                 <td>
-                                    <a  style="display:inline"  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
-                                    <form style="display:inline"  action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                    <a  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                    <form action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
+                                @endhasrole
                             </tr>
                         @elseif($webinar->status == 'finished')
                             <tr class="table-light">
@@ -103,14 +111,16 @@
                                 <td>{{$webinar->max_capacity}}</td>
                                 <td>{{$webinar->can_use_discount}}</td>
                                 <td>{{$webinar->show_all}}</td>
+                                @hasrole('Admin')
                                 <td>
-                                    <a  style="display:inline"  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
-                                    <form style="display:inline"  action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                    <a  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                    <form action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
+                                @endhasrole
                             </tr>
                             @endif
                     @endforeach
