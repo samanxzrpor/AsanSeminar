@@ -17,4 +17,6 @@ class UserData extends \Core\DataTransferObjects\DataTransferObject
     public string $phone;
 
     public int $wallet_amount;
+
+    public string $role;
 }

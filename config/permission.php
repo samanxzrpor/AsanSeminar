@@ -164,7 +164,7 @@ return [
     'roles' => [
         'Admin' ,
         'Master' ,
-        'Users' ,
+        'User' ,
         'Accountant'
     ],
 
