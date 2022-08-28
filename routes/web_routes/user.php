@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('users/{user}')->middleware('role:Users|Master')->name('user.')->group(function () {
+Route::prefix('users/{user}')->middleware('role:User|Master|Accountant')->name('user.')->group(function () {
 
         Route::prefix('webinars')->controller(\Application\User\Webinars\Controllers\WebinarController::class)
             ->group(function (){

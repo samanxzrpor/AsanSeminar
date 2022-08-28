@@ -15,7 +15,11 @@ class SetLimitOfAmountByTypeRule implements Rule
 
     public function passes($attribute , $value )
     {
-        return $this->type == 'percentage' && $value < 100;
+        if ($this->type == 'percentage' && $value < 100)
+            return true;
+
+        if ($this->type == 'amount')
+            return true;
     }
 
     public function message()

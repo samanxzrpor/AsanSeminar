@@ -12,25 +12,25 @@
                         @csrf
                         <div class="row g-3">
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" name="title" placeholder="عنوان کد" aria-label="title">
+                                <input type="text" class="form-control" value="{{old('title')}}" name="title" placeholder="عنوان کد" aria-label="title">
                             </div>
                             <div class="col-sm">
-                                <input type="text" class="form-control" name="discount_code" placeholder="کد" aria-label="Number">
+                                <input type="text" class="form-control" value="{{old('discount_code')}}" name="discount_code" placeholder="کد" aria-label="Number">
                             </div>
                             <div class="col-sm">
-                                <input type="number" class="form-control" name="amount" placeholder="مقدار تخفیف درصدی - عددی" aria-label="Event Date">
+                                <input type="number" class="form-control" value="{{old('amount')}}" name="amount" placeholder="مقدار تخفیف درصدی - عددی" aria-label="Event Date">
                             </div>
                         </div>
                         <br>
                         <div class="row g-2">
                             <div class="col-sm">
-                                <select class="form-control" name="discount_type">
+                                <select class="form-control" value="{{old('discount_type')}}" name="discount_type">
                                     <option value="percentage">درصدی</option>
                                     <option value="amount">عددی</option>
                                 </select>
                             </div>
                             <div class="col-sm">
-                                <select class="form-control" name="webinar_id">
+                                <select class="form-control" value="{{old('webinar_id')}}" name="webinar_id">
                                     @foreach($webinars as $webinar)
                                         <option value="{{ $webinar->id}}">{{$webinar->title}}</option>
                                     @endforeach
@@ -49,7 +49,7 @@
                             </div>
                             <div class="col-sm">
                                 <br>
-                                <input type="number" class="form-control" name="discount_code_count" placeholder="تعداد کد " aria-label="title">
+                                <input type="number" class="form-control" value="{{old('discount_code_count')}}" name="discount_code_count" placeholder="تعداد کد " aria-label="title">
                             </div>
                         </div>
                         <input class="btn btn-primary" type="submit" value="Submit">
