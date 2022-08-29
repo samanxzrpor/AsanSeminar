@@ -22,7 +22,7 @@ return new class extends Migration
             $table->unsignedInteger('percentage_discount')
                 ->default(0);
             $table->enum('status' , ['cancelled' , 'open' , 'finished'])
-                ->default('pending');
+                ->default('open');
             $table->enum('can_use_discount' , ['off', 'on'])
                 ->default('off');
             $table->enum('show_all' , ['off', 'on'])
