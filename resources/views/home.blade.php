@@ -3,6 +3,9 @@
 @section('content')
         <div class="row justify-content-center">
             <div class="header">
+                @guest()
+                    <a href="{{ route('login')}}"><button type="button" class="btn btn-outline-secondary">ورود</button></a>
+                @endguest
                 @if(auth()->check())
                     <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
                     @hasrole('Admin')
