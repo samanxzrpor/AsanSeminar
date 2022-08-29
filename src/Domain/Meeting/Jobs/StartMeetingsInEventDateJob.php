@@ -34,8 +34,8 @@ class StartMeetingsInEventDateJob implements ShouldQueue
     {
         $pendingWebinars = Meeting::where('status' , 'pending')->get();
         foreach ($pendingWebinars as $meeting) {
-            if ($meeting->event_date === now()->toDateTimeString()) {
-                (new MeetingStartAction())($meetings);
+            if ($meeting->event_date <= now()->toDateTimeString()) {
+                (new MeetingStartAction())($meeting);
             }
         }
     }

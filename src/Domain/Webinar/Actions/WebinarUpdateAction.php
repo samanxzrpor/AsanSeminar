@@ -20,7 +20,7 @@ class WebinarUpdateAction
             'show_all' => $data['show_all'] ?? 'off',
             'max_capacity' => $data['max_capacity'],
             'event_date' => $data['event_date'],
-            'user_id' => $data['user_id'],
+            'master_id' => $data['master_id'],
         ]);
         return $updatedWebinar;
     }

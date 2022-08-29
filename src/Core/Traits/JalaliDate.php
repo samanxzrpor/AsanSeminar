@@ -9,7 +9,8 @@ trait JalaliDate
 
     public static function changeToJalali(mixed $timestamp)
     {
-        return  Jalalian::forge($timestamp)->format('%d %B %Y');
+        if ($timestamp)
+            return  Jalalian::forge($timestamp)->format('%d %B %Y H:i:s');
     }
 
     public static function changeToCarbon(string $dateTime)

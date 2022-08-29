@@ -13,6 +13,7 @@ use Domain\Meeting\Models\Meeting;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class MeetingsController extends \Core\Http\Controllers\Controller
 {

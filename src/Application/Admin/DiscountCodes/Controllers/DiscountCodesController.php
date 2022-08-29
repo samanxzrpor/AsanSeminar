@@ -23,7 +23,7 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
 
     public function create()
     {
-        $webinars = (new WebinarGetByStatusAction())(['pending' , 'performing']);
+        $webinars = (new WebinarGetByStatusAction())(['open']);
         return view('admin.discount_codes.create' , [
             'webinars' => $webinars
         ]);
@@ -34,11 +34,7 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
         $request->validated();
         try {
             $discountData = DiscountCodeData::fromRequest($request);
-//            if (!Webinar::find($discountData['webinar_id'])->canUseDiscount())
-//                throw new InvalidDiscountCodeException();
             $newDiscount = (new DiscountCodeStoreAction())($discountData);
-//        } catch (InvalidDiscountCodeException $e) {
-//            return back()->with('failed' , 'وبینار مورد نظر امکان استفاده از کد تخفیف را ندارد.');
         }catch (\Exception $e) {
             Log::error('DiscountCode Exception: '.$e->getMessage());
             return back()->with('failed' , ' ساخت کد تخفیف با مشکل مواجه شد.' . $e->getMessage());
