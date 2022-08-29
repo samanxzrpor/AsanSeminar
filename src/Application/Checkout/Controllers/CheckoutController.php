@@ -28,7 +28,7 @@ class CheckoutController extends \Core\Http\Controllers\Controller
 
     public function buyWebinar(Request $request , Webinar $webinar , User $user , string $code)
     {
-        $webinarPrice = $this->ditermineDicountedPrice($webinar);
+        $webinarPrice = $this->determineDiscountedPrice($webinar);
         $discountedPrice = $this->checkDicountCode($webinar, $code , $webinarPrice);
         $discount = DiscountCode::where('code' , $code)->first();
         $this->storeOrder($webinar, $user , $discount);
@@ -69,14 +69,14 @@ class CheckoutController extends \Core\Http\Controllers\Controller
     public function applyCode(Request $request , Webinar $webinar)
     {
         $code = $request->get('code');
-        $discountedPrice = $this->checkDicountCode($webinar, $code);
+        $price = $this->determineDiscountedPrice($webinar);
+        $discountedPrice = $this->checkDicountCode($webinar, $code , $price);
         return json_encode($discountedPrice);
     }
 
 
-    private function ditermineDicountedPrice(Webinar $webinar)
+    private function determineDiscountedPrice(Webinar $webinar)
     {
-        $webinar = Webinar::find(request()->get('webinar'));
         $webinarDiscountPrice = $webinar->price - ($webinar->price * ($webinar->percentage_discount/100));
         return $webinarDiscountPrice;
     }

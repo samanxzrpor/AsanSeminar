@@ -4,7 +4,7 @@
     @include('errors.error')
     <div class="wallet-amount btn btn-warning">
         مقدار کیف پول :
-        <span>{{auth()->user()->wallet_amount}}</span>
+        <span>{{$walletAmount}}</span>
     </div>
     <br>
     <span>کیف پول خود را شارژ کنید</span>

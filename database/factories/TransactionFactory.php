@@ -26,7 +26,8 @@ class TransactionFactory extends Factory
             'description' => fake()->realText(),
             'register_date' => now()->addDays(random_int(0 , 100)),
             'status' => Arr::random(['success', 'failed']),
-            'type' => Arr::random(['buy , deposit' , 'refund'])
+            'type' => Arr::random(['buy , deposit' , 'refund' , 'withdraw']),
+
         ];
     }
 }

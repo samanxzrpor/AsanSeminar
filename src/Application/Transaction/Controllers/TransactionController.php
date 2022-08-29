@@ -6,8 +6,7 @@ use Application\Transaction\Exceptions\InvalidTransactionException;
 use Core\Http\Controllers\Controller;
 use Domain\Transaction\Actions\TransactionStoreAction;
 use Domain\Transaction\DataTransferObjects\TransactionData;
-use Domain\User\Actions\WalletChargeAction;
-use Illuminate\Http\Request;
+use Domain\Wallet\Actions\WalletAmountAction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -24,9 +23,9 @@ class TransactionController extends Controller
             if ($transaction->status == 'failed')
                 throw new InvalidTransactionException('Transaction Get Failed');
             if ($data['type'] == 'deposit' || $data['type'] == 'refund')
-                (new WalletChargeAction())(Auth::user() , $transactionData['amount']);
+                (new WalletAmountAction())(Auth::user() , $transactionData['amount']);
             if ($data['type'] == 'buy' || $data['type'] == 'refund')
-                (new WalletChargeAction())(Auth::user() , $transactionData['amount']);
+                (new WalletAmountAction())(Auth::user() , $transactionData['amount']);
             DB::commit();
         }
         catch (InvalidTransactionException $e) {

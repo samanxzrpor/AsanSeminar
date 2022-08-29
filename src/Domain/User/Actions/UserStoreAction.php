@@ -16,7 +16,6 @@ class UserStoreAction
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'phone' => $data['phone'],
-            'wallet_amount' => 0
         ]);
 
         $user->setAdmin();
