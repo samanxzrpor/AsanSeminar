@@ -15,15 +15,17 @@ use Illuminate\Support\Facades\Log;
 class TransactionController extends Controller
 {
 
-    public function store(Request $request)
+    public function store(array $data)
     {
         DB::beginTransaction();
         try {
-            $transactionData = TransactionData::fromRequest($request);
-            $transaction = (new TransactionStoreAction())($transactionData , $request->get('type'));
+            $transactionData = TransactionData::fromRequest($data);
+            $transaction = (new TransactionStoreAction())($transactionData , $data['type']);
             if ($transaction->status == 'failed')
                 throw new InvalidTransactionException('Transaction Get Failed');
-            if ($request->get('type') == 'deposit')
+            if ($data['type'] == 'deposit' || $data['type'] == 'refund')
+                (new WalletChargeAction())(Auth::user() , $transactionData['amount']);
+            if ($data['type'] == 'buy' || $data['type'] == 'refund')
                 (new WalletChargeAction())(Auth::user() , $transactionData['amount']);
             DB::commit();
         }

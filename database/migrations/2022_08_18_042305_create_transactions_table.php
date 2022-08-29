@@ -19,7 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->dateTime('register_date');
             $table->enum('status' , ['success', 'failed']);
-            $table->enum('type' , ['buy', 'deposit', 'refund']);
+            $table->enum('type' , ['buy', 'deposit', 'refund' , 'withdraw']);
             $table->timestamps();
         });
     }

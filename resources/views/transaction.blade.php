@@ -12,8 +12,9 @@
 </head>
 <body>
     <div class="container">
-        <form action="{{route('transaction.store' , ['type' => $type])}}"  method="post">
+        <form action="{{route('transaction.store' )}}"  method="post">
             @csrf
+            <input type="hidden" name="type" >
             <div class="row">
                 <div class="col">
                     <input type="text" name="amount" class="form-control" value="{{$amount}}" aria-label="First name">

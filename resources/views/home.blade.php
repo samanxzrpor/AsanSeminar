@@ -48,7 +48,7 @@
                                         @endif
                                     </td>
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
-                                    <td>{{'در انتظار'}}</td>
+                                    <td>{{'باز'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
                                         @if(!auth()->check() || !$user->hasRole('Admin') && $user->id != $webinar->master_id)

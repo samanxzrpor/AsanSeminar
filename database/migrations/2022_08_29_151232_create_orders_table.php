@@ -25,6 +25,10 @@ return new class extends Migration
             $table->foreignId('webinar_id')
                 ->constrained()
                 ->cascadeOnUpdate();
+            $table->foreignId('transaction_id')
+                ->nullable()
+                ->constrained()
+                ->cascadeOnUpdate();
             $table->timestamps();
         });
     }
