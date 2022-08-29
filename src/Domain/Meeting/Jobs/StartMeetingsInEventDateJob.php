@@ -11,7 +11,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class StartMeetingsInEventDate implements ShouldQueue
+class StartMeetingsInEventDateJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -32,15 +32,11 @@ class StartMeetingsInEventDate implements ShouldQueue
      */
     public function handle()
     {
-        $openWebinars = Webinar::where('status' , 'open')->get();
-        foreach ($openWebinars as $webinar) {
-            $meetings = $webinar->meetings;
-            foreach ($meetings as $meeting) {
-                if ($meeting->event_date === now()->toDateTimeString()) {
-                    (new MeetingStartAction())($meeting ,'performing');
-                }
+        $pendingWebinars = Meeting::where('status' , 'pending')->get();
+        foreach ($pendingWebinars as $meeting) {
+            if ($meeting->event_date === now()->toDateTimeString()) {
+                (new MeetingStartAction())($meetings);
             }
         }
-
     }
 }

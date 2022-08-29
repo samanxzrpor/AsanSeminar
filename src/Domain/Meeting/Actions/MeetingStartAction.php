@@ -7,11 +7,11 @@ use Domain\Meeting\Models\Meeting;
 class MeetingStartAction
 {
 
-    public function __invoke(Meeting $meeting , string $status)
+    public function __invoke(Meeting $meeting)
     {
         $meeting->update([
             'start_date' => now()->toDateTimeString(),
-            'status' => $status
+            'status' => 'performing'
         ]);
     }
 }

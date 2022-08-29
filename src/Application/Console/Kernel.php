@@ -2,7 +2,8 @@
 
 namespace Application\Console;
 
-use Domain\Meeting\Jobs\StartMeetingsInEventDate;
+use Domain\Meeting\Jobs\FinishMeetingJob;
+use Domain\Meeting\Jobs\StartMeetingsInEventDateJob;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,7 +17,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->job(new StartMeetingsInEventDate())->everyMinute();
+        $schedule->job(new StartMeetingsInEventDateJob)->everyMinute();
+        $schedule->job(new FinishMeetingJob)->everyMinute();
     }
 
     /**
