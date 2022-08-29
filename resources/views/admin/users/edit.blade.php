@@ -29,7 +29,7 @@
             </div>
             <div class="mb-3">
                 <label for="" class="form-label">Password</label>
-                <input type="password" class="form-control" name="password" placeholder="Enter your Password" required>
+                <input type="password" class="form-control" name="password" placeholder="Enter User Password"d>
             </div>
             <button type="submit" class="btn btn-success">Update</button>
         </form>

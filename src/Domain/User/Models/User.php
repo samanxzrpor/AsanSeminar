@@ -79,7 +79,7 @@ class User extends Authenticatable
     {
         $this->email === config('permission.admin_email')
             ? $this->assignRole('Admin')
-            : $this->assignRole('Users');
+            : $this->assignRole('User');
     }
 
 }

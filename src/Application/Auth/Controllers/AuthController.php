@@ -49,7 +49,7 @@ class AuthController extends Controller
             $user_data = UserData::fromRequest($request);
             $user = (new UserStoreAction)($user_data);
         } catch (\Exception $e) {
-            Log::error('register-exception' .':'. $e->getMessage());
+            Log::error('register-exception : '. $e->getMessage());
             return back()->with('failed' , 'ثبت نام شما با مشکل مواجه شد . لطفا دوباره تلاش کنید');
         }
         return redirect()->route('showLoginForm');

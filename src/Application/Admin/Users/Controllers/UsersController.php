@@ -16,6 +16,7 @@ class UsersController extends \Core\Http\Controllers\Controller
     public function index()
     {
         $users = (new UserGetAllAction())();
+
         return view('admin.users.list' , [
             'users' => $users
         ]);

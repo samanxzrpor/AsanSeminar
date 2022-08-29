@@ -1,6 +1,12 @@
 <?php
 
 
+use Application\Admin\DiscountCodes\Controllers\DiscountCodesController;
+use Application\Admin\Meetings\Controllers\MeetingsController;
+use Application\Admin\Orders\Controllers\OrdersController;
+use Application\Admin\Payments\Controllers\PaymentsController;
+use Application\Admin\Users\Controllers\UsersController;
+use Application\Admin\Webinars\Controllers\WebinarsController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('admin')
@@ -8,10 +14,11 @@ Route::prefix('admin')
     ->name('admin.')
     ->group(function () {
 
-        Route::resource('discount_codes' , \Application\Admin\DiscountCodes\Controllers\DiscountCodesController::class);
-        Route::resource('orders' , \Application\Admin\Orders\Controllers\OrdersController::class);
-        Route::resource('payments' , \Application\Admin\Payments\Controllers\PaymentsController::class);
-        Route::resource('users' , \Application\Admin\Users\Controllers\UsersController::class);
-        Route::resource('webinars' , \Application\Admin\Webinars\Controllers\WebinarsController::class);
-        Route::resource('webinars/{webinar}/meetings' , \Application\Admin\Meetings\Controllers\MeetingsController::class);
+        Route::resource('discount_codes' , DiscountCodesController::class);
+        Route::resource('orders' , OrdersController::class);
+        Route::resource('payments' , PaymentsController::class);
+        Route::resource('users' , UsersController::class);
+        Route::resource('webinars' , WebinarsController::class);
+        Route::resource('webinars/{webinar}/meetings' , MeetingsController::class)
+        ->middleware('open_webinars');
     });

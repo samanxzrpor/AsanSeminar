@@ -21,7 +21,7 @@ return new class extends Migration
             $table->dateTime('event_date');
             $table->unsignedInteger('percentage_discount')
                 ->default(0);
-            $table->enum('status' , ['cancelled', 'pending' , 'performing' , 'finished'])
+            $table->enum('status' , ['cancelled' , 'open' , 'finished'])
                 ->default('pending');
             $table->enum('can_use_discount' , ['off', 'on'])
                 ->default('off');

@@ -56,6 +56,11 @@ class Webinar extends Model
 
     public function canUseDiscount()
     {
-        return $this->can_use_discount == 'on' ? true : false;
+        return $this->can_use_discount == 'on';
+    }
+
+    public function isOpen()
+    {
+        return $this->status == 'open';
     }
 }

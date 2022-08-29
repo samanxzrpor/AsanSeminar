@@ -5,12 +5,12 @@ namespace Domain\Meeting\Actions;
 use Domain\Meeting\Models\Meeting;
 use Domain\Webinar\Models\Webinar;
 
-class MeetingStoreAction
+class MeetingUpdateAction
 {
 
-    public function __invoke(array $data , Webinar $webinar)
+    public function __invoke(array $data ,Webinar $webinar ,Meeting $meeting)
     {
-        $meeting = Meeting::create([
+        $updatedMeeting = $meeting->update([
             'title' => $data['title'],
             'description' => $data['description'],
             'meeting_duration' => $data['meeting_duration'],

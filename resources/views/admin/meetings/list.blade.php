@@ -44,8 +44,8 @@
                             <td>{{$meeting->webinar->title}}</td>
                             @hasrole('Admin')
                             <td>
-                                <a  href="{{ route('admin.webinars.edit' , $meeting)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
-                                <form action="{{ route('admin.webinars.destroy' , $meeting) }}" method="POST">
+                                <a  href="{{ route('admin.meetings.edit' , ['webinar'=>$webinar , 'meeting'=>$meeting])}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                <form action="{{ route('admin.meetings.destroy' , ['webinar'=>$webinar , 'meeting'=>$meeting]) }}" method="POST">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">حذف</button>
@@ -67,8 +67,8 @@
                                 <td>{{$meeting->webinar->title}}</td>
                                 @hasrole('Admin')
                                 <td>
-                                    <a  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
-                                    <form action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                    <a  href="{{ route('admin.meetings.edit' , ['webinar'=>$webinar , 'meeting'=>$meeting])}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                    <form action="{{ route('admin.meetings.destroy' , ['webinar'=>$webinar , 'meeting'=>$meeting]) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">حذف</button>
@@ -90,8 +90,8 @@
                                 <td>{{$meeting->webinar->title}}</td>
                                 @hasrole('Admin')
                                 <td>
-                                    <a  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
-                                    <form action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                    <a  href="{{ route('admin.meetings.edit' , ['webinar'=>$webinar , 'meeting'=>$meeting])}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                    <form action="{{ route('admin.meetings.destroy' , ['webinar'=>$webinar , 'meeting'=>$meeting]) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">حذف</button>
@@ -113,8 +113,8 @@
                                 <td>{{$meeting->webinar->title}}</td>
                                 @hasrole('Admin')
                                 <td>
-                                    <a  href="{{ route('admin.webinars.edit' , $webinar)}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
-                                    <form action="{{ route('admin.webinars.destroy' , $webinar) }}" method="POST">
+                                    <a  href="{{ route('admin.meetings.edit' , ['webinar'=>$webinar , 'meeting'=>$meeting])}}"><button type="button" class="btn btn-warning">بروزرسانی</button></a>
+                                    <form action="{{ route('admin.meetings.destroy' , ['webinar'=>$webinar , 'meeting'=>$meeting]) }}" method="POST">
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-danger">حذف</button>

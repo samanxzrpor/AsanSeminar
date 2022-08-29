@@ -4,6 +4,7 @@
     <div class="row justify-content-center">
         <div class="header">
             <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
+            <a href="{{url()->previous()}}"><button type="button" class="btn btn-outline-dark">برگشت</button></a>
             <div class="webinar-content webinar-form">
                 <h1 class="header">{{ __('وبینار جدید') }}</h1>
                 <div class="form-content">
