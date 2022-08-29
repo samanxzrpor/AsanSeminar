@@ -17,7 +17,7 @@ class OpenWebinar
     public function handle(Request $request, Closure $next)
     {
         $webinar = $request->route()->parameter('webinar');
-        if($webinar->isOpen())
+        if(!$webinar->isOpen())
             return back()->with('failed' , 'وبینار مورد نظر در وضعیت باز قرار ندارد');
 
         return $next($request);
