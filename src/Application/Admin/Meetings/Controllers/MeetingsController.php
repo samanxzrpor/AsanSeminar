@@ -8,6 +8,7 @@ use Domain\Meeting\Actions\MeetingGetCurrentWebinarAction;
 use Domain\Meeting\Actions\MeetingStoreAction;
 use Domain\Meeting\Actions\MeetingUpdateAction;
 use Domain\Meeting\DataTransferObjects\MeetingData;
+use Domain\Meeting\Jobs\StartMeetingsInEventDate;
 use Domain\Meeting\Models\Meeting;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Support\Facades\Log;
@@ -34,6 +35,8 @@ class MeetingsController extends \Core\Http\Controllers\Controller
 
     public function edit(Webinar $webinar , Meeting $meeting)
     {
+        StartMeetingsInEventDate::dispatch($meeting);
+
         return view('admin.meetings.edit', [
             'webinar' => $webinar ,
             'meeting' => $meeting
