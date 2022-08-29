@@ -13,5 +13,5 @@ Route::prefix('admin')
         Route::resource('payments' , \Application\Admin\Payments\Controllers\PaymentsController::class);
         Route::resource('users' , \Application\Admin\Users\Controllers\UsersController::class);
         Route::resource('webinars' , \Application\Admin\Webinars\Controllers\WebinarsController::class);
-
+        Route::resource('webinars/{webinar}/meetings' , \Application\Admin\Meetings\Controllers\MeetingsController::class);
     });

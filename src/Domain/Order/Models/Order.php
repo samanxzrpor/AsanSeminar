@@ -12,6 +12,13 @@ class Order extends \Illuminate\Database\Eloquent\Model
 {
     use hasFactory;
 
+    public $fillable = [
+        'status' ,
+        'discount_code_id' ,
+        'user_id' ,
+        'webinar_id'
+    ];
+
     public static function newFactory()
     {
         return OrderFactory::new();

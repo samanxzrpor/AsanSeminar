@@ -10,7 +10,7 @@ class UpdateUserRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->hasRole('Admin') ? true : false;
     }
 
     public function rules()
@@ -19,7 +19,7 @@ class UpdateUserRequest extends FormRequest
             'name' => ['required', 'string','min:3' ,'max:54'],
             'email' => ['required', 'string', 'email', 'max:255'],
             'phone' => ['required', 'string','regex:/^([0-9\s\-\+\(\)]*)$/' ,'min:10' ,'max:14'],
-            'password' => ['required', 'string', 'min:8'],
+            'password' => ['nullable', 'string', 'min:8'],
             'role' => ['required', 'string', 'in:Admin,User,Master,Accountant']
         ];
     }

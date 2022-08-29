@@ -33,7 +33,7 @@
                         @if($webinar->status == 'pending')
                         <tr class="table-primary">
                             <td>{{$webinar->id}}</td>
-                            <td><a href="">{{$webinar->title}}</a></td>
+                            <td><a href="{{route('admin.meetings.index' , $webinar)}}">{{$webinar->title}}</a></td>
                             <td><a href="">{{$webinar->description}}</a></td>
                             <td>{{$webinar->price}}</td>
                             <td>{{$webinar->percentage_discount}}</td>

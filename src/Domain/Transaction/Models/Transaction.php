@@ -5,5 +5,11 @@ namespace Domain\Transaction\Models;
 class Transaction extends \Illuminate\Database\Eloquent\Model
 {
 
-    public $guarded = ['id'];
+    public $fillable = [
+        'amount' ,
+        'description' ,
+        'register_date' ,
+        'status' ,
+        'type' ,
+    ];
 }

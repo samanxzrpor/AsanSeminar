@@ -36,7 +36,10 @@
 
     $(document).ready(function() {
         $(".event-date").persianDatepicker({
-            altField: '.alt-field-event'
+            altField: '.alt-field-event',
+            timePicker: {
+                enabled: true,
+            },
         });
     });
 </script>

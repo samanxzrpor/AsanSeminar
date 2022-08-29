@@ -18,12 +18,12 @@ return new class extends Migration
             $table->string('title');
             $table->text('description');
             $table->enum('status', ['cancelled', 'pending', 'performing' , 'finished'])
-                ->default('pending');
+                ->default('pending');//
             $table->unsignedInteger('meeting_duration');
             $table->boolean('has_record')
                 ->default(false);
             $table->unsignedInteger('max_capacity');
-            $table->dateTime('start_date');
+            $table->dateTime('start_date')->nullable(); //
             $table->dateTime('event_date');
             $table->foreignId('webinar_id')
                 ->constrained()

@@ -51,7 +51,7 @@
                                     <td>{{'در انتظار'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!auth()->check() || !$user->hasRole('Admin') || $user->id != $webinar->master_id)
+                                        @if(!auth()->check() || !$user->hasRole('Admin') && $user->id != $webinar->master_id)
                                             <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
@@ -73,7 +73,7 @@
                                     <td>{{'در حال اجرا'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!auth()->check() || !$user->hasRole('Admin') || $user->id != $webinar->master_id)
+                                        @if(!auth()->check() || !$user->hasRole('Admin') && $user->id != $webinar->master_id)
                                             <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
@@ -95,7 +95,7 @@
                                     <td>{{'کنسل شده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!auth()->check() || !$user->hasRole('Admin') || $user->id != $webinar->master_id)
+                                        @if(!auth()->check() || !$user->hasRole('Admin') && $user->id != $webinar->master_id)
                                             <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>
@@ -117,7 +117,7 @@
                                     <td>{{'به اتمام رسیده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                     <td>
-                                        @if(!auth()->check() || !$user->hasRole('Admin') || $user->id != $webinar->master_id)
+                                        @if(!auth()->check() || !$user->hasRole('Admin') && $user->id != $webinar->master_id)
                                         <a href="{{route('checkout' , ['webinar' => $webinar , 'user' => $user])}}"><button class="btn btn-warning">خرید</button></a>
                                         @endif
                                     </td>

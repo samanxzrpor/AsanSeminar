@@ -15,8 +15,17 @@ class Webinar extends Model
     use hasFactory;
 
 
-    public $guarded = [
-        'id'
+    public $fillable = [
+        'title' ,
+        'description' ,
+        'price' ,
+        'percentage_discount' ,
+        'status' ,
+        'max_capacity' ,
+        'show_all' ,
+        'can_use_discount' ,
+        'event_date' ,
+        'master_id'
     ];
 
 

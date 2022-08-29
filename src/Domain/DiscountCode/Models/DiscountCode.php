@@ -15,7 +15,17 @@ class DiscountCode extends Model
 
     public $table = 'discount_codes';
 
-    public $guarded = ['id'];
+    public $fillable = [
+        'title' ,
+        'discount_code' ,
+        'amount' ,
+        'is_active' ,
+        'start_date' ,
+        'expire_date' ,
+        'discount_code_count',
+        'discount_type' ,
+        'webinar_id'
+    ];
 
 
     public static function newFactory()

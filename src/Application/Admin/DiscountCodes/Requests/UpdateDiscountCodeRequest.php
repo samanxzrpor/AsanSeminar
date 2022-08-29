@@ -10,7 +10,7 @@ class UpdateDiscountCodeRequest extends FormRequest
 
     public function authorize(): bool
     {
-        return true;
+        return $this->user()->hasRole('Admin') ? true : false;
     }
 
     public function rules()
