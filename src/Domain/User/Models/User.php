@@ -6,9 +6,11 @@ use Database\Factories\UserFactory;
 use Domain\DiscountCode\Models\DiscountCode;
 use Domain\Order\Models\Order;
 use Domain\Webinar\Models\Webinar;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Str;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Traits\HasRoles;
@@ -53,6 +55,15 @@ class User extends Authenticatable
         return UserFactory::new();
     }
 
+    protected function getFirstNameAttribute()
+    {
+        return explode(' ' , $this->name )[0] ?? null;
+    }
+
+    protected function getLastNameAttribute()
+    {
+        return explode(' ' , $this->name )[1] ?? null;
+    }
 
     public function isAdmin(): bool
     {

@@ -11,13 +11,7 @@
 </head>
 <body>
 <div class="container">
-    @hasrole('Admin')
     @include('layouts.admin.menu')
-    @endhasrole
-    @hasrole('Accountant')
-    @include('layouts.accountant.menu')
-    @endhasrole
-
     @yield('admin-content')
 
 </div>

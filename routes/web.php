@@ -27,10 +27,6 @@ Route::middleware('auth')->group(function () {
 
     require __DIR__ . '/web_routes/user.php';
 
-    require __DIR__ . '/web_routes/master.php';
-
-    require __DIR__ . '/web_routes/accountant.php';
-
     require __DIR__ . '/web_routes/checkout.php';
 
     require __DIR__ . '/web_routes/wallet.php';

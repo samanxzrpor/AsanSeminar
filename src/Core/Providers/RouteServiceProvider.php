@@ -45,18 +45,15 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function configureRateLimiting(): void
     {
-        RateLimiter::for('api', function (Request $request) {
-            return Limit::perMinute(60)->by($request->user()?->id ?: $request->ip());
-        });
 
-//        RateLimiter::for('authentication' , function (Request $request) {
-//            return Limit::perMinute(3 )
-//                ->by($request->user()?->id ?: $request->ip())
-//                ->response(function(Request $request, array $headers){
-//                    return back()
-//                        ->with('failed' , 'شما بیش از حد مجاز تلاش کردید لطفا پس از یک دقیقه دوباره تلاش کنید')
-//                        ->withHeaders($headers);
-//                });
-//        });
+        RateLimiter::for('authentication' , function (Request $request) {
+            return Limit::perMinute(3 )
+                ->by($request->user()?->id ?: $request->ip())
+                ->response(function(Request $request, array $headers){
+                    return back()
+                        ->with('failed' , 'شما بیش از حد مجاز تلاش کردید لطفا پس از یک دقیقه دوباره تلاش کنید')
+                        ->withHeaders($headers);
+                });
+        });
     }
 }
