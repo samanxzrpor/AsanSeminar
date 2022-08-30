@@ -33,7 +33,6 @@ class StoreWebinarRequest extends FormRequest
             'show_all' => ['nullable' , 'in:on,off'],
             'max_capacity' => ['required' , 'int' , 'min:1'],
             'master_id' => ['required' , 'exists:users,id']
-
         ];
     }
 }

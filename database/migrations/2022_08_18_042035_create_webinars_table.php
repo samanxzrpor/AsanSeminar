@@ -25,8 +25,8 @@ return new class extends Migration
                 ->default('open');
             $table->enum('can_use_discount' , ['off', 'on'])
                 ->default('off');
-            $table->enum('show_all' , ['off', 'on'])
-                ->default('off');
+            $table->boolean('show_all')
+                ->default(true);
             $table->unsignedInteger('max_capacity');
             $table->foreignId('master_id')
                 ->constrained('users')

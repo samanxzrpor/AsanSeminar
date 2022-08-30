@@ -9,19 +9,18 @@ use Domain\Order\DataTransferObjects\OrderData;
 use Domain\User\Models\User;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends \Core\Http\Controllers\Controller
 {
 
-    public function index()
+    public function index( Webinar $webinar)
     {
-        $webinar = Webinar::find(request()->get('webinar'));
-        $user = User::find(request()->get('user'));
-        $webinarDiscountPrice = $webinar->price - ($webinar->price * ($webinar->percentage_discount/100));
+        $webinarDiscountPrice = $this->setWebinarsDiscountePrice($webinar);
         return view('user.checkout' , [
             'webinar' => $webinar ,
-            'user' => $user ,
+            'user' => Auth::user() ,
             'discount_price' => $webinarDiscountPrice
         ]);
     }
