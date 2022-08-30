@@ -20,6 +20,11 @@ return new class extends Migration
             $table->dateTime('register_date');
             $table->enum('status' , ['success', 'failed']);
             $table->enum('type' , ['buy', 'deposit', 'refund' , 'withdraw']);
+            $table->foreignId('user_id')
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
             $table->timestamps();
         });
     }
