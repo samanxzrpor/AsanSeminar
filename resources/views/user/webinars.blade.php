@@ -23,7 +23,7 @@
                         </thead>
                         <tbody>
                         @foreach($webinars as $webinar)
-                            @if($webinar->status == 'pending')
+                            @if($webinar->status == 'open')
                                 <tr class="table-primary">
                                     <td>{{$webinar->id}}</td>
                                     <td><a href="">{{$webinar->title}}</a></td>
@@ -38,23 +38,6 @@
                                     </td>
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                     <td>{{'در انتظار'}}</td>
-                                    <td>{{$webinar->max_capacity}}</td>
-                                </tr>
-                            @elseif($webinar->status == 'performing')
-                                <tr class="table-warning">
-                                    <td>{{$webinar->id}}</td>
-                                    <td><a href="">{{$webinar->title}}</a></td>
-                                    <td><a href="">{{$webinar->description}}</a></td>
-                                    <td>
-                                        @if ($webinar->percentage_discount)
-                                            <span class="price">{{$webinar->price}}</span>
-                                            <span class="discount-price">{{$webinar->price - ($webinar->price * ($webinar->percentage_discount/100))}}</span>
-                                        @else
-                                            <span>{{$webinar->price}}</span>
-                                        @endif
-                                    </td>
-                                    <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
-                                    <td>{{'در حال اجرا'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                 </tr>
                             @elseif($webinar->status == 'cancelled')

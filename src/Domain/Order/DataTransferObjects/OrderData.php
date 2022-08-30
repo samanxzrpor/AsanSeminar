@@ -5,10 +5,10 @@ namespace Domain\Order\DataTransferObjects;
 class OrderData extends \Core\DataTransferObjects\DataTransferObject
 {
 
-    public $webinar_id ;
+    public $webinar;
 
-    public $user_id ;
+    public $user;
 
-    public $discount_code_id ;
+    public $discount_code ;
 
 }

@@ -14,6 +14,8 @@ class TransactionData extends \Core\DataTransferObjects\DataTransferObject
 
     public $status ;
 
+    public $type ;
+
     public static function fromRequest($request)
     {
         $data = parent::fromRequest($request);

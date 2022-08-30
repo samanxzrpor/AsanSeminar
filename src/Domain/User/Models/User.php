@@ -70,10 +70,6 @@ class User extends Authenticatable
         return $this->hasRole('Admin');
     }
 
-    public function webinars()
-    {
-      return $this->hasManyThrough(Webinar::class , Order::class);
-    }
 
     public function orders()
     {

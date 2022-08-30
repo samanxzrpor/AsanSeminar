@@ -16,23 +16,25 @@ class TransactionController extends Controller
 
     public function store( $data)
     {
+        dd($data);
         DB::beginTransaction();
         try {
+            $walletAmount = (new WalletAmountAction())();
             $transactionData = TransactionData::fromRequest($data);
-            $transaction = (new TransactionStoreAction())($transactionData , $data['type']);
+
+            if ($data['type'] == 'wallet')
+            if ($walletAmount < $data['amount'])
+                throw new InvalidTransactionException('Your Wallet Amount must be greater than or equal to'.$data['amount']);
+
+                    $transaction = (new TransactionStoreAction())($transactionData , $data['type']);
             if ($transaction->status == 'failed')
                 throw new InvalidTransactionException('Transaction Get Failed');
-//            if ($data['type'] == 'buy' , '')
-//            if ($data['type'] == 'deposit' || $data['type'] == 'refund')
-//                (new WalletAmountAction())(Auth::user() , $transactionData['amount']);
-//            if ($data['type'] == 'buy' || $data['type'] == 'refund')
-//                (new WalletAmountAction())(Auth::user() , $transactionData['amount']);
             DB::commit();
         }
         catch (InvalidTransactionException $e) {
             DB::rollBack();
             Log::error('Transaction Exception: ' . $e->getMessage());
-            return redirect()->route('user.webinars.index',Auth::user())->with('failed' , 'پرداخت با مشکل مواجه شد دوباره تلاش کنید.');
+            return redirect()->route('user.webinars.index',Auth::user())->with('failed' , $e->getMessage());
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Transaction Exception: ' . $e->getMessage());

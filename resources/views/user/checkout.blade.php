@@ -36,10 +36,7 @@
         </div>
 
         <div class="col-md-8 order-md-1">
-            <form class="needs-validation" action="{{route('checkout.buyWebinar' , [
-            'webinar' => $webinar ,
-            'user' => $user ,
-            ])}}" method="post">
+            <form class="needs-validation" action="{{route('checkout.buyWebinar' ,$webinar )}}" method="post">
                 @csrf
                 <h4 class="mb-3">Payment</h4>
 
@@ -82,7 +79,8 @@
                     data: {code:$("#code").val()},
                     success: function (data) {
                         $("#total-amount").html(data);
-                        $("#discount-input").val($("#code").val());
+                        if(data > 0)
+                            $("#discount-input").val($("#code").val());
                     },
                     error: function (jqXHR, textStatus, errorThrown){
                         console.log(jqXHR);
