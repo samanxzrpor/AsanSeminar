@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Log;
 class TransactionController extends Controller
 {
 
-    public function store(array $data)
+    public function store( $data)
     {
         DB::beginTransaction();
         try {
@@ -22,10 +22,11 @@ class TransactionController extends Controller
             $transaction = (new TransactionStoreAction())($transactionData , $data['type']);
             if ($transaction->status == 'failed')
                 throw new InvalidTransactionException('Transaction Get Failed');
-            if ($data['type'] == 'deposit' || $data['type'] == 'refund')
-                (new WalletAmountAction())(Auth::user() , $transactionData['amount']);
-            if ($data['type'] == 'buy' || $data['type'] == 'refund')
-                (new WalletAmountAction())(Auth::user() , $transactionData['amount']);
+//            if ($data['type'] == 'buy' , '')
+//            if ($data['type'] == 'deposit' || $data['type'] == 'refund')
+//                (new WalletAmountAction())(Auth::user() , $transactionData['amount']);
+//            if ($data['type'] == 'buy' || $data['type'] == 'refund')
+//                (new WalletAmountAction())(Auth::user() , $transactionData['amount']);
             DB::commit();
         }
         catch (InvalidTransactionException $e) {
@@ -37,6 +38,6 @@ class TransactionController extends Controller
             Log::error('Transaction Exception: ' . $e->getMessage());
             return redirect()->route('user.webinars.index',Auth::user())->with('failed' , 'پرداخت با مشکل مواجه شد دوباره تلاش کنید.');
         }
-        return redirect()->route('user.webinars.index',Auth::user())->with('success' , 'پزداخت با موفقیت انجام شد.');
+        return redirect()->route('user.webinars.index',Auth::user())->with('success' , 'پرداخت با موفقیت انجام شد.');
     }
 }
