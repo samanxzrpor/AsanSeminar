@@ -41,7 +41,7 @@ class UsersController extends \Core\Http\Controllers\Controller
             Log::error('User Update'. $e->getMessage());
             return back()->with('failed' , 'بروزرسانی کاربر با مشکل مواجه شد.');
         }
-        return back()->with('success' , 'کاربر بروزرسانی شد .');
+        return redirect()->route('admin.users.index')->with('success' , 'کاربر بروزرسانی شد .');
     }
 
     public function destroy(User $user)

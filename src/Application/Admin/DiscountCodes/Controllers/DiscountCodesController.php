@@ -39,7 +39,7 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
             Log::error('DiscountCode Exception: '.$e->getMessage());
             return back()->with('failed' , ' ساخت کد تخفیف با مشکل مواجه شد.' . $e->getMessage());
         }
-        return back()->with('success' , 'کد تخفیف با موفقیت ایحاد شد');
+        return redirect()->route('admin.discount_codes.index')->with('success' , 'کد تخفیف با موفقیت ایحاد شد');
     }
 
 
@@ -63,11 +63,12 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
             Log::error('DiscountCode Exception: '.$e->getMessage());
             return back()->with('failed' , ' بر.زرسانی کد تخفیف کد تخفیف با مشکل مواجه شد.' . $e->getMessage());
         }
-        return back()->with('success' , 'کد تخفیف با موفقیت بروزرسانی  شد');
+        return redirect()->route('admin.discount_codes.index')->with('success' , 'کد تخفیف با موفقیت بروزرسانی  شد');
     }
 
     public function destroy(DiscountCode $discountCode)
     {
-
+        $discountCode->delete();
+        return back()->with('success' , 'کد تخفیف با موفقیت حذف شد');
     }
 }

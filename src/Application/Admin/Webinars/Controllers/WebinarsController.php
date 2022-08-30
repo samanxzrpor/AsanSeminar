@@ -49,7 +49,7 @@ class WebinarsController
             Log::error('Webinar Update : '.$e->getMessage());
             return back()->with('failed', 'بروزرسانی وبینار با مشکل مواجه شد.');
         }
-        return redirect()->route('admin.webinars.edit' , $updatedWebinar)->with('success', ' وبینار بروزرسانی شد');
+        return redirect()->route('admin.webinars.index' , $updatedWebinar)->with('success', ' وبینار بروزرسانی شد');
     }
 
     public function store(StoreWebinarRequest $request)
@@ -62,7 +62,7 @@ class WebinarsController
             Log::error('Webinar Store Error: ' . $e->getMessage());
             return back()->with('failed' , 'ساخت وبینار جدید با مشکل مواجه شد دوباره تلاش کنید' . $e->getMessage());
         }
-        return redirect()->route('admin.webinars.create')->with('success', 'وبینار جدید ایجاد شد');
+        return redirect()->route('admin.webinars.index')->with('success', 'وبینار جدید ایجاد شد');
     }
 
     public function destroy(Webinar $webinar)
