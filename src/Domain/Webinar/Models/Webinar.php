@@ -7,6 +7,7 @@ use Domain\DiscountCode\Models\DiscountCode;
 use Domain\Meeting\Models\Meeting;
 use Domain\Orders\Models\Order;
 use Domain\User\Models\User;
+use Domain\Webinar\QueryBuilders\WebinarBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -62,5 +63,10 @@ class Webinar extends Model
     public function isOpen()
     {
         return $this->status == 'open';
+    }
+
+    public function newEloquentBuilder($query) : WebinarBuilder
+    {
+        return new WebinarBuilder($query);
     }
 }

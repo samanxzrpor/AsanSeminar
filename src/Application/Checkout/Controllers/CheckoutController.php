@@ -38,7 +38,7 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         $code = $request->get('discount-code');
         $user = Auth::user();
         $discount = DiscountCode::where('discount_code' , $code)->first();
-
+//        if ()
         DB::beginTransaction();
         try {
             $webinarPrice = $this->setWebinarsDiscountePrice($webinar);
