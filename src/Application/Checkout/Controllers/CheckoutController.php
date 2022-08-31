@@ -14,6 +14,7 @@ use Domain\Transaction\Actions\TransactionStoreAction;
 use Domain\Transaction\DataTransferObjects\TransactionData;
 use Domain\User\Models\User;
 use Domain\Wallet\Actions\WalletAmountAction;
+use Domain\Webinar\Actions\WebinarGetCurrentUserAction;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,9 +39,13 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         $code = $request->get('discount-code');
         $user = Auth::user();
         $discount = DiscountCode::where('discount_code' , $code)->first();
-//        if ()
+        $userWebinars = (new WebinarGetCurrentUserAction())();
+
         DB::beginTransaction();
         try {
+            if ($userWebinars->contains($webinar))
+                throw new InvalidTransactionException('You have already this Webinar');
+
             $webinarPrice = $this->setWebinarsDiscountePrice($webinar);
             if ($code)
                 $discountedPrice = $this->checkDiscountCode($webinar, $code , $webinarPrice);
