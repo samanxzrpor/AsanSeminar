@@ -32,4 +32,6 @@ Route::middleware('auth')->group(function () {
     require __DIR__ . '/web_routes/wallet.php';
 
     require __DIR__ . '/web_routes/transaction.php';
+
+    require __DIR__ . '/web_routes/getway.php';
 });

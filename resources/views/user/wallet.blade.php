@@ -14,7 +14,7 @@
             <div class="row">
                 <input type="hidden" class="form-control" name="type" value="deposit" aria-label="Number">
                 <div class="col-sm">
-                    <input type="number" class="form-control" name="charge_amount" placeholder="مقدار شارژ" aria-label="Number">
+                    <input type="number" class="form-control" name="amount" placeholder="مقدار شارژ" aria-label="Number">
                 </div>
             </div>
             <br>

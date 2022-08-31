@@ -11,5 +11,6 @@ class Transaction extends \Illuminate\Database\Eloquent\Model
         'register_date' ,
         'status' ,
         'type' ,
+        'user_id' ,
     ];
 }

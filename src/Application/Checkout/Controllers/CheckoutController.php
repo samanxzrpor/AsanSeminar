@@ -39,36 +39,24 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         $code = $request->get('discount-code');
         $user = Auth::user();
         $discount = DiscountCode::where('discount_code' , $code)->first();
-        dd('sss');
-        DB::beginTransaction();
+
         try {
             $webinarPrice = $this->setWebinarsDiscountePrice($webinar);
             if ($code)
                 $discountedPrice = $this->checkDiscountCode($webinar, $code , $webinarPrice);
             $order = $this->storeOrder($webinar, $user , $discount);
 
-            $transactionData = [
-                'amount' => $discountedPrice ?? $webinarPrice,
-                'description' => 'Description ... ',
-                'status' => 'success',
-            ];
-
             if ($request->has('wallet')){
-                $transaction = $this->buyTransaction(collect($transactionData));
+                $transaction = $this->buyTransaction($webinarPrice , $discountedPrice);
                 $this->updateOrder($order , 'paid', $transaction);
             }
 
             if ($request->has('direct-deposit')) {
-                return redirect()->route('shaparak' , ['amount' => $discountedPrice , 'type' => 'deposit']);
+                $amount = $discountedPrice ?? $webinarPrice;
+                return redirect()->route('shaparak' , ['amount' => $amount , 'type' => 'deposit']);
             }
-            DB::commit();
-        }
-        catch (InvalidTransactionException $e) {
-            DB::rollBack();
-            Log::error('Transaction Exception: ' . $e->getMessage());
-            return redirect()->route('user.webinars.index',Auth::user())->with('failed' , $e->getMessage());
+
         } catch (\Exception $e) {
-            DB::rollBack();
             Log::error('Transaction Exception: ' . $e->getMessage());
             return redirect()->route('user.webinars.index',Auth::user())->with('failed' , 'پرداخت با مشکل مواجه شد دوباره تلاش کنید.');
         }
@@ -78,14 +66,13 @@ class CheckoutController extends \Core\Http\Controllers\Controller
 
     private function storeOrder(Webinar $webinar, $user, $discountCode)
     {
-        $orderData = OrderData::fromRequest(collect(([
+        $orderData = OrderData::fromRequest(collect([
             'webinar' => $webinar,
             'user' => $user,
             'discount_code' => $discountCode
-        ])));
+        ]));
         return (new OrderStoreAction())($orderData);
     }
-
 
     public function applyCode(Request $request , Webinar $webinar)
     {
@@ -95,13 +82,11 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         return json_encode($discountedPrice);
     }
 
-
     private function setWebinarsDiscountePrice(Webinar $webinar)
     {
         $webinarDiscountPrice = $webinar->price - ($webinar->price * ($webinar->percentage_discount/100));
         return $webinarDiscountPrice;
     }
-
 
     private function checkDiscountCode(Webinar $webinar , string $code , int $price)
     {
@@ -119,12 +104,43 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         (new OrderUpdateAction())($order , $status , $transaction);
     }
 
-    private function buyTransaction($transactionData)
+    private function buyTransaction($webinarPrice , $discountedPrice = null)
+    {
+        $transactionData = [
+            'amount' => $discountedPrice ?? $webinarPrice,
+            'description' => 'Buy Description ... ',
+            'status' => 'success',
+        ];
+        $this->checkWalletCharge($transactionData['amount']);
+        $transactionData = TransactionData::fromRequest(collect($transactionData));
+        return (new TransactionStoreAction())($transactionData , 'buy');
+    }
+
+    private function depositTransaction($webinarPrice , $discountedPrice = null)
+    {
+//        $res = $this->depositTransaction($webinarPrice , $discountedPrice);
+//        if ($res->error)
+//            $this->updateOrder($order , 'unsuccessful', $transaction);
+//        $this->buyTransaction($webinarPrice , $discountedPrice);
+//        $this->updateOrder($order , '', $transaction);
+//
+        $amount = $discountedPrice ?? $webinarPrice;
+
+        return redirect()->route('shaparak' , ['amount' => $amount , 'type' => 'deposit']);
+
+        $transactionData = [
+            'amount' => $amount,
+            'description' => 'Description ... ',
+            'status' => 'success',
+        ];
+        $transactionData = TransactionData::fromRequest($transactionData);
+        return (new TransactionStoreAction())($transactionData , 'buy');
+    }
+
+    private function checkWalletCharge($amount)
     {
         $walletAmount = (new WalletAmountAction())();
-        $transactionData = TransactionData::fromRequest($transactionData);
-        if ($walletAmount < $transactionData['amount'])
-            throw new InvalidTransactionException('Your Wallet Amount must be greater than or equal to'.$transactionData['amount']);
-        return (new TransactionStoreAction())($transactionData , 'buy');
+        if ($walletAmount < $amount)
+            return back()->with('failed', 'مقدار حساب کیف شما کمتر از هزینه مورد نظر میباشد.');
     }
 }
