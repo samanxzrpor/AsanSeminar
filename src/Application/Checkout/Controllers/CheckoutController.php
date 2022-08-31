@@ -39,13 +39,9 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         $code = $request->get('discount-code');
         $user = Auth::user();
         $discount = DiscountCode::where('discount_code' , $code)->first();
-        $userWebinars = (new WebinarGetCurrentUserAction())();
-
+        dd('sss');
         DB::beginTransaction();
         try {
-            if ($userWebinars->contains($webinar))
-                throw new InvalidTransactionException('You have already this Webinar');
-
             $webinarPrice = $this->setWebinarsDiscountePrice($webinar);
             if ($code)
                 $discountedPrice = $this->checkDiscountCode($webinar, $code , $webinarPrice);

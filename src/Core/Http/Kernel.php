@@ -67,6 +67,7 @@ class Kernel extends HttpKernel
         'role' => \Spatie\Permission\Middlewares\RoleMiddleware::class,
         'permission' => \Spatie\Permission\Middlewares\PermissionMiddleware::class,
         'role_or_permission' => \Spatie\Permission\Middlewares\RoleOrPermissionMiddleware::class,
-        'open_webinars' => OpenWebinar::class
+        'open_webinars' => OpenWebinar::class ,
+        'restrict_buy_already_webinar' => \Application\Checkout\Middlewares\RestrictUserToBuyWebinarAlreadyHave::class,
     ];
 }
