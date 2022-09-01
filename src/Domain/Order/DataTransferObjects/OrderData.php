@@ -11,4 +11,5 @@ class OrderData extends \Core\DataTransferObjects\DataTransferObject
 
     public $discount_code ;
 
+    public $transaction_id;
 }

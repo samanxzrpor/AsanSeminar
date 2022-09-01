@@ -2,7 +2,7 @@
 
 namespace Application\Transaction\Controllers;
 
-use Application\Transaction\Exceptions\InvalidTransactionException;
+use Application\Transaction\Exceptions\NotEnoughWalletAmountException;
 use Core\Http\Controllers\Controller;
 use Domain\Order\Actions\OrderUpdateAction;
 use Domain\Order\Models\Order;
@@ -35,11 +35,9 @@ class TransactionController extends Controller
             $this->depositTransaction($transactionData);
             # Withdraw From Wallet
             $this->withdrawTransaction($transactionData);
-            # Refund Trasaction
-
             DB::commit();
         }
-        catch (InvalidTransactionException $e) {
+        catch (NotEnoughWalletAmountException $e) {
             DB::rollBack();
             Log::error('Transaction Exception: ' . $e->getMessage());
             return redirect()->route('user.webinars.index',Auth::user())->with('failed' , $e->getMessage());
@@ -58,7 +56,7 @@ class TransactionController extends Controller
             $depositTransaction = (new TransactionStoreAction())($transactionData , 'deposit');
             if ($depositTransaction->status == 'failed') {
                 (new OrderUpdateAction())($order , 'unsuccessful' , $depositTransaction);
-                throw new InvalidTransactionException('Transaction Get Failed');
+                throw new NotEnoughWalletAmountException('Transaction Get Failed');
             }
             $buyTransaction = (new TransactionStoreAction())($transactionData , 'buy');
             (new OrderUpdateAction())($order , 'paid' , $depositTransaction);
@@ -70,7 +68,7 @@ class TransactionController extends Controller
         if ($transactionData['type'] == 'deposit') {
             $depositTransaction = (new TransactionStoreAction())($transactionData , 'deposit');
             if ($depositTransaction->status == 'failed') {
-                throw new InvalidTransactionException('Transaction Get Failed');
+                throw new NotEnoughWalletAmountException('Transaction Get Failed');
             }
         }
     }
@@ -80,7 +78,7 @@ class TransactionController extends Controller
         if ($transactionData['type'] == 'withdraw') {
             $depositTransaction = (new TransactionStoreAction())($transactionData , 'withdraw');
             if ($depositTransaction->status == 'failed') {
-                throw new InvalidTransactionException('Transaction Get Failed');
+                throw new NotEnoughWalletAmountException('Transaction Get Failed');
             }
         }
     }

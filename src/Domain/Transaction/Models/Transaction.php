@@ -2,6 +2,8 @@
 
 namespace Domain\Transaction\Models;
 
+use Domain\Order\Models\Order;
+
 class Transaction extends \Illuminate\Database\Eloquent\Model
 {
 
@@ -13,4 +15,9 @@ class Transaction extends \Illuminate\Database\Eloquent\Model
         'type' ,
         'user_id' ,
     ];
+
+    public function order()
+    {
+        return $this->hasOne(Order::class);
+    }
 }

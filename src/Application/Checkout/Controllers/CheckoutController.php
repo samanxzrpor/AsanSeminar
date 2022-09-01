@@ -3,7 +3,7 @@
 namespace Application\Checkout\Controllers;
 
 use Application\Transaction\Controllers\TransactionController;
-use Application\Transaction\Exceptions\InvalidTransactionException;
+use Application\User\Wallet\Exceptions\NotEnoughWalletAmountException;
 use Domain\DiscountCode\Actions\DiscountCodeApplyToPriceAction;
 use Domain\DiscountCode\Actions\DiscountCodeCheckAction;
 use Domain\DiscountCode\Models\DiscountCode;
@@ -44,8 +44,7 @@ class CheckoutController extends \Core\Http\Controllers\Controller
 
         try {
             $webinarPrice = $this->setWebinarsDiscountePrice($webinar);
-            if ($code)
-                $discountedPrice = $this->checkDiscountCode($webinar, $code , $webinarPrice);
+            $discountedPrice = $code ? $this->checkDiscountCode($webinar, $code , $webinarPrice) : null;
 
             $order = $this->storeOrder($webinar, $user , $discount);
 
@@ -73,8 +72,9 @@ class CheckoutController extends \Core\Http\Controllers\Controller
                     'token' =>$jwt
                 ]);
             }
-
-        } catch (\Exception $e) {
+        } catch (NotEnoughWalletAmountException $e) {
+            return back()->with('failed', 'مقدار حساب کیف شما کمتر از هزینه مورد نظر میباشد.');
+        }catch (\Exception $e) {
             Log::error('Transaction Exception: ' . $e->getMessage());
             return redirect()->route('user.webinars.index',Auth::user())->with('failed' , 'پرداخت با مشکل مواجه شد دوباره تلاش کنید.');
         }
@@ -138,6 +138,6 @@ class CheckoutController extends \Core\Http\Controllers\Controller
     {
         $walletAmount = (new WalletAmountAction())();
         if ($walletAmount < $amount)
-            return back()->with('failed', 'مقدار حساب کیف شما کمتر از هزینه مورد نظر میباشد.');
+            throw new NotEnoughWalletAmountException();
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Application\Checkout\Middlewares;
 
-use Application\Transaction\Exceptions\InvalidTransactionException;
+use Application\Transaction\Exceptions\NotEnoughWalletAmountException;
 use Closure;
 use Domain\Webinar\Actions\WebinarGetCurrentUserAction;
 use Illuminate\Http\Request;
