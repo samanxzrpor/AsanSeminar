@@ -134,27 +134,6 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         return (new TransactionStoreAction())($transactionData , 'buy');
     }
 
-    private function depositTransaction($webinarPrice , $discountedPrice = null)
-    {
-//        $res = $this->depositTransaction($webinarPrice , $discountedPrice);
-//        if ($res->error)
-//            $this->updateOrder($order , 'unsuccessful', $transaction);
-//        $this->buyTransaction($webinarPrice , $discountedPrice);
-//        $this->updateOrder($order , '', $transaction);
-//
-        $amount = $discountedPrice ?? $webinarPrice;
-
-        return redirect()->route('shaparak' , ['amount' => $amount , 'type' => 'deposit']);
-
-        $transactionData = [
-            'amount' => $amount,
-            'description' => 'Description ... ',
-            'status' => 'success',
-        ];
-        $transactionData = TransactionData::fromRequest($transactionData);
-        return (new TransactionStoreAction())($transactionData , 'buy');
-    }
-
     private function checkWalletCharge($amount)
     {
         $walletAmount = (new WalletAmountAction())();

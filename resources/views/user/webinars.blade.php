@@ -19,6 +19,7 @@
                                 <td>تاریخ اجرا</td>
                                 <td>وضعیت</td>
                                 <td></td>
+                                <td></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -39,6 +40,13 @@
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                     <td>{{'باز'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
+                                    <td><button class="btn btn-outline-light btn-sm">ورود</button></td>
+                                    <td>
+                                        <form action="{{route('user.webinars.refund' , ['user' => auth()->user() , 'webinar' => $webinar ])}}" method="post">
+                                            @csrf
+                                            <button type="submit" name="refund" class="btn btn-outline-danger btn-sm">انصراف</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @elseif($webinar->status == 'cancelled')
                                 <tr class="table-danger">
@@ -56,6 +64,13 @@
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                     <td>{{'کنسل شده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
+                                    <td><button class="btn btn-outline-light btn-sm">ورود</button></td>
+                                    <td>
+                                        <form action="{{route('user.webinars.refund' , ['webinar' => $webinar , 'user' => auth()->user()])}}" method="post">
+                                            @csrf
+                                            <button type="submit" name="refund" class="btn btn-outline-danger btn-sm">انصراف</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @elseif($webinar->status == 'finished')
                                 <tr class="table-light">
@@ -73,6 +88,13 @@
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
                                     <td>{{'به اتمام رسیده'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
+                                    <td><button class="btn btn-outline-light btn-sm">ورود</button></td>
+                                    <td>
+                                        <form action="{{route('user.webinars.refund' , ['webinar' => $webinar , 'user' => auth()->user()])}}" method="post">
+                                            @csrf
+                                            <button type="submit" name="refund" class="btn btn-outline-danger btn-sm">انصراف</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             @endif
                         @endforeach

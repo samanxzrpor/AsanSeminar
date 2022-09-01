@@ -51,7 +51,9 @@
                                     <button type="submit" class="btn btn-danger">حذف</button>
                                 </form>
                             </td>
-                            @endhasrole
+                            <td><button class="btn btn-outline-light btn-sm">ورود</button></td>
+
+                        @endhasrole
                         @elseif($webinar->status == 'cancelled')
                             <tr class="table-danger">
                                 <td>{{$webinar->id}}</td>
@@ -73,6 +75,8 @@
                                         <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
+                                <td><button class="btn btn-outline-light btn-sm">ورود</button></td>
+
                                 @endhasrole
                             </tr>
                         @elseif($webinar->status == 'finished')
@@ -96,6 +100,8 @@
                                         <button type="submit" class="btn btn-danger">حذف</button>
                                     </form>
                                 </td>
+                                <td><button class="btn btn-outline-light btn-sm">ورود</button></td>
+
                                 @endhasrole
                             </tr>
                             @endif
