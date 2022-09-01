@@ -21,6 +21,9 @@ Route::redirect('/' , 'webinars');
 
 require __DIR__ . '/web_routes/webinar.php';
 
+require __DIR__ . '/web_routes/transaction.php';
+
+
 Route::middleware('auth')->group(function () {
 
     require __DIR__ . '/web_routes/admin.php';
@@ -31,7 +34,4 @@ Route::middleware('auth')->group(function () {
 
     require __DIR__ . '/web_routes/wallet.php';
 
-    require __DIR__ . '/web_routes/transaction.php';
-
-    require __DIR__ . '/web_routes/getway.php';
 });

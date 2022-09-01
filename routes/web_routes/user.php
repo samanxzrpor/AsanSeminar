@@ -15,7 +15,7 @@ Route::prefix('users/{user}')->middleware('role:User|Master|Accountant')->name('
             Route::get('/' , 'index')->name('orders.index');
         });
 
-        Route::prefix('payments')->controller(\Application\User\Payments\Controllers\TransactionsController::class)
+        Route::prefix('transactions')->controller(\Application\User\Transactions\Controllers\TransactionsController::class)
             ->group(function (){
                 Route::get('/' , 'index')->name('payments.index');
             });

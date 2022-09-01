@@ -37,7 +37,7 @@
                                         @endif
                                     </td>
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
-                                    <td>{{'در انتظار'}}</td>
+                                    <td>{{'باز'}}</td>
                                     <td>{{$webinar->max_capacity}}</td>
                                 </tr>
                             @elseif($webinar->status == 'cancelled')

@@ -16,9 +16,11 @@ use Domain\User\Models\User;
 use Domain\Wallet\Actions\WalletAmountAction;
 use Domain\Webinar\Actions\WebinarGetCurrentUserAction;
 use Domain\Webinar\Models\Webinar;
+use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
 class CheckoutController extends \Core\Http\Controllers\Controller
@@ -44,16 +46,32 @@ class CheckoutController extends \Core\Http\Controllers\Controller
             $webinarPrice = $this->setWebinarsDiscountePrice($webinar);
             if ($code)
                 $discountedPrice = $this->checkDiscountCode($webinar, $code , $webinarPrice);
+
             $order = $this->storeOrder($webinar, $user , $discount);
 
             if ($request->has('wallet')){
                 $transaction = $this->buyTransaction($webinarPrice , $discountedPrice);
                 $this->updateOrder($order , 'paid', $transaction);
             }
-
             if ($request->has('direct-deposit')) {
                 $amount = $discountedPrice ?? $webinarPrice;
-                return redirect()->route('shaparak' , ['amount' => $amount , 'type' => 'deposit']);
+
+                $data = [
+                    'order_id' => $order->id,
+                    'user_id' => $user->id,
+                    'amount' => $amount ,
+                    'type' => 'direct',
+                    'callback' => route('transaction.store')
+                ];
+
+                $jwt = JWT::encode($data, 'SaMaN', 'HS256');
+
+                return Http::withHeaders([
+                    'X-CSRF-Token' => csrf_token(),
+                    'Content-Type', 'application/x-www-form-urlencoded'
+                ])->post('http://127.0.0.1:8001/api/shaparak', [
+                    'token' =>$jwt
+                ]);
             }
 
         } catch (\Exception $e) {

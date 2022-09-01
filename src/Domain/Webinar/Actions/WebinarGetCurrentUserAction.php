@@ -12,12 +12,6 @@ class WebinarGetCurrentUserAction
 {
     public function __invoke()
     {
-//        $user = Auth::user();
-//        $webinars = DB::table('webinars')
-//            ->rightJoin('orders', 'webinars.id', '=', 'orders.webinar_id')
-//            ->select('webinars.*')
-//            ->where('user_id' , $user->id)
-//            ->get();
         $webinars = Webinar::query()
             ->getUsersWebinarFromOrder()
             ->get();

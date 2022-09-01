@@ -9,16 +9,16 @@
     <br>
     <span>کیف پول خود را شارژ کنید</span>
     <div class="charge-wallet-amount">
-        <form class="wallet-form" action="{{route('shaparak' )}}" method="post">
+        <form class="wallet-form" action="{{route('wallet.proccess' , auth()->user())}}" method="post">
             @csrf
             <div class="row">
-                <input type="hidden" class="form-control" name="type" value="deposit" aria-label="Number">
                 <div class="col-sm">
                     <input type="number" class="form-control" name="amount" placeholder="مقدار شارژ" aria-label="Number">
                 </div>
             </div>
             <br>
-            <input class="btn btn-primary" type="submit" value="Submit">
+            <input class="btn btn-primary" type="submit" name="deposit" value="شارژ">
+            <input class="btn btn-danger" type="submit" name="withdraw" value="برداشت">
         </form>
     </div>
 @endsection

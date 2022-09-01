@@ -1,6 +1,6 @@
 <?php
 
-namespace Application\User\Payments\Controllers;
+namespace Application\User\Transactions\Controllers;
 
 use Domain\Transaction\Actions\TransactionGetCurrentUser;
 use Domain\User\Models\User;
