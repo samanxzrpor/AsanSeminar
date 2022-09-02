@@ -11,7 +11,8 @@ class MasterWebinarController extends \Core\Http\Controllers\Controller
     {
         $mastersWebinars = (new WebinarGetCurrentMasterAction())();
         return view('user.webinars' , [
-            'webinars' => $mastersWebinars
+            'webinars' => $mastersWebinars,
+            'page' => 'master'
         ]);
     }
 }

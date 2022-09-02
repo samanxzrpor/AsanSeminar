@@ -18,7 +18,8 @@ class WebinarController extends \Core\Http\Controllers\Controller
     {
         $usersWebinars = (new WebinarGetCurrentUserAction())();
         return view('user.webinars' , [
-            'webinars' => $usersWebinars
+            'webinars' => $usersWebinars,
+            'page' => 'user'
         ]);
     }
 

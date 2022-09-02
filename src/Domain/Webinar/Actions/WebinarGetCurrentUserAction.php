@@ -15,7 +15,6 @@ class WebinarGetCurrentUserAction
         $webinars = Webinar::query()
             ->getUsersWebinarFromOrder()
             ->get();
-
         return $webinars;
     }
 }

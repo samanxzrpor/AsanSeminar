@@ -30,11 +30,15 @@
                                     <td><a href="">{{$webinar->title}}</a></td>
                                     <td><a href="">{{$webinar->description}}</a></td>
                                     <td>
-                                        @if ($webinar->percentage_discount)
-                                            <span class="price">{{$webinar->price}}</span>
-                                            <span class="discount-price">{{$webinar->price - ($webinar->price * ($webinar->percentage_discount/100))}}</span>
+                                        @if ($page == 'master')
+                                            @if ($webinar->percentage_discount)
+                                                <span class="price">{{$webinar->price}}</span>
+                                                <span class="discount-price">{{$webinar->price - ($webinar->price * ($webinar->percentage_discount/100))}}</span>
+                                            @else
+                                                <span>{{$webinar->price}}</span>
+                                            @endif
                                         @else
-                                            <span>{{$webinar->price}}</span>
+                                            <span class="discount-price">{{$webinar->amount}}</span>
                                         @endif
                                     </td>
                                     <td>{{\Core\Traits\JalaliDate::changeToJalali($webinar->event_date)}}</td>
