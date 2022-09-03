@@ -33,8 +33,8 @@ class UsersController extends \Core\Http\Controllers\Controller
 
     public function update(UpdateUserRequest $request, User $user)
     {
+        $request->validated();
         try {
-            $request->validated();
             $userData = UserData::fromRequest($request);
             $updatedUser = (new UserUpdateAction())($userData , $user);
         } catch (\Exception $e) {
@@ -46,6 +46,7 @@ class UsersController extends \Core\Http\Controllers\Controller
 
     public function destroy(User $user)
     {
-
+        $user->delete();
+        return back()->with('success', 'کاربر '. $user->name .'  حذف شد.');
     }
 }

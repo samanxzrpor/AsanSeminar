@@ -41,8 +41,9 @@ class WebinarsController
 
     public function update(UpdateWebinarRequest $request , Webinar $webinar)
     {
+        $request->validated();
+
         try {
-            $request->validated();
             $requestData = WebinarData::fromRequest($request);
             $updatedWebinar = (new WebinarUpdateAction())($requestData , $webinar);
         } catch (\Exception $e) {

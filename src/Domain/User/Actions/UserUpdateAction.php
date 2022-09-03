@@ -16,7 +16,7 @@ class UserUpdateAction
             'name' => $data['name'],
             'email' => $data['email'],
             'phone' => $data['phone'],
-            'password' => Hash::make($data['password'])
+            'password' => $data['password'] ? Hash::make($data['password']) : $user->password
         ]);
         if ($user->roles[0]->name != $data['role'])
             $user->roles()->sync([$roleId]);

@@ -29,7 +29,7 @@ Route::prefix('admin')
             Route::get('' , 'index')->name('users.index');
             Route::get('{user}/edit' , 'edit')->name('users.edit')->middleware('role:Admin');
             Route::put('{user}/update' , 'update')->name('users.update')->middleware('role:Admin');
-            Route::delete('{user}/delete' , 'delete')->name('users.destroy')->middleware('role:Admin');
+            Route::delete('{user}/delete' , 'destroy')->name('users.destroy')->middleware('role:Admin');
         });
 
         Route::prefix('webinars')->controller(WebinarsController::class)->group(function () {
@@ -38,7 +38,7 @@ Route::prefix('admin')
             Route::post('store' , 'store')->name('webinars.store')->middleware('role:Admin');
             Route::get('{webinar}/edit' , 'edit')->name('webinars.edit')->middleware('role:Admin');
             Route::put('{webinar}/update' , 'update')->name('webinars.update')->middleware('role:Admin');
-            Route::delete('{webinar}/delete' , 'delete')->name('webinars.destroy')->middleware('role:Admin');
+            Route::delete('{webinar}/delete' , 'destroy')->name('webinars.destroy')->middleware('role:Admin');
         });
 
         Route::resource('webinars/{webinar}/meetings' , MeetingsController::class)

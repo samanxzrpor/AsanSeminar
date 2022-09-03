@@ -51,7 +51,7 @@
                                     </label>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input" {{$webinar->show_all == 'on' ? 'checked' : ''}}  name="show_all" type="checkbox" id="gridCheck1">
+                                    <input class="form-check-input" {{$webinar->show_all ? 'checked' : ''}}  name="show_all" type="checkbox" id="gridCheck1">
                                     <label class="form-check-label" for="gridCheck1">
                                         نمایش به عموم
                                     </label>
