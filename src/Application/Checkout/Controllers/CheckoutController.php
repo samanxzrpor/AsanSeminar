@@ -52,26 +52,9 @@ class CheckoutController extends \Core\Http\Controllers\Controller
                 $transaction = $this->buyTransaction($webinarPrice , $discountedPrice);
                 $this->updateOrder($order , 'paid', $transaction);
             }
-            if ($request->has('direct-deposit')) {
-                $amount = $discountedPrice ?? $webinarPrice;
 
-                $data = [
-                    'order_id' => $order->id,
-                    'user_id' => $user->id,
-                    'amount' => $amount ,
-                    'type' => 'direct',
-                    'callback' => route('transaction.store')
-                ];
+            $this->directPurchase($request , $webinarPrice,$order , $user , $discountedPrice);
 
-                $jwt = JWT::encode($data, 'SaMaN', 'HS256');
-
-                return Http::withHeaders([
-                    'X-CSRF-Token' => csrf_token(),
-                    'Content-Type', 'application/x-www-form-urlencoded'
-                ])->post('http://127.0.0.1:8001/api/shaparak', [
-                    'token' =>$jwt
-                ]);
-            }
         } catch (NotEnoughWalletAmountException $e) {
             return back()->with('failed', 'مقدار حساب کیف شما کمتر از هزینه مورد نظر میباشد.');
         }catch (\Exception $e) {
@@ -81,6 +64,27 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         return redirect()->route('user.webinars.index',Auth::user())->with('success' , 'پرداخت با موفقیت انجام شد.');
     }
 
+
+    private function directPurchase($request, $webinarPrice , $order , $user , $discountedPrice =null)
+    {
+        if ($request->has('direct-deposit')) {
+            $amount = $discountedPrice ?? $webinarPrice;
+            $data = [
+                'order_id' => $order->id,
+                'user_id' => $user->id,
+                'amount' => $amount ,
+                'type' => 'direct',
+                'callback' => route('transaction.store')
+            ];
+            $jwt = JWT::encode($data, 'SaMaN', 'HS256');
+            return Http::withHeaders([
+                'X-CSRF-Token' => csrf_token(),
+                'Content-Type', 'application/x-www-form-urlencoded'
+            ])->post('http://127.0.0.1:8001/api/shaparak', [
+                'token' =>$jwt
+            ]);
+        }
+    }
 
     private function storeOrder(Webinar $webinar, $user, $discountCode)
     {
