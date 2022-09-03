@@ -4,7 +4,7 @@
 use Application\Admin\DiscountCodes\Controllers\DiscountCodesController;
 use Application\Admin\Meetings\Controllers\MeetingsController;
 use Application\Admin\Orders\Controllers\OrdersController;
-use Application\Admin\Payments\Controllers\PaymentsController;
+use Application\Admin\Payments\Controllers\TransactionsController;
 use Application\Admin\Users\Controllers\UsersController;
 use Application\Admin\Webinars\Controllers\WebinarsController;
 use Illuminate\Support\Facades\Route;
@@ -21,7 +21,7 @@ Route::prefix('admin')
             Route::get('' , 'index')->name('orders.index');
         });
 
-        Route::prefix('payments')->controller(PaymentsController::class)->group(function () {
+        Route::prefix('payments')->controller(TransactionsController::class)->group(function () {
             Route::get('' , 'index')->name('payments.index');
         });
 

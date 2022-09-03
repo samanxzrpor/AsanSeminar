@@ -2,7 +2,7 @@
 
 namespace Application\Transaction\Controllers;
 
-use Application\Transaction\Exceptions\NotEnoughWalletAmountException;
+use Application\User\Wallet\Exceptions\NotEnoughWalletAmountException;
 use Core\Http\Controllers\Controller;
 use Domain\Order\Actions\OrderUpdateAction;
 use Domain\Order\Models\Order;
@@ -36,11 +36,6 @@ class TransactionController extends Controller
             # Withdraw From Wallet
             $this->withdrawTransaction($transactionData);
             DB::commit();
-        }
-        catch (NotEnoughWalletAmountException $e) {
-            DB::rollBack();
-            Log::error('Transaction Exception: ' . $e->getMessage());
-            return redirect()->route('user.webinars.index',Auth::user())->with('failed' , $e->getMessage());
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('Transaction Exception: ' . $e->getMessage());
@@ -63,6 +58,7 @@ class TransactionController extends Controller
         }
     }
 
+
     private function depositTransaction($transactionData)
     {
         if ($transactionData['type'] == 'deposit') {
@@ -73,6 +69,7 @@ class TransactionController extends Controller
         }
     }
 
+
     private function withdrawTransaction($transactionData)
     {
         if ($transactionData['type'] == 'withdraw') {
@@ -82,4 +79,5 @@ class TransactionController extends Controller
             }
         }
     }
+
 }
