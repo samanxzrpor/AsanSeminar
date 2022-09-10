@@ -32,7 +32,7 @@ class AuthController extends Controller
         $conditional =$request->validated();
         if (Auth::attempt($conditional)) {
             $request->session()->regenerate();
-            return redirect()->intended('webinars');
+            return redirect()->intended('/');
         }
         return back()->with('failed' , 'اطلاعات ورودی اشتباه است لطفا دوباره تلاش کنید.');
     }
