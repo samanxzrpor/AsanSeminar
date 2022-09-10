@@ -12,7 +12,7 @@
                     <a href="{{ route('admin.webinars.index')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
                     @endhasrole
                     @hasanyrole('User|Master|Accountant')
-                    <a href="{{ route('user.webinars.index' , auth()->user())}}" > <button type="button" class="btn btn-primary">پنل کاربری</button></a>
+                    <a href="{{ route('user.meetings.index' , auth()->user())}}" > <button type="button" class="btn btn-primary">پنل کاربری</button></a>
                     @endhasrole
                 @endif
             </div>
@@ -37,8 +37,8 @@
                             @if($webinar->status == 'open')
                                 <tr class="table-primary">
                                     <td>{{$webinar->id}}</td>
-                                    <td><a href="{{route('user.webinars.index' , $webinar)}}">{{$webinar->title}}</a></td>
-                                    <td><a href="{{route('user.webinars.index' , $webinar)}}">{{$webinar->description}}</a></td>
+                                    <td><a href="{{route('user.meetings.index' , $webinar)}}">{{$webinar->title}}</a></td>
+                                    <td><a href="{{route('user.meetings.index' , $webinar)}}">{{$webinar->description}}</a></td>
                                     <td>
                                         @if ($webinar->percentage_discount)
                                             <span class="price">{{$webinar->price}}</span>
@@ -59,8 +59,8 @@
                             @elseif($webinar->status == 'cancelled')
                                 <tr class="table-danger">
                                     <td>{{$webinar->id}}</td>
-                                    <td><a href="{{route('user.webinars.index' , $webinar)}}">{{$webinar->title}}</a></td>
-                                    <td><a href="{{route('user.webinars.index' , $webinar)}}">{{$webinar->description}}</a></td>
+                                    <td><a href="{{route('user.meetings.index' , $webinar)}}">{{$webinar->title}}</a></td>
+                                    <td><a href="{{route('user.meetings.index' , $webinar)}}">{{$webinar->description}}</a></td>
                                     <td>
                                         @if ($webinar->percentage_discount > 0)
                                             <span class="price">{{$webinar->price}}</span>
@@ -81,8 +81,8 @@
                             @elseif($webinar->status == 'finished')
                                 <tr class="table-light">
                                     <td>{{$webinar->id}}</td>
-                                    <td><a href="{{route('user.webinars.index' , $webinar)}}">{{$webinar->title}}</a></td>
-                                    <td><a href="{{route('user.webinars.index' , $webinar)}}">{{$webinar->description}}</a></td>
+                                    <td><a href="{{route('user.meetings.index' , $webinar)}}">{{$webinar->title}}</a></td>
+                                    <td><a href="{{route('user.meetings.index' , $webinar)}}">{{$webinar->description}}</a></td>
                                     <td>
                                         @if ($webinar->percentage_discount)
                                             <span class="price">{{$webinar->price}}</span>

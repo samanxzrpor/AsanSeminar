@@ -1,9 +1,10 @@
-@extends('layouts.admin.main')
+@extends('layouts.main')
 
-@section('admin-content')
+@section('content')
 <div class="row justify-content-center">
     <div class="header">
         <a href="{{ route('logout')}}"><button type="button" class="btn btn-danger">خروج</button></a>
+        <a href="{{url()->previous()}}"><button type="button" class="btn btn-outline-dark">برگشت</button></a>
     </div>
     <div class="webinar-content">
         @include('errors.error')
