@@ -36,9 +36,9 @@ class Order extends \Illuminate\Database\Eloquent\Model
         return $this->belongsTo(User::class);
     }
 
-    public function discountCode()
+    public function discount_code()
     {
-        return $this->hasOne(DiscountCode::class);
+        return $this->belongsTo(DiscountCode::class);
     }
 
     public function transaction()

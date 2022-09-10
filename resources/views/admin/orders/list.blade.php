@@ -24,9 +24,9 @@
                         <tr class="table-primary">
                             <td>{{$order->id}}</td>
                             <td>{{$order->status}}</td>
-                            <td>{{$order->discountCode->title}}</td>
+                            <td>{{$order->discount_code?->title}}</td>
                             <td>{{$order->user->name}}</td>
-                            <td>{{$user->webinar->title}}</td>
+                            <td>{{$order->webinar->title}}</td>
                         </tr>
                     @endforeach
                     </tbody>

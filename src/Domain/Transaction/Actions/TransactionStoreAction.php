@@ -10,7 +10,7 @@ class TransactionStoreAction
     public function __invoke(array $data ,string $type)
     {
         $transaction = Transaction::create([
-            'user_id' => Auth::id(),
+            'user_id' => Auth::user()->id,
             'amount' => $data['amount'],
             'description' => $data['description'] ?? 'Description ... ',
             'type' => $type,

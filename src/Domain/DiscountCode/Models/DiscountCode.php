@@ -3,7 +3,7 @@
 namespace Domain\DiscountCode\Models;
 
 use Database\Factories\DiscountCodeFactory;
-use Domain\Orders\Models\Order;
+use Domain\Order\Models\Order;
 use Domain\User\Models\User;
 use Domain\Webinar\Models\Webinar;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -40,7 +40,7 @@ class DiscountCode extends Model
 
     public function orders()
     {
-        return $this->belongsToMany(Order::class);
+        return $this->hasMany(Order::class);
     }
 
     public function webinar()
