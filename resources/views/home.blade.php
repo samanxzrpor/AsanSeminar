@@ -12,7 +12,7 @@
                     <a href="{{ route('admin.webinars.index')}}"> <button type="button" class="btn btn-primary">پنل ادمین</button></a>
                     @endhasrole
                     @hasanyrole('User|Master|Accountant')
-                    <a href="{{ route('user.meetings.index' , auth()->user())}}" > <button type="button" class="btn btn-primary">پنل کاربری</button></a>
+                    <a href="{{ route('user.webinars.index' , auth()->user())}}" > <button type="button" class="btn btn-primary">پنل کاربری</button></a>
                     @endhasrole
                 @endif
             </div>
