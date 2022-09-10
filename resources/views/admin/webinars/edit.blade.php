@@ -31,7 +31,9 @@
                         <div class="row g-3">
                             <div class="col-sm">
                                 <select class="form-control" name="master_id">
-                                        <option value="{{$webinar->master->id}}">{{$webinar->master->name}}</option>
+                                    @foreach($masters as $master)
+                                        <option value="{{$master->id}}" {{$master->id == $webinar->master->id}}>{{$master->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-sm">
