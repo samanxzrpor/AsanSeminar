@@ -22,6 +22,7 @@ class WebinarStoreAction
             'event_date' => $data['event_date'],
             'master_id' => $data['master_id'],
         ]);
+
         return $newWebinar;
     }
 }

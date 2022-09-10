@@ -56,6 +56,7 @@ class WebinarsController
     public function store(StoreWebinarRequest $request)
     {
         $request->validated();
+
         try {
             $data = WebinarData::fromRequest($request);
             $newWebinar = (new WebinarStoreAction())($data);

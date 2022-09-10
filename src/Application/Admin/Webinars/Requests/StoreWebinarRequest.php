@@ -2,6 +2,7 @@
 
 namespace Application\Admin\Webinars\Requests;
 
+use Domain\Webinar\Rules\IfWebinarIsFreeRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreWebinarRequest extends FormRequest
@@ -28,7 +29,7 @@ class StoreWebinarRequest extends FormRequest
             'description' => ['required' , 'string'] ,
             'price' => ['required' , 'int' , 'min:0'],
             'event_date' => ['required' , 'string'],
-            'percentage_discount' => ['nullable' ,'int' ,'min:0' , 'max:100'],
+            'percentage_discount' => ['nullable' ,'int' ,'min:0' , 'max:100' , new IfWebinarIsFreeRule($this->price)],
             'can_use_discount' => ['nullable' ,'in:on,off'],
             'show_all' => ['nullable' , 'in:on,off'],
             'max_capacity' => ['required' , 'int' , 'min:1'],
