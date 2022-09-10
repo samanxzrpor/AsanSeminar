@@ -1,5 +1,6 @@
+
 <nav class="nav nav-pills flex-column flex-sm-row">
-    <a class="flex-sm-fill text-sm-center nav-link " href="{{route('webinars.list' )}}">خانه</a>
+    <a class="flex-sm-fill text-sm-center nav-link " href="{{route('webinars.list')}}">خانه</a>
     <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'user.profile.index') active @endif"
        href="{{route('user.profile.index' , auth()->user())}}">پروفایل</a>
     <a class="flex-sm-fill text-sm-center nav-link @if(Route::currentRouteName() === 'user.webinars.index') active @endif"

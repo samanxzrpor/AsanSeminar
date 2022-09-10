@@ -9,7 +9,7 @@
     <br>
     <span>کیف پول خود را شارژ کنید</span>
     <div class="charge-wallet-amount">
-        <form class="wallet-form" action="{{route('wallet.proccess' , auth()->user())}}" method="post">
+        <form class="wallet-form" action="{{route('wallet.process' , auth()->user())}}" method="post">
             @csrf
             <div class="row">
                 <div class="col-sm">

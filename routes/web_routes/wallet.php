@@ -7,6 +7,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('users/{user}/wallet')->group(function () {
 
     Route::get('/' , [WalletController::class , 'index'])->name('wallet.index');
-    Route::post('charge/' , [WalletController::class , 'walletProccrss'])->name('wallet.proccess');
+    Route::post('charge/' , [WalletController::class , 'walletProcess'])->name('wallet.process');
 
 });

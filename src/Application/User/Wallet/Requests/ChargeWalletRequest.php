@@ -24,7 +24,7 @@ class ChargeWalletRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => ['required' , 'min:1000'],
+            'amount' => ['required' , 'min:1'],
             'deposit' => ['nullable'],
             'withdraw' => ['nullable'],
         ];

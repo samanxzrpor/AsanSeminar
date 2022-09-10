@@ -10,7 +10,7 @@ class MasterWebinarController extends \Core\Http\Controllers\Controller
     public function index()
     {
         $mastersWebinars = (new WebinarGetCurrentMasterAction())();
-        return view('user.webinars' , [
+        return view('user.master_webinars' , [
             'webinars' => $mastersWebinars,
             'page' => 'master'
         ]);

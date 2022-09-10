@@ -20,10 +20,4 @@ class WebinarsController extends \Core\Http\Controllers\Controller
             'user' => $currentUser
         ]);
     }
-
-    public function show(Webinar $webinar)
-    {
-
-    }
-
 }

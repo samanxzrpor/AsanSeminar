@@ -21,7 +21,7 @@ class WalletController extends \Core\Http\Controllers\Controller
 
     }
 
-    public function walletProccrss(ChargeWalletRequest $request)
+    public function walletProcess(ChargeWalletRequest $request)
     {
         $request->validated();
 
