@@ -18,7 +18,7 @@ class UpdateMeetingRequest extends FormRequest
             'title' => ['required' , 'string' , 'max:255'],
             'description' => ['required' , 'string' , 'max:1024'] ,
             'meeting_duration' => ['required' , 'string' , 'min:0'],
-            'event_date' => ['required' , 'string'],
+            'event_date' => ['required' , 'int'],
             'max_capacity' => ['required' , 'int' , 'min:1'],
             ];
     }

@@ -29,8 +29,7 @@ return new class extends Migration
                 ->default(true);
             $table->unsignedInteger('max_capacity');
             $table->foreignId('master_id')
-                ->constrained('users')
-                ->cascadeOnUpdate();
+                ->constrained('users');
             $table->timestamps();
         });
     }

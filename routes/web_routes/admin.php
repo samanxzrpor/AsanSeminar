@@ -42,5 +42,5 @@ Route::prefix('admin')
         });
 
         Route::resource('webinars/{webinar}/meetings' , MeetingsController::class)
-        ->middleware(['open_webinars' , 'role:Admin']);
+        ->middleware(['role:Admin|Accountant']);
     });

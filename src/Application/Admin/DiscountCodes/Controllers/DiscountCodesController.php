@@ -31,7 +31,12 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
 
     public function store(StoreDiscountCodeRequest $request)
     {
-        $request->validated();
+        if ($request->start_date / 1000 < now()->timestamp)
+            return back()->with('failed' , 'زمان شروع مربوط به گذشته مبیاشد.');
+
+        if ($request->expire_date < $request->start_date)
+            return back()->with('failed' , 'زمان شروع و پایان درست ست نشده اند.');
+
         try {
             $discountData = DiscountCodeData::fromRequest($request);
             $newDiscount = (new DiscountCodeStoreAction())($discountData);
@@ -45,7 +50,8 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
 
     public function edit(DiscountCode $discountCode)
     {
-        $webinars = (new WebinarGetByStatusAction())(['pending' , 'performing']);
+        $webinars = (new WebinarGetByStatusAction())(['open']);
+
         return view('admin.discount_codes.edit', [
             'discountCode' => $discountCode,
             'webinars' => $webinars,

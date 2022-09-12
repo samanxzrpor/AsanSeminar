@@ -22,7 +22,7 @@
             <div id="total-amount">
 
             </div>
-            @if($webinar->can_use_discount == 'on')
+            @if($webinar->can_use_discount)
                 <form class="card p-2"  id="discount-form" >
                     @csrf
                     <div class="input-group">

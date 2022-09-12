@@ -10,8 +10,6 @@ class UserGetAllMasters
     public function __invoke()
     {
         $masters = User::role('Master')->get();
-        $nameAndIdMaster =$masters->pluck('name' , 'id');
-
-        return $nameAndIdMaster;
+        return $masters;
     }
 }

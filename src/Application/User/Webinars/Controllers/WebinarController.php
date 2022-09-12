@@ -23,10 +23,10 @@ class WebinarController extends \Core\Http\Controllers\Controller
         ]);
     }
 
-    public function refund($user , $webinar)
+    public function refund( $webinar)
     {
         $webinar = Webinar::find($webinar);
-        $order =  Order::where(['status' => 'paid' ,'user_id'=> $user , 'webinar_id' => $webinar->id])->first();
+        $order =  Order::where(['status' => 'paid' ,'user_id'=> Auth::id() , 'webinar_id' => $webinar->id])->first();
         $timeForRefund = $order->created_at->addDays(5);
 
         if ($timeForRefund < now())

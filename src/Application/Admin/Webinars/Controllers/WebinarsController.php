@@ -41,7 +41,6 @@ class WebinarsController
 
     public function update(UpdateWebinarRequest $request , Webinar $webinar)
     {
-        $request->validated();
 
         try {
             $requestData = WebinarData::fromRequest($request);

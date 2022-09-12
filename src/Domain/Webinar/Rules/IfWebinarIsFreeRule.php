@@ -6,7 +6,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class IfWebinarIsFreeRule implements Rule
 {
-    public string $price ;
+    public $price ;
 
     public function __construct($price)
     {
@@ -15,6 +15,7 @@ class IfWebinarIsFreeRule implements Rule
 
     public function passes($attribute , $value )
     {
+
         if ($this->price == 0 && $value > 0)
             return false;
 

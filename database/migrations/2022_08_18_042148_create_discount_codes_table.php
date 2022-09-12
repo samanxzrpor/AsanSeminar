@@ -27,9 +27,7 @@ return new class extends Migration
             $table->enum('discount_type' , ['amount', 'percentage'])
                 ->default('percentage');
             $table->foreignId('webinar_id')
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnDelete();
+                ->constrained();
             $table->timestamps();
         });
     }

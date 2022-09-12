@@ -18,7 +18,7 @@
                                 <input type="number" class="form-control" value="{{old('price')}}" name="price" placeholder="قیمت وبینار" aria-label="Number">
                             </div>
                             <div class="col-sm">
-                                <input type="text" class="form-control event-date"  placeholder="1400-03-20" aria-label="Event Date">
+                                <input type="text" class="form-control event-date"  aria-label="Event Date">
                                 <input class="alt-field-event"  value="{{old('event_date')}}"  name="event_date"  type="hidden">
                             </div>
                         </div>
@@ -30,8 +30,8 @@
                         <div class="row g-3">
                             <div class="col-sm">
                                 <select class="form-control" name="master_id">
-                                    @foreach($masters as $id => $name)
-                                    <option value="{{ $id }}">{{ $name }}</option>
+                                    @foreach($masters as $master)
+                                    <option value="{{ $master->id }}">{{ $master->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

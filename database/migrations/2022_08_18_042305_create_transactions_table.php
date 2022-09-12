@@ -17,13 +17,11 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger('amount');
             $table->text('description');
-            $table->dateTime('register_date');
+            $table->timestamp('register_date');
             $table->enum('status' , ['success', 'failed']);
             $table->enum('type' , ['buy', 'deposit', 'refund' , 'withdraw']);
             $table->foreignId('user_id')
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->constrained();
 
             $table->timestamps();
         });

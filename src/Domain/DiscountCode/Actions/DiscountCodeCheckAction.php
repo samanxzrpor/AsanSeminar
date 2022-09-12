@@ -12,10 +12,7 @@ class DiscountCodeCheckAction
     public function __invoke(Webinar $webinar, string $code)
     {
         $discountCode = DiscountCode::where('discount_code', $code)->first();
-        $successOrders = Order::where('discount_code_id', $discountCode->id)
-            ->where('status' , 'paid')
-            ->get()
-            ->count();
+
 
         if (!$discountCode || $discountCode->webinar->id !== $webinar->id)
             return 'Discount Code Not Exist';
@@ -23,6 +20,10 @@ class DiscountCodeCheckAction
         if ($discountCode->expire_date < now()->toDateTimeString())
             return 'Discount Code expired';
 
+        $successOrders = Order::where('discount_code_id', $discountCode->id)
+            ->where('status' , 'paid')
+            ->get()
+            ->count();
         if ($discountCode->discount_code_count <= $successOrders)
             return 'Capacity of Discount Code finished';
 

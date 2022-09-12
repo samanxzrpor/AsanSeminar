@@ -13,20 +13,20 @@
                         @method('put')
                         <div class="row g-3">
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" value="{{$webinar->title}}" name="title" placeholder="عنوان وبینار" aria-label="title">
+                                <input type="text" class="form-control" value="{{old('title') ?? $webinar->title}}" name="title" placeholder="عنوان وبینار" aria-label="title">
                             </div>
                             <div class="col-sm">
-                                <input type="number" class="form-control" value="{{$webinar->price}}" name="price" placeholder="قیمت وبینار" aria-label="Number">
+                                <input type="number" class="form-control" value="{{old('price') ??$webinar->price}}" name="price" placeholder="قیمت وبینار" aria-label="Number">
                             </div>
                             <div class="col-sm">
-                                <input type="text" class="form-control event-date" value="{{$webinar->event_date}}" placeholder="1400-03-20" aria-label="Event Date">
-                                <input class="alt-field-event"  name="event_date"  type="hidden">
+                                <input type="text" class="form-control event-date"  aria-label="Event Date">
+                                <input class="alt-field-event" name="event_date" id="event-date"  type="hidden">
                             </div>
                         </div>
                         <br>
                         <div class="mb-3">
                             <label for="" class="form-label">توضیحات وبینار</label>
-                            <textarea class="form-control" id=""  name="description" rows="3">{{$webinar->description}}</textarea>
+                            <textarea class="form-control" id=""  name="description" rows="3">{{old('description') ?? $webinar->description}}</textarea>
                         </div>
                         <div class="row g-3">
                             <div class="col-sm">
@@ -37,10 +37,10 @@
                                 </select>
                             </div>
                             <div class="col-sm">
-                                <input type="number" class="form-control" value="{{$webinar->percentage_discount}}" name="percentage_discount" placeholder="درصد تخفیف وبینار" aria-label="title">
+                                <input type="number" class="form-control" value="{{old('percentage_discount') ??$webinar->percentage_discount}}" name="percentage_discount" placeholder="درصد تخفیف وبینار" aria-label="title">
                             </div>
                             <div class="col-sm">
-                                <input type="number" class="form-control" value="{{$webinar->max_capacity}}" name="max_capacity" placeholder="ظرفیت وبینار" aria-label="Number">
+                                <input type="number" class="form-control" value="{{old('max_capacity') ??$webinar->max_capacity}}" name="max_capacity" placeholder="ظرفیت وبینار" aria-label="Number">
                             </div>
                         </div>
                         <br>
@@ -65,4 +65,11 @@
                 </div>
             </div>
         </div>
+
+        @push('scripts')
+{{--            <script>--}}
+{{--                var pd = $('#event-date').persianDatepicker();--}}
+{{--                pd.setDate({{\Carbon\Carbon::parse($webinar->event_date)->getTimestamp()}})--}}
+{{--            </script>--}}
+    @endpush
 @endsection

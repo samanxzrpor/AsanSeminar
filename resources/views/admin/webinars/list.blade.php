@@ -57,7 +57,7 @@
                         @elseif($webinar->status == 'cancelled')
                             <tr class="table-danger">
                                 <td>{{$webinar->id}}</td>
-                                <td><a href="">{{$webinar->title}}</a></td>
+                                <td><a href="{{route('admin.meetings.index' , $webinar)}}">{{$webinar->title}}</a></td>
                                 <td><a href="">{{$webinar->description}}</a></td>
                                 <td>{{$webinar->price}}</td>
                                 <td>{{$webinar->percentage_discount}}</td>
@@ -82,7 +82,7 @@
                         @elseif($webinar->status == 'finished')
                             <tr class="table-light">
                                 <td>{{$webinar->id}}</td>
-                                <td><a href="">{{$webinar->title}}</a></td>
+                                <td><a href="{{route('admin.meetings.index' , $webinar)}}">{{$webinar->title}}</a></td>
                                 <td><a href="">{{$webinar->description}}</a></td>
                                 <td>{{$webinar->price}}</td>
                                 <td>{{$webinar->percentage_discount}}</td>

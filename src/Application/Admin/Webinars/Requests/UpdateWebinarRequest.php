@@ -29,7 +29,7 @@ class UpdateWebinarRequest extends FormRequest
             'price' => ['required' , 'int' , 'min:0'],
             'event_date' => ['required' , 'string'],
             'percentage_discount' => ['required' ,'int' ,'min:0' , 'max:100'],
-            'can_use_discount' => ['required' ,'in:on,off'],
+            'can_use_discount' => ['nullable' ,'in:on,off'],
             'show_all' => ['nullable' , 'in:on,off'],
             'max_capacity' => ['nullable' , 'int' , 'min:1'],
             'master_id' => ['required' , 'exists:users,id']

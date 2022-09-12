@@ -16,6 +16,7 @@
                     @endhasrole
                 @endif
             </div>
+            @include('errors.error')
             <div class="webinar-content">
                 <h1 class="header">{{ __('وبینار') }}</h1>
                 <div class="webinars">

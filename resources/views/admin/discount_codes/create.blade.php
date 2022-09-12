@@ -40,12 +40,12 @@
                         <br>
                         <div class="row mb-3">
                             <div class="col-sm">شروع :
-                                <input type="text" class="form-control event-date"  placeholder="1400-03-20" aria-label="Event Date">
-                                <input class="alt-field-event"  name="start_date"  type="hidden">
+                                <input type="text" class="form-control start-date"  placeholder="1400-03-20" aria-label="Event Date">
+                                <input class="alt-field-start"  name="start_date"  type="hidden">
                             </div>
                             <div class="col-sm">اتمام :
-                                <input type="text" class="form-control event-date"  placeholder="1400-03-20" aria-label="Event Date">
-                                <input class="alt-field-event"  name="expire_date"  type="hidden">
+                                <input type="text" class="form-control expire-date"  placeholder="1400-03-20" aria-label="Event Date">
+                                <input class="alt-field-expire"  name="expire_date"  type="hidden">
                             </div>
                             <div class="col-sm">
                                 <br>

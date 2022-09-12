@@ -16,8 +16,8 @@ class UpdateDiscountCodeRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => ['required' , 'string'],
-            'discount_code' => ['required'],
+            'title' => ['required' , 'string', 'max:255'],
+            'discount_code' => ['required', 'max:255'],
             'start_date' => ['required' , 'string'],
             'expire_date' => ['required' , 'string'],
             'is_active' => ['nullable'],

@@ -23,12 +23,10 @@ return new class extends Migration
             $table->boolean('has_record')
                 ->default(false);
             $table->unsignedInteger('max_capacity');
-            $table->dateTime('start_date')->nullable(); //
-            $table->dateTime('event_date');
+            $table->timestamp('start_date')->nullable(); //
+            $table->timestamp('event_date');
             $table->foreignId('webinar_id')
-                ->constrained()
-                ->cascadeOnDelete()
-                ->cascadeOnUpdate();
+                ->constrained();
             $table->timestamps();
         });
     }

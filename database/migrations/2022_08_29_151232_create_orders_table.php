@@ -21,15 +21,12 @@ return new class extends Migration
                 ->nullable()
                 ->constrained('discount_codes');
             $table->foreignId('user_id')
-                ->constrained()
-                ->cascadeOnUpdate();
+                ->constrained();
             $table->foreignId('webinar_id')
-                ->constrained()
-                ->cascadeOnUpdate();
+                ->constrained();
             $table->foreignId('transaction_id')
                 ->nullable()
-                ->constrained()
-                ->cascadeOnUpdate();
+                ->constrained();
             $table->timestamps();
         });
     }

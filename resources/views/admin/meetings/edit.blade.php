@@ -14,19 +14,19 @@
                         @method('put')
                         <div class="row g-3">
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" value="{{$meeting->title}}" name="title" placeholder="عنوان جلسه" aria-label="title">
+                                <input type="text" class="form-control" value="{{old('title') ?? $meeting->title}}" name="title" placeholder="عنوان جلسه" aria-label="title">
                             </div>
                             <div class="col-sm">
-                                <input type="text" class="form-control" value="{{$meeting->meeting_duration}}" name="meeting_duration" placeholder="مدت زمان جلسه" aria-label="Number">
+                                <input type="text" class="form-control" value="{{old('$meeting_duration') ?? $meeting->meeting_duration}}" name="meeting_duration" placeholder="مدت زمان جلسه" aria-label="Number">
                             </div>
                             <div class="col-sm">
-                                <input type="number" class="form-control" value="{{$meeting->max_capacity}}" name="max_capacity" placeholder="ظرفیت جلسه" aria-label="Number">
+                                <input type="number" class="form-control" value="{{old('max_capacity') ?? $meeting->max_capacity}}" name="max_capacity" placeholder="ظرفیت جلسه" aria-label="Number">
                             </div>
                         </div>
                         <br>
                         <div class="mb-3">
                             <label for="" class="form-label">توضیحات جلسه</label>
-                            <textarea class="form-control" id="" name="description" rows="3">{{$meeting->description}}</textarea>
+                            <textarea class="form-control" id="" name="description" rows="3">{{old('description') ?? $meeting->description}}</textarea>
                         </div>
                         <div class="row g-3">
                             <div class="col-sm">
