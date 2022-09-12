@@ -40,11 +40,11 @@
                         <br>
                         <div class="row mb-3">
                             <div class="col-sm">شروع :
-                                <input type="text" class="form-control start-date"  placeholder="1400-03-20" aria-label="Event Date">
+                                <input type="text" class="form-control start-date" aria-label="Start Date">
                                 <input class="alt-field-start"  name="start_date"  type="hidden">
                             </div>
                             <div class="col-sm">اتمام :
-                                <input type="text" class="form-control expire-date"  placeholder="1400-03-20" aria-label="Event Date">
+                                <input type="text" class="form-control expire-date" aria-label="Expire Date">
                                 <input class="alt-field-expire"  name="expire_date"  type="hidden">
                             </div>
                             <div class="col-sm">
@@ -57,5 +57,24 @@
                 </div>
             </div>
         </div>
+@push('scripts')
+        <script>
+            var pd1 = $(".start-date").persianDatepicker({
+                altField: '.alt-field-start',
+                timePicker: {
+                    enabled: true,
+                },
+            });
+            pd1.setDate({{old('start_date')}})
+
+            var pd2 = $(".expire-date").persianDatepicker({
+                altField: '.alt-field-expire',
+                timePicker: {
+                    enabled: true,
+                },
+            });
+            pd2.setDate({{old('expire_date')}})
+        </script>
+@endpush
 @endsection
 

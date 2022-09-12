@@ -41,12 +41,12 @@
                         <br>
                         <div class="row mb-3">
                             <div class="col-sm">شروع :
-                                <input type="text" class="form-control event-date" aria-label="Event Date">
-                                <input class="alt-field-event" value="{{$discountCode->start_date}}"  name="start_date"  type="hidden">
+                                <input type="text" class="form-control start-date" aria-label="Start Date">
+                                <input class="alt-field-start"  name="start_date"  type="hidden">
                             </div>
                             <div class="col-sm">اتمام :
-                                <input type="text" class="form-control event-date"  placeholder="1400-03-20" aria-label="Event Date">
-                                <input class="alt-field-event" value="{{$discountCode->expire_date}}"  name="expire_date"  type="hidden">
+                                <input type="text" class="form-control expire-date" aria-label="Expire Date">
+                                <input class="alt-field-expire"  name="expire_date"  type="hidden">
                             </div>
                             <div class="col-sm">
                                 <br>
@@ -66,5 +66,24 @@
                 </div>
             </div>
         </div>
+        @push('scripts')
+            <script>
+                var pd1 = $(".start-date").persianDatepicker({
+                    altField: '.alt-field-start',
+                    timePicker: {
+                        enabled: true,
+                    },
+                });
+                pd1.setDate({{\Carbon\Carbon::parse($discountCode->start_date)->getTimestamp() * 1000}})
+
+                var pd2 = $(".expire-date").persianDatepicker({
+                    altField: '.alt-field-expire',
+                    timePicker: {
+                        enabled: true,
+                    },
+                });
+                pd2.setDate({{\Carbon\Carbon::parse($discountCode->expire_date)->getTimestamp() * 1000}})
+            </script>
+    @endpush
 @endsection
 

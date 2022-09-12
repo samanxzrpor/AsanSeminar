@@ -20,7 +20,7 @@
                             </div>
                             <div class="col-sm">
                                 <input type="text" class="form-control event-date"  aria-label="Event Date">
-                                <input class="alt-field-event" name="event_date" id="event-date"  type="hidden">
+                                <input class="alt-field-event" name="event_date"  type="hidden">
                             </div>
                         </div>
                         <br>
@@ -66,10 +66,16 @@
             </div>
         </div>
 
-        @push('scripts')
-{{--            <script>--}}
-{{--                var pd = $('#event-date').persianDatepicker();--}}
-{{--                pd.setDate({{\Carbon\Carbon::parse($webinar->event_date)->getTimestamp()}})--}}
-{{--            </script>--}}
+    @push('scripts')
+        <script>
+            var pd = $(".event-date").persianDatepicker({
+                altField: '.alt-field-event',
+                timePicker: {
+                    enabled: true,
+                },
+            });
+
+            pd.setDate({{\Carbon\Carbon::parse($webinar->event_date)->getTimestamp() * 1000}})
+        </script>
     @endpush
 @endsection

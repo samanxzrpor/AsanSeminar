@@ -46,4 +46,15 @@
                 </div>
             </div>
         </div>
+        @push('scripts')
+            <script>
+                let pd =$(".event-date").persianDatepicker({
+                    altField: '.alt-field-event',
+                    timePicker: {
+                        enabled: true,
+                    },
+                });
+                pd.setDate({{\Carbon\Carbon::parse($meeting->event_date)->getTimestamp() * 1000}})
+            </script>
+    @endpush
 @endsection
