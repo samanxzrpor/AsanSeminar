@@ -27,7 +27,7 @@
                             @if($webinar->status == 'open')
                                 <tr class="table-primary">
                                     <td>{{$webinar->id}}</td>
-                                    <td><a href="">{{$webinar->title}}</a></td>
+                                    <td><a href="{{route('user.meetings.index' , [ $webinar])}}">{{$webinar->title}}</a></td>
                                     <td><a href="">{{$webinar->description}}</a></td>
                                     <td>
                                         @if ($page == 'master')
@@ -55,7 +55,7 @@
                             @elseif($webinar->status == 'cancelled')
                                 <tr class="table-danger">
                                     <td>{{$webinar->id}}</td>
-                                    <td><a href="">{{$webinar->title}}</a></td>
+                                    <td><a href="{{route('user.meetings.index' , [ $webinar])}}">{{$webinar->title}}</a></td>
                                     <td><a href="">{{$webinar->description}}</a></td>
                                     <td>
                                         @if ($webinar->percentage_discount > 0)
@@ -79,7 +79,7 @@
                             @elseif($webinar->status == 'finished')
                                 <tr class="table-light">
                                     <td>{{$webinar->id}}</td>
-                                    <td><a href="">{{$webinar->title}}</a></td>
+                                    <td><a href="{{route('user.meetings.index' , [ $webinar])}}">{{$webinar->title}}</a></td>
                                     <td><a href="">{{$webinar->description}}</a></td>
                                     <td>
                                         @if ($webinar->percentage_discount)
