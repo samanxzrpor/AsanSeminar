@@ -4,6 +4,7 @@ namespace Application\Checkout\Controllers;
 
 use Application\Transaction\Controllers\TransactionController;
 use Application\User\Wallet\Exceptions\NotEnoughWalletAmountException;
+use Core\Traits\CurlPostRequest;
 use Domain\DiscountCode\Actions\DiscountCodeApplyToPriceAction;
 use Domain\DiscountCode\Actions\DiscountCodeCheckAction;
 use Domain\DiscountCode\Models\DiscountCode;
@@ -51,8 +52,9 @@ class CheckoutController extends \Core\Http\Controllers\Controller
                 $transaction = $this->buyTransaction($webinarPrice , $discountedPrice);
                 $this->updateOrder($order , 'paid', $transaction);
             }
+
             if ($request->has('direct-deposit')) {
-                $this->directPurchase($request , $webinarPrice,$order , $user , $discountedPrice);
+                return $this->directPurchase($request , $webinarPrice,$order , $user , $discountedPrice);
             }
 
         } catch (NotEnoughWalletAmountException $e) {
@@ -77,17 +79,7 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         ];
 
         $jwt = JWT::encode($data, 'SaMaN', 'HS256');
-
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"http://127.0.0.1:8001/api/shaparak");
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS,
-            'token='.$jwt);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $server_output = curl_exec($ch);
-        curl_close ($ch);
-
-        return $server_output;
+        return CurlPostRequest::sendRequest('token='.$jwt);
     }
 
     private function storeOrder(Webinar $webinar, $user, $discountCode)

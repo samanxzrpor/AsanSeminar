@@ -3,6 +3,7 @@
 namespace Application\User\Wallet\Controllers;
 
 use Application\User\Wallet\Requests\ChargeWalletRequest;
+use Core\Traits\CurlPostRequest;
 use Domain\Wallet\Actions\WalletAmountAction;
 use Firebase\JWT\JWT;
 use Illuminate\Http\Request;
@@ -38,16 +39,7 @@ class WalletController extends \Core\Http\Controllers\Controller
 
         $jwt = JWT::encode($data, 'SaMaN', 'HS256');
 
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL,"http://127.0.0.1:8001/api/shaparak");
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS,
-            'token='.$jwt);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $server_output = curl_exec($ch);
-        curl_close ($ch);
-
-        return $server_output;
+        return CurlPostRequest::sendRequest('token='.$jwt);
     }
 
 }
