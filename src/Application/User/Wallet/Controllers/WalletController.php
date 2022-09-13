@@ -23,34 +23,31 @@ class WalletController extends \Core\Http\Controllers\Controller
 
     public function walletProcess(ChargeWalletRequest $request)
     {
-        $request->validated();
+        $data = [
+            'amount' => $request->amount ,
+            'user_id' => Auth::id(),
+            'type' => 'withdraw',
+            'callback' => route('transaction.store')
+        ];
 
-        if ($request->has('withdraw')) {
-            $data = [
-                'amount' => $request->amount ,
-                'user_id' => Auth::id(),
-                'type' => 'withdraw',
-                'callback' => route('transaction.store')
-            ];
-        }
+        if ($request->has('withdraw'))
+            $data[] = ['type' => 'withdraw'];
 
-        if ($request->has('deposit')) {
-            $data = [
-                'amount' => $request->amount ,
-                'user_id' => Auth::id(),
-                'type' => 'deposit',
-                'callback' => route('transaction.store')
-            ];
-        }
+        if ($request->has('deposit'))
+            $data[] = ['type' => 'deposit'];
 
         $jwt = JWT::encode($data, 'SaMaN', 'HS256');
 
-        return Http::withHeaders([
-            'X-CSRF-Token' => csrf_token(),
-            'Content-Type', 'application/x-www-form-urlencoded'
-        ])->post('http://127.0.0.1:8001/api/shaparak', [
-            'token' =>$jwt
-        ]);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,"http://127.0.0.1:8001/api/shaparak");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS,
+            'token='.$jwt);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close ($ch);
+
+        return $server_output;
     }
 
 }

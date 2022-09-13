@@ -21,10 +21,11 @@ class TransactionController extends Controller
 
     public function store(Request $request)
     {
-        $data = collect(JWT::decode($request->key , new Key('SaMaN' , 'HS256')));
+
+        $data = collect(JWT::decode($request->token , new Key('SaMaN' , 'HS256')));
         $order = Order::find($data->get('order_id')) ?? null;
         $user = User::find($data->get('user_id')) ?? null;
-        Auth::loginUsingId($user->id);
+//        Auth::loginUsingId($user->id);
 
         DB::beginTransaction();
         try {

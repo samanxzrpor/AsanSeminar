@@ -41,7 +41,6 @@ class CheckoutController extends \Core\Http\Controllers\Controller
         $code = $request->get('discount-code');
         $user = Auth::user();
         $discount = DiscountCode::where('discount_code' , $code)->first();
-
         try {
             $webinarPrice = $this->setWebinarsDiscountePrice($webinar);
             $discountedPrice = $code ? $this->checkDiscountCode($webinar, $code , $webinarPrice) : null;
@@ -52,8 +51,9 @@ class CheckoutController extends \Core\Http\Controllers\Controller
                 $transaction = $this->buyTransaction($webinarPrice , $discountedPrice);
                 $this->updateOrder($order , 'paid', $transaction);
             }
-
-            $this->directPurchase($request , $webinarPrice,$order , $user , $discountedPrice);
+            if ($request->has('direct-deposit')) {
+                $this->directPurchase($request , $webinarPrice,$order , $user , $discountedPrice);
+            }
 
         } catch (NotEnoughWalletAmountException $e) {
             return back()->with('failed', 'مقدار حساب کیف شما کمتر از هزینه مورد نظر میباشد.');
@@ -67,23 +67,27 @@ class CheckoutController extends \Core\Http\Controllers\Controller
 
     private function directPurchase($request, $webinarPrice , $order , $user , $discountedPrice =null)
     {
-        if ($request->has('direct-deposit')) {
-            $amount = $discountedPrice ?? $webinarPrice;
-            $data = [
-                'order_id' => $order->id,
-                'user_id' => $user->id,
-                'amount' => $amount ,
-                'type' => 'direct',
-                'callback' => route('transaction.store')
-            ];
-            $jwt = JWT::encode($data, 'SaMaN', 'HS256');
-            return Http::withHeaders([
-                'X-CSRF-Token' => csrf_token(),
-                'Content-Type', 'application/x-www-form-urlencoded'
-            ])->post('http://127.0.0.1:8001/api/shaparak', [
-                'token' =>$jwt
-            ]);
-        }
+        $amount = $discountedPrice ?? $webinarPrice;
+        $data = [
+            'order_id' => $order->id,
+            'user_id' => $user->id,
+            'amount' => $amount ,
+            'type' => 'direct',
+            'callback' => route('transaction.store')
+        ];
+
+        $jwt = JWT::encode($data, 'SaMaN', 'HS256');
+
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,"http://127.0.0.1:8001/api/shaparak");
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS,
+            'token='.$jwt);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $server_output = curl_exec($ch);
+        curl_close ($ch);
+
+        return $server_output;
     }
 
     private function storeOrder(Webinar $webinar, $user, $discountCode)
