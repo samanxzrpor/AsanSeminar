@@ -23,6 +23,7 @@ class TransactionController extends Controller
     {
         $data = collect(JWT::decode($request->token , new Key('SaMaN' , 'HS256')));
         $order = Order::find($data->get('order_id')) ?? null;
+
         DB::beginTransaction();
         try {
             $transactionData = TransactionData::fromRequest($data);

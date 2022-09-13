@@ -39,7 +39,9 @@ class WalletController extends \Core\Http\Controllers\Controller
 
         $jwt = JWT::encode($data, 'SaMaN', 'HS256');
 
-        return CurlPostRequest::sendRequest('token='.$jwt);
+        return Http::post('http://127.0.0.1:8001/api/shaparak' , [
+            'token' => $jwt
+        ]);
     }
 
 }
