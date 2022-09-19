@@ -2,6 +2,7 @@
 
 namespace Application\User\Wallet\Requests;
 
+use Domain\Wallet\Rules\CheckWalletForWithdrawRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ChargeWalletRequest extends FormRequest
@@ -24,9 +25,9 @@ class ChargeWalletRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => ['required' , 'min:1'],
             'deposit' => ['nullable'],
             'withdraw' => ['nullable'],
+            'amount' => ['required' , 'min:1' ,new CheckWalletForWithdrawRule($this->withdraw)],
         ];
     }
 }

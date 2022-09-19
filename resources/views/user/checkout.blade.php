@@ -52,8 +52,7 @@
                 </div>
                 <div class="mb">
                     <div class="custom-control">
-                        <input id="discount-input" name="discount-code" type="text" class="form-control">
-                        <label class="custom-control-label" for="credit">کد تخفیف</label>
+                        <input id="discount-input" name="discount-code" type="hidden" class="form-control">
                     </div>
                 </div>
                 <div class="row">
@@ -78,7 +77,7 @@
                     datatype: "json",
                     data: {code:$("#code").val()},
                     success: function (data) {
-                        $("#total-amount").html(data);
+                        $("#total-amount").html(data.replace('"' , ''));
                         if(data > 0)
                             $("#discount-input").val($("#code").val());
                     },

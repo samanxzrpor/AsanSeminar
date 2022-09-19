@@ -32,7 +32,7 @@
                             <div class="col-sm">
                                 <select class="form-control" name="master_id">
                                     @foreach($masters as $master)
-                                        <option value="{{$master->id}}" {{$master->id == $webinar->master->id}}>{{$master->name}}</option>
+                                        <option value="{{$master->id}}" {{$master->id == $webinar->master->id ? 'selected' : ''}}>{{$master->name}}</option>
                                     @endforeach
                                 </select>
                             </div>

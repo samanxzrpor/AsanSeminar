@@ -4,7 +4,9 @@
 use Application\Checkout\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('checkout')->controller(CheckoutController::class)->group(function () {
+Route::prefix('checkout')
+    ->middleware('open_webinars')
+    ->controller(CheckoutController::class)->group(function () {
 
     Route::get('webinar/{webinar}' , 'index')->name('checkout');
     Route::post('applyCode/{webinar}' ,  'applyCode')->name('checkout.apply-code');

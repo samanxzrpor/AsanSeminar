@@ -17,7 +17,7 @@
                                 <input type="text" class="form-control" value="{{old('title') ?? $meeting->title}}" name="title" placeholder="عنوان جلسه" aria-label="title">
                             </div>
                             <div class="col-sm">
-                                <input type="text" class="form-control" value="{{old('$meeting_duration') ?? $meeting->meeting_duration}}" name="meeting_duration" placeholder="مدت زمان جلسه" aria-label="Number">
+                                <input type="text" class="form-control" value="{{old('meeting_duration') ?? $meeting->meeting_duration}}" name="meeting_duration" placeholder="مدت زمان جلسه" aria-label="Number">
                             </div>
                             <div class="col-sm">
                                 <input type="number" class="form-control" value="{{old('max_capacity') ?? $meeting->max_capacity}}" name="max_capacity" placeholder="ظرفیت جلسه" aria-label="Number">
@@ -54,7 +54,7 @@
                         enabled: true,
                     },
                 });
-                pd.setDate({{\Carbon\Carbon::parse($meeting->event_date)->getTimestamp() * 1000}})
+                pd.setDate({{old('event_date') ?? \Carbon\Carbon::parse($meeting->event_date)->getTimestamp() * 1000}})
             </script>
     @endpush
 @endsection

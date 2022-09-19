@@ -31,12 +31,6 @@ class DiscountCodesController extends \Core\Http\Controllers\Controller
 
     public function store(StoreDiscountCodeRequest $request)
     {
-        if ($request->start_date / 1000 < now()->timestamp)
-            return back()->with('failed' , 'زمان شروع مربوط به گذشته مبیاشد.');
-
-        if ($request->expire_date < $request->start_date)
-            return back()->with('failed' , 'زمان شروع و پایان درست ست نشده اند.');
-
         try {
             $discountData = DiscountCodeData::fromRequest($request);
             $newDiscount = (new DiscountCodeStoreAction())($discountData);

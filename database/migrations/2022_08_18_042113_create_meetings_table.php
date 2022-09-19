@@ -24,7 +24,7 @@ return new class extends Migration
                 ->default(false);
             $table->unsignedInteger('max_capacity');
             $table->timestamp('start_date')->nullable(); //
-            $table->timestamp('event_date');
+            $table->timestamp('event_date')->nullable(); //
             $table->foreignId('webinar_id')
                 ->constrained();
             $table->timestamps();

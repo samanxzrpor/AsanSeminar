@@ -13,13 +13,13 @@
                         @method('put')
                         <div class="row g-3">
                             <div class="col-sm-5">
-                                <input type="text" class="form-control" name="title" value="{{$discountCode->title}}" aria-label="title">
+                                <input type="text" class="form-control" name="title" value="{{old('title') ?? $discountCode->title}}" aria-label="title">
                             </div>
                             <div class="col-sm">
-                                <input type="text" class="form-control" name="discount_code" value="{{$discountCode->discount_code}}" aria-label="Number">
+                                <input type="text" class="form-control" name="discount_code" value="{{old('discount_code') ?? $discountCode->discount_code}}" aria-label="Number">
                             </div>
                             <div class="col-sm">
-                                <input type="number" class="form-control" name="amount" value="{{$discountCode->amount}}" aria-label="Event Date">
+                                <input type="number" class="form-control" name="amount" value="{{old('amount') ?? $discountCode->amount}}" aria-label="Event Date">
                             </div>
                         </div>
                         <br>
@@ -74,7 +74,7 @@
                         enabled: true,
                     },
                 });
-                pd1.setDate({{\Carbon\Carbon::parse($discountCode->start_date)->getTimestamp() * 1000}})
+                pd1.setDate({{old('start_date') ?? \Carbon\Carbon::parse($discountCode->start_date)->getTimestamp() * 1000}})
 
                 var pd2 = $(".expire-date").persianDatepicker({
                     altField: '.alt-field-expire',
@@ -82,7 +82,7 @@
                         enabled: true,
                     },
                 });
-                pd2.setDate({{\Carbon\Carbon::parse($discountCode->expire_date)->getTimestamp() * 1000}})
+                pd2.setDate({{old('expire_date') ?? \Carbon\Carbon::parse($discountCode->expire_date)->getTimestamp() * 1000}})
             </script>
     @endpush
 @endsection
